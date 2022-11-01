@@ -8,9 +8,8 @@ public class Player : MonoBehaviour
     float hAxis;
     float vAxis;
     bool wDown; // walk 다운 변수
-    //인스펙터 창에서 설정할 수 있도록 [SerializFild]
-    [SerializeField]
-    private float speed;
+    //캐릭터 이동 속도
+    private float speed = 10f;
     Vector3 moveVec; //move 벡터
 
     Animator anim;//Player Anim 변수
