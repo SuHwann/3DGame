@@ -44,10 +44,11 @@ public class Player : MonoBehaviour
     {
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;//normalized 로 방향값 1로 보정
 
-        transform.position += moveVec * speed * (wDown ? 0.3f : 1f) * Time.deltaTime; //Time.deltaTime 으로 이동속도 조절
+        transform.position += moveVec * speed * (wDown ? 1.5f : 1f) * Time.deltaTime; //Time.deltaTime 으로 이동속도 조절
 
         anim.SetBool("isRun", moveVec != Vector3.zero);//SetBool() 함수로 파라메터 값을 설정
         anim.SetBool("isWalk", wDown); //walk 다운
+
     }
     //Player가 이동 방향에 따라 바로 본다 LookAt
     protected void Trun()
