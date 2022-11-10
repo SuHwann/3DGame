@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2542598801674845944
+--- !u!1001 &5027270693259831862
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,6 +10,14 @@ PrefabInstance:
     - target: {fileID: 217860643835650324, guid: cd37ff18819b0af41ababbb0d87c09a3, type: 3}
       propertyPath: m_Name
       value: Sword_Green
+      objectReference: {fileID: 0}
+    - target: {fileID: 217860643835650324, guid: cd37ff18819b0af41ababbb0d87c09a3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 217860643835650324, guid: cd37ff18819b0af41ababbb0d87c09a3, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 598468256884128686, guid: cd37ff18819b0af41ababbb0d87c09a3, type: 3}
       propertyPath: m_RootOrder
@@ -55,5 +63,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1398237250631536986, guid: cd37ff18819b0af41ababbb0d87c09a3, type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398237250631536986, guid: cd37ff18819b0af41ababbb0d87c09a3, type: 3}
+      propertyPath: value
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730793384940077249, guid: cd37ff18819b0af41ababbb0d87c09a3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd37ff18819b0af41ababbb0d87c09a3, type: 3}
+--- !u!1 &5098509182905568034 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 217860643835650324, guid: cd37ff18819b0af41ababbb0d87c09a3, type: 3}
+  m_PrefabInstance: {fileID: 5027270693259831862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &99648605
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5098509182905568034}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: -0.0007416606, y: 0.6486705, z: -0.00021986663}

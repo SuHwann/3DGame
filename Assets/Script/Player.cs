@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
     }
     protected void Jump()
     {
-        if(jDown && moveVec == Vector3.zero && !isJump && !isSwap)
+        if(jDown && !isJump && !isSwap)
         {
             rigid.AddForce(Vector3.up * 15 , ForceMode.Impulse); // 즉발적인 Impulse로 한다.
             anim.SetBool("isJump", true); // 점프가 발동되면 isjump true
@@ -154,14 +154,13 @@ public class Player : MonoBehaviour
     void Interation()
     {
         //E(iDown)를 활성화 되고 nearObject 가 null이 아니고 점프와 Run이 아닐때 
-        if(iDown && nearObject != null && !isJump & !wRun)
+        if(iDown && nearObject != null && !isJump && !wRun)
         {
             if (nearObject.tag == "Weapon")
             {
                 Item item = nearObject.GetComponent<Item>();
                 int weaponIndex = item.value;
                 hasWeapons[weaponIndex] = true;
-
                 Destroy(nearObject);//오브젝트 삭제
             }
         }
