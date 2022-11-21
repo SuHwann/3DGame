@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Jewel
   - Weapon
+  - Missile
+  - Melee
   layers:
   - Default
   - TransparentFX

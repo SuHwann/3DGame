@@ -21,11 +21,15 @@ public class Player : MonoBehaviour
     bool sDown1;
     bool sDown2;
     bool sDown3;
+    //공격 변수 (키입력 , 공격딜레이 , 공격준비)
+    bool fDown;
+    bool isFireReady;
+    float fireDelay;
     //캐릭터 이동 속도
     [SerializeField]
     private float speed = 10f;
     //move 벡터
-    Vector3 moveVec; 
+    Vector3 moveVec;
 
     //물리효과를 위해 Rigidbody 변수 선언 후 , 초기화
     Rigidbody rigid;
@@ -33,8 +37,8 @@ public class Player : MonoBehaviour
     Animator anim;
     //트리거 된 아이템을 저장하기 위한 변수 선언
     GameObject nearObject;
-    //기존에 장착된 무기를 저장하는 변수를 선언하고 활용하기
-    GameObject equipWeapon;
+    //현재 장비(Weapon)타입 변수 
+    Weapon equipWeapon;
     int equipWeaponIndex = -1;
     //기존 플레이어가 기본적으로 들고있는 무기 
     [SerializeField]
@@ -68,6 +72,7 @@ public class Player : MonoBehaviour
         Move();
         Trun();
         Jump();
+        Attack();
         Interation();
         Swap();
     }
@@ -79,6 +84,7 @@ public class Player : MonoBehaviour
         wRun = Input.GetButton("Run");
         jDown = Input.GetButtonDown("Jump");
         iDown = Input.GetButtonDown("Interation");
+        fDown = Input.GetButtonDown("Fire1"); 
         sDown1 = Input.GetButtonDown("Swap1");
         sDown2 = Input.GetButtonDown("Swap2");
         sDown3 = Input.GetButtonDown("Swap3");
@@ -190,11 +196,11 @@ public class Player : MonoBehaviour
             basicSword.SetActive(false);//기존의 칼도 비활성화 시킨다
             if (equipWeapon != null)
             {
-              equipWeapon.SetActive(false);
+              equipWeapon.gameObject.SetActive(false);
             }
             equipWeaponIndex = weaponIndex;
-            equipWeapon = weapons[weaponIndex];
-            equipWeapon.SetActive(true);
+            equipWeapon = weapons[weaponIndex].GetComponent<Weapon>();
+            equipWeapon.gameObject.SetActive(true);
 
             anim.SetTrigger("doSwap");
             isSwap = true;
@@ -230,5 +236,21 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         FreezeRotation();
+    }
+    //공격 함수 (무기가 있을때만 실행)
+    void Attack()
+    {
+        if (equipWeapon == null)
+            return;
+        //공격시간을 더해주고 공격가능 여부 확인
+        fireDelay += Time.deltaTime;
+        isFireReady = equipWeapon.rate < fireDelay;
+
+        if(fDown && isFireReady)
+        {
+            equipWeapon.Use();
+            anim.SetTrigger("doSwing");
+            fireDelay = 0;
+        }
     }
 }
