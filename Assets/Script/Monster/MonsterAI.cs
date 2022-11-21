@@ -13,6 +13,7 @@ public class MonsterAI : MonoBehaviour
     private void Awake()
     {
         GetPoint();
+        VariableRest();
         randomInt = Random.Range(0, movePoint.Length); //랜덤 변수 저장
         dePosition = transform.position; //첫시작시 위치 저장
         StartCoroutine(AiMonster());
@@ -30,6 +31,11 @@ public class MonsterAI : MonoBehaviour
             Destination();
             yield return new WaitForSeconds(Time.deltaTime);
         }
+    }
+    void VariableRest() //변수 초기화.
+    {
+        agent = GetComponent<NavMeshAgent>();
+        rigid = GetComponent<Rigidbody>();
     }
     void FreezeVelocity()   //ai 몬스터 충돌시 뒤로 밀리는 충돌 멈춤 
     {

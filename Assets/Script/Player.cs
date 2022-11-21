@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
     bool sDown2;
     bool sDown3;
     //공격 변수 (키입력 , 공격딜레이 , 공격준비)
-    bool deAttack = true;
     bool fDown;
     bool isFireReady = true;
     float fireDelay;

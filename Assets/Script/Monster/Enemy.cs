@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
-        mat = GetComponent<MeshRenderer>().material;    //Material은 Mesh Renderer 컴포넌트에서 접근가능!
+        mat = GetComponentInChildren<SkinnedMeshRenderer>().material;    //Material은 Mesh Renderer 컴포넌트에서 접근가능!
     }
 
     private void OnTriggerEnter(Collider other)
