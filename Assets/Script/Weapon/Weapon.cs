@@ -9,8 +9,7 @@ public class Weapon : MonoBehaviour
     //무기옵션 변수
     [SerializeField]
     private Type type;
-    [SerializeField]
-    private int damage;
+    public int damage;
     public float rate;
     [SerializeField]
     private BoxCollider meleeArea;

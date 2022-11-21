@@ -22,8 +22,9 @@ public class Player : MonoBehaviour
     bool sDown2;
     bool sDown3;
     //공격 변수 (키입력 , 공격딜레이 , 공격준비)
+    bool deAttack = true;
     bool fDown;
-    bool isFireReady;
+    bool isFireReady = true;
     float fireDelay;
     //캐릭터 이동 속도
     [SerializeField]
@@ -93,7 +94,7 @@ public class Player : MonoBehaviour
     {
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;//normalized 로 방향값 1로 보정
 
-        if(isSwap)
+        if(isSwap || !isFireReady)
         {
             moveVec = Vector3.zero;
         }
@@ -224,6 +225,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+    //Swap에 Invoke로 사용 
     void SwapOut()
     {
         isSwap = false;
