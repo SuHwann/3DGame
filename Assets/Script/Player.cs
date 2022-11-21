@@ -13,14 +13,16 @@ public class Player : MonoBehaviour
     private bool iDown;  //플레이어 무기 입수 변수
     private bool isSwap;  //무기 스왑 변수
     //플레이어의 무기관련 배열 함수 2개 선언
-
     public GameObject[] weapons;
     public bool[] hasWeapons;
+    //공전하는 물체 배열 변수 생성 
+    private GameObject[] grenades;
     //무기교체 
     bool sDown1;
     bool sDown2;
     bool sDown3;
     //캐릭터 이동 속도
+    [SerializeField]
     private float speed = 10f;
     //move 벡터
     Vector3 moveVec; 
@@ -37,6 +39,23 @@ public class Player : MonoBehaviour
     //기존 플레이어가 기본적으로 들고있는 무기 
     [SerializeField]
     GameObject basicSword;
+    //Player 능력치
+    [SerializeField]
+    private int ammo;
+    [SerializeField]
+    private int coin;
+    [SerializeField]
+    private int health;
+    [SerializeField]
+    private int hasGrenades;
+    [SerializeField]
+    private int maxAmmo;
+    [SerializeField]
+    private int maxCoin;
+    [SerializeField]
+    private int maxHealth;
+    [SerializeField]
+    private int maxHasGrenades;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
@@ -102,12 +121,46 @@ public class Player : MonoBehaviour
             isJump = false;
         }
     }
-    //other 가 Weapon 이면 nearObject에 저장
-    private void OnTriggerEnter(Collider other)
+    //other가 Weapon 이면 nearObject에 저장
+    private void OnTriggerStay(Collider other)
     {
         if(other.tag =="Weapon")
         {
             nearObject = other.gameObject;
+        }
+    }
+    //other가 Item 이면 item에 저장하는 기능
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag =="Item")
+        {
+            Item item = other.GetComponent<Item>();
+            switch (item.type)
+            {
+                //아이템 능력치 플레이어에게 적용
+                case Item.Type.Ammo:
+                    ammo += item.value;
+                    if (ammo > maxAmmo)
+                        ammo = maxAmmo;
+                    break;
+                case Item.Type.Coin:
+                    coin += item.value;
+                    if(coin > maxCoin)
+                        coin = maxCoin;
+                    break;
+                case Item.Type.Heart:
+                    health += item.value;
+                    if (health > maxHealth)
+                        health = maxHealth;
+                    break;
+                case Item.Type.Grenade:
+                    hasGrenades += item.value;
+                    if(hasGrenades > maxHasGrenades)
+                        hasGrenades = maxHasGrenades;
+                    break;
+            }
+            //먹은 아이템은 삭제
+            Destroy(other.gameObject);
         }
     }
     //other 영역에서 벗어났을땐 null을 저장한다.

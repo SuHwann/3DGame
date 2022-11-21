@@ -23019,5 +23019,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: MaleCharacterPBR
       objectReference: {fileID: 0}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: health
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: maxAmmo
+      value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: maxCoin
+      value: 99999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: maxHasGrenades
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
