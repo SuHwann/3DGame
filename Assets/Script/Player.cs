@@ -246,7 +246,7 @@ public class Player : MonoBehaviour
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.rate < fireDelay;
 
-        if(fDown && isFireReady)
+        if(fDown && isFireReady && !isSwap)
         {
             equipWeapon.Use();
             anim.SetTrigger("doSwing");
