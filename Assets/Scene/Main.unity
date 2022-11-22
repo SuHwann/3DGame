@@ -2135,7 +2135,7 @@ GameObject:
   - component: {fileID: 175559779}
   - component: {fileID: 175559778}
   - component: {fileID: 175559777}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7413,6 +7413,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 603775822, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: m_Speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1632942766}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: curHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: maxHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: movePoint.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: movePoint.Array.data[0]
+      value: 
+      objectReference: {fileID: 890187447}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: movePoint.Array.data[1]
+      value: 
+      objectReference: {fileID: 890187446}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: movePoint.Array.data[2]
+      value: 
+      objectReference: {fileID: 890187445}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: movePoint.Array.data[3]
+      value: 
+      objectReference: {fileID: 890187444}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: movePoint.Array.data[4]
+      value: 
+      objectReference: {fileID: 890187443}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: movePoint.Array.data[5]
+      value: 
+      objectReference: {fileID: 890187443}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: movePoint.Array.data[6]
+      value: 
+      objectReference: {fileID: 890187443}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: movePoint.Array.data[7]
+      value: 
+      objectReference: {fileID: 890187443}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: movePoint.Array.data[8]
+      value: 
+      objectReference: {fileID: 890187443}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: movePoint.Array.data[9]
+      value: 
+      objectReference: {fileID: 890187443}
     - target: {fileID: 7008692742921620875, guid: fa0bffab021a920469877ca977655442, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -7477,7 +7537,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plant Chewer (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 603775828, guid: fa0bffab021a920469877ca977655442, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fa0bffab021a920469877ca977655442, type: 3}
 --- !u!4 &713344648 stripped
 Transform:
@@ -11551,6 +11612,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 603775822, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: m_Speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1632942766}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: curHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: maxHealth
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
       propertyPath: movePoint.Array.size
       value: 5
@@ -11659,7 +11736,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plant Chewer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 603775828, guid: fa0bffab021a920469877ca977655442, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fa0bffab021a920469877ca977655442, type: 3}
 --- !u!1001 &1037026276
 PrefabInstance:
@@ -19078,8 +19156,12 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5298094888260671851, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: m_Constraints
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5298094888260671851, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5446738755537514340, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
       propertyPath: m_Layer
@@ -19159,6 +19241,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+--- !u!1 &1632942766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4048237894197506353, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+  m_PrefabInstance: {fileID: 1632942765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1633061584 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 442488, guid: ec78ebca7517fb745a45a931cb06d2bd, type: 3}

@@ -161,8 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca241d102026fd549910b3f9be0b8ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  curHealth: 100
 --- !u!54 &450393194
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -391,6 +389,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: curHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: maxHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
       propertyPath: movePoint.Array.data[0]
       value: 
       objectReference: {fileID: 1470029412}
@@ -458,7 +464,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plant Chewer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 603775828, guid: fa0bffab021a920469877ca977655442, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fa0bffab021a920469877ca977655442, type: 3}
 --- !u!4 &988628335 stripped
 Transform:
