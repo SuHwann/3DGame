@@ -1088,10 +1088,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_Green
       objectReference: {fileID: 0}
-    - target: {fileID: 5098509182905568034, guid: c2713e50491ecf045bd633a9085cc85e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5587379142692114840, guid: c2713e50491ecf045bd633a9085cc85e, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1135,6 +1131,10 @@ PrefabInstance:
     - target: {fileID: 5587379142692114840, guid: c2713e50491ecf045bd633a9085cc85e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243112030097079149, guid: c2713e50491ecf045bd633a9085cc85e, type: 3}
+      propertyPath: m_Constraints
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2713e50491ecf045bd633a9085cc85e, type: 3}
@@ -1222,13 +1222,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2848509111449346787, guid: 505889e8d68b96b4699b60f398f40ece, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4032549881185712778, guid: 505889e8d68b96b4699b60f398f40ece, type: 3}
       propertyPath: m_Name
       value: Sword_Red
-      objectReference: {fileID: 0}
-    - target: {fileID: 4032549881185712778, guid: 505889e8d68b96b4699b60f398f40ece, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4376846196009754672, guid: 505889e8d68b96b4699b60f398f40ece, type: 3}
       propertyPath: m_RootOrder
@@ -1283,6 +1283,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1551666500403501828, guid: 802a38116d985bf43b6cf8eab7e03949, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2384072703545880011, guid: 802a38116d985bf43b6cf8eab7e03949, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1330,10 +1334,6 @@ PrefabInstance:
     - target: {fileID: 3052945571959469937, guid: 802a38116d985bf43b6cf8eab7e03949, type: 3}
       propertyPath: m_Name
       value: Sword_Blue
-      objectReference: {fileID: 0}
-    - target: {fileID: 3052945571959469937, guid: 802a38116d985bf43b6cf8eab7e03949, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 802a38116d985bf43b6cf8eab7e03949, type: 3}
