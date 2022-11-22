@@ -30,6 +30,13 @@ public class MonsterAI : MonoBehaviour
     {
         movePoint = GameObject.Find("Point").GetComponentsInChildren<Transform>();
     }
+    private void Update()
+    {
+        if(Vector3.Distance(transform.position , Player.position)< 3f)
+        {
+            agent.SetDestination(Player.position);
+        }
+    }
     IEnumerator AiMonster()
     {
         while(true)

@@ -7418,6 +7418,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 215264399}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1632942766}
@@ -11616,6 +11620,10 @@ PrefabInstance:
       propertyPath: m_Speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 215264399}
     - target: {fileID: 603775827, guid: fa0bffab021a920469877ca977655442, type: 3}
       propertyPath: target
       value: 
