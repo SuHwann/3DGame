@@ -18,13 +18,18 @@ public class MonsterAI : MonoBehaviour
     Rigidbody rigid;          //충돌시 일어나는 예외 상황 방지 변수
     BoxCollider boxCollider;
     Material mat;             //몬스터 공격시 색변화 
+    Animator anim;            //몬스터 행동 애니메이션
+    Coroutine monsterMove;  //코루틴 변수 
+    bool isChase = true;              //몬스터 행동 변수 
     private void Awake()
     {
         GetPoint();
         VariableRest();
         randomInt = Random.Range(0, movePoint.Length); //랜덤 변수 저장
-        dePosition = transform.position; //첫시작시 위치 저장
+        dePosition = transform.position; //첫시작시 위치 저장 .     나중에 리스폰 할 상황이 생길수도있기 때문에 
         StartCoroutine(AiMonster());
+        monsterMove = StartCoroutine(AiMonster());
+        anim.SetBool("isWalk", true);   //첫시작시 걷는 행동 실행 
     }
     void GetPoint()  //Point들의 위치를 인스펙터에 저장한다.
     {
@@ -32,20 +37,28 @@ public class MonsterAI : MonoBehaviour
     }
     private void Update()
     {
-        if(Vector3.Distance(transform.position , Player.position)< 3f)
+/*        if (Vector3.Distance(transform.position, Player.position) < 3f)
         {
             agent.SetDestination(Player.position);
+        }*/
+        //테스트
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            isChase = false;
+            print("k 누름");
         }
     }
-    IEnumerator AiMonster()
+    IEnumerator AiMonster()    //몬스터 정찰 기능 
     {
-        while(true)
-        {
-            agent.SetDestination(movePoint[randomInt].transform.position); //ai몬스터 목적지로 이동 시작
-            FreezeVelocity();
-            Destination();
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
+        yield return null;
+            while (true)
+            {
+                agent.SetDestination(movePoint[randomInt].transform.position); //ai몬스터 목적지로 이동 시작
+                FreezeVelocity();
+                Destination();
+                yield return new WaitForSeconds(Time.deltaTime);
+                print("코루틴 정지 될까?");
+            }
     }
     void VariableRest() //변수 초기화.
     {
@@ -53,6 +66,7 @@ public class MonsterAI : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         mat = GetComponentInChildren<SkinnedMeshRenderer>().material;    //Material은 Mesh Renderer 컴포넌트에서 접근가능!
+        anim = GetComponent<Animator>();
     }
     void FreezeVelocity()   //ai 몬스터 충돌시 뒤로 밀리는 충돌 멈춤 
     {
@@ -99,8 +113,11 @@ public class MonsterAI : MonoBehaviour
         //몬스터 죽음 
         else
         {
+
             mat.color = Color.gray;
             gameObject.layer = 7;
+            anim.SetTrigger("doDie");
+            agent.enabled = false;
             //몬스터가 죽으면서 뒤로 밀림
             reactVec = reactVec.normalized;
             reactVec += Vector3.up;
