@@ -19,7 +19,7 @@ public class MonsterAI : MonoBehaviour
     BoxCollider boxCollider;
     Material mat;             //몬스터 공격시 색변화 
     Animator anim;            //몬스터 행동 애니메이션
-    Coroutine monsterMove;  //코루틴 변수 
+    Coroutine co;  //코루틴 변수 
     bool isChase = true;              //몬스터 행동 변수 
     private void Awake()
     {
@@ -27,38 +27,27 @@ public class MonsterAI : MonoBehaviour
         VariableRest();
         randomInt = Random.Range(0, movePoint.Length); //랜덤 변수 저장
         dePosition = transform.position; //첫시작시 위치 저장 .     나중에 리스폰 할 상황이 생길수도있기 때문에 
-        StartCoroutine(AiMonster());
-        monsterMove = StartCoroutine(AiMonster());
+        co = StartCoroutine(AiMonster());
         anim.SetBool("isWalk", true);   //첫시작시 걷는 행동 실행 
     }
     void GetPoint()  //Point들의 위치를 인스펙터에 저장한다.
     {
         movePoint = GameObject.Find("Point").GetComponentsInChildren<Transform>();
     }
-    private void Update()
-    {
-/*        if (Vector3.Distance(transform.position, Player.position) < 3f)
-        {
-            agent.SetDestination(Player.position);
-        }*/
-        //테스트
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            isChase = false;
-            print("k 누름");
-        }
-    }
     IEnumerator AiMonster()    //몬스터 정찰 기능 
-    {
-        yield return null;
-            while (true)
+    { 
+         while (true)
+         {
+            agent.SetDestination(movePoint[randomInt].transform.position); //ai몬스터 목적지로 이동 시작
+            if (Vector3.Distance(transform.position, Player.position) <= 20f) //Player와 가까워지면 플레이어를 따라간다.
             {
-                agent.SetDestination(movePoint[randomInt].transform.position); //ai몬스터 목적지로 이동 시작
-                FreezeVelocity();
-                Destination();
-                yield return new WaitForSeconds(Time.deltaTime);
-                print("코루틴 정지 될까?");
+                agent.SetDestination(Player.position);
             }
+            FreezeVelocity();
+            Destination();
+            yield return new WaitForSeconds(Time.deltaTime);
+         }
+
     }
     void VariableRest() //변수 초기화.
     {
@@ -113,16 +102,16 @@ public class MonsterAI : MonoBehaviour
         //몬스터 죽음 
         else
         {
-
+            StopCoroutine(co);
+            agent.enabled = false;
             mat.color = Color.gray;
             gameObject.layer = 7;
             anim.SetTrigger("doDie");
-            agent.enabled = false;
             //몬스터가 죽으면서 뒤로 밀림
             reactVec = reactVec.normalized;
             reactVec += Vector3.up;
             rigid.AddForce(reactVec * 5, ForceMode.Impulse);
-            Destroy(gameObject, 4f);
+            Destroy(gameObject, 3f);
         }
     }
 }
