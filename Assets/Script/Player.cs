@@ -64,6 +64,8 @@ public class Player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
         anim = GetComponentInChildren<Animator>(); //Animaltor 변수를 GetCommponentChildren()으로 초기화
+        
+        equipWeapon = basicSword.GetComponent<Weapon>(); //처음엔 기본칼을 사용한다.
     }
 
     private void Update()
@@ -159,15 +161,20 @@ public class Player : MonoBehaviour
                     if (health > maxHealth)
                         health = maxHealth;
                     break;
-                case Item.Type.Grenade:
+                    //폭탄을 먹었을때
+/*                case Item.Type.Grenade:
                     hasGrenades += item.value;
                     if(hasGrenades > maxHasGrenades)
                         hasGrenades = maxHasGrenades;
-                    break;
+                    break;*/
             }
             //먹은 아이템은 삭제
             Destroy(other.gameObject);
         }
+/*        else if (other.tag == "EnemyBullet")
+        {
+            Bullet
+        }*/
     }
     //other 영역에서 벗어났을땐 null을 저장한다.
     void OnTriggerExit(Collider other)

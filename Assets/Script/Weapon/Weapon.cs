@@ -13,9 +13,8 @@ public class Weapon : MonoBehaviour
     public float rate;
     [SerializeField]
     private BoxCollider meleeArea;
-/*    [SerializeField]
-    private TrailRenderer trailEffect;*/
-
+    /*    [SerializeField]
+        private TrailRenderer trailEffect;*/
     //플레이어 무기 사용 
     public void Use()
     {
