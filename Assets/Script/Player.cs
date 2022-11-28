@@ -42,6 +42,9 @@ public class Player : MonoBehaviour
     //현재 장비(Weapon)타입 변수 
     Weapon equipWeapon;
     int equipWeaponIndex = -1;
+    //플레이어의 MeshRenderer 배열 변수 추가 
+    MeshRenderer[] meshs;
+    SkinnedMeshRenderer[] skinnmeshs;
     //기존 플레이어가 기본적으로 들고있는 무기 
     [SerializeField]
     GameObject basicSword;
@@ -62,11 +65,13 @@ public class Player : MonoBehaviour
     private int maxHealth;
     [SerializeField]
     private int maxHasGrenades;
+ 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
         anim = GetComponentInChildren<Animator>(); //Animaltor 변수를 GetCommponentChildren()으로 초기화
-        
+        meshs = GetComponentsInChildren<MeshRenderer>(); //player 메쉬 초기화 
+        skinnmeshs = GetComponentsInChildren<SkinnedMeshRenderer>();
         equipWeapon = basicSword.GetComponent<Weapon>(); //처음엔 기본칼을 사용한다.
     }
 
@@ -174,7 +179,7 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
         }
         //Slash 스크립트 재활용하여 데미지 적용 
-        else if (other.tag == "EnemyBullet")
+        else if (other.tag == "EnemyFar")
         {
             if(!isDamage)
             {
@@ -184,12 +189,25 @@ public class Player : MonoBehaviour
             }
         }
     }
+    //몇개는 MeshRenderer이고 몇개는 SkinMeshRenderer라 이렇게 그냥 따로 선언.
+    [SerializeField]
+    SkinnedMeshRenderer skinnMesh;
     //플레이어가 공격 받았을때 
     IEnumerator OnDamage()
     {
         isDamage = true;
+        foreach (MeshRenderer mesh in meshs) //공격을 받았을때 색변화 
+        {
+            skinnMesh.material.color = Color.red;
+            mesh.material.color = Color.red;
+        }
         yield return new WaitForSeconds(1f);// 무적 시간 
         isDamage = false;
+        foreach (MeshRenderer mesh in meshs) //다시 돌아옴
+        {
+            skinnMesh.material.color = Color.white;
+            mesh.material.color = Color.white;
+        }
     }
     //other 영역에서 벗어났을땐 null을 저장한다.
     void OnTriggerExit(Collider other)

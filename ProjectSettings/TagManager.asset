@@ -9,6 +9,7 @@ TagManager:
   - Missile
   - Melee
   - Slash
+  - EnemyFar
   layers:
   - Default
   - TransparentFX

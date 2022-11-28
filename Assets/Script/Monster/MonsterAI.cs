@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+//EnemyScript랑 합친 ai스크립트 
 public class MonsterAI : MonoBehaviour
 {
     [SerializeField]
@@ -12,21 +13,20 @@ public class MonsterAI : MonoBehaviour
     Transform[] movePoint;    //몬스터 목표 위치 변수
     [SerializeField]
     private Transform Player;         //몬스터 추적 Target변수
+    [SerializeField]
+    private BoxCollider meleeArea;      //근접 공격 박스콜라이더
     NavMeshAgent agent;       //NMA 변수
-    Vector3 dePosition;       //기존 위치 
     int randomInt;            //movePoint 순서를 랜덤하게 저장 할 변수
+    private bool isAttack;    //현재 공격중인지 확인하는 변수 
     Rigidbody rigid;          //충돌시 일어나는 예외 상황 방지 변수
-    BoxCollider boxCollider;
     Material mat;             //몬스터 공격시 색변화 
     Animator anim;            //몬스터 행동 애니메이션
-    Coroutine co;  //코루틴 변수 
-    bool isChase = true;              //몬스터 행동 변수 
+    Coroutine co;  //코루틴 변수  
     private void Awake()
     {
         GetPoint();
         VariableRest();
         randomInt = Random.Range(0, movePoint.Length); //랜덤 변수 저장
-        dePosition = transform.position; //첫시작시 위치 저장 .     나중에 리스폰 할 상황이 생길수도있기 때문에 
         co = StartCoroutine(AiMonster());
         anim.SetBool("isWalk", true);   //첫시작시 걷는 행동 실행 
     }
@@ -43,7 +43,10 @@ public class MonsterAI : MonoBehaviour
             {
                 agent.SetDestination(Player.position);
             }
-            FreezeVelocity();
+            else if(Vector3.Distance(transform.position , Player.position)<=5f)
+            {
+                agent.isStopped = false;
+            }
             Destination();
             yield return new WaitForSeconds(Time.deltaTime);
          }
@@ -53,7 +56,6 @@ public class MonsterAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         rigid = GetComponent<Rigidbody>();
-        boxCollider = GetComponent<BoxCollider>();
         mat = GetComponentInChildren<SkinnedMeshRenderer>().material;    //Material은 Mesh Renderer 컴포넌트에서 접근가능!
         anim = GetComponent<Animator>();
     }
@@ -116,5 +118,20 @@ public class MonsterAI : MonoBehaviour
             rigid.AddForce(reactVec * 5, ForceMode.Impulse);
             Destroy(gameObject, 3f);
         }
+    }
+    //2022/11/28여기 까지 마무리함
+    void Targerting()
+    {
+        float targetRadius = 1.5f;
+        float targetRange = 3f;
+
+        RaycastHit[] rayHits =
+             Physics.SphereCastAll(transform.position, targetRadius, transform.forward, 0f,
+             LayerMask.GetMask("Enemy"));
+    }
+    private void FixedUpdate()
+    {
+        Targerting();
+        FreezeVelocity();
     }
 }
