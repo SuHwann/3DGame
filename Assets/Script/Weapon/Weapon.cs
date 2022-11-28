@@ -5,16 +5,17 @@ public class Weapon : MonoBehaviour
 {
 
     //무기타입 
-    public enum Type { Melee, Range}
+    public enum Type { Melee, Blue}
     //무기옵션 변수
-    [SerializeField]
-    private Type type;
+    public Type type;
     public int damage;
     public float rate;
     [SerializeField]
     private BoxCollider meleeArea;
     /*    [SerializeField]
         private TrailRenderer trailEffect;*/
+    public Transform slashPos;      //참격생성 위치  
+    public GameObject slash;        //참격 오브젝트
     //플레이어 무기 사용 
     public void Use()
     {
@@ -22,6 +23,10 @@ public class Weapon : MonoBehaviour
         {
             StopCoroutine("Swing");
             StartCoroutine("Swing");
+        }
+        else if(type == Type.Blue)
+        {
+            StartCoroutine(SlashShot());
         }
     }
     //근접 공격 
@@ -34,5 +39,13 @@ public class Weapon : MonoBehaviour
         meleeArea.enabled = false;
         yield return new WaitForSeconds(0.3f);
 /*        trailEffect.enabled = false;*/
+    }
+    IEnumerator SlashShot()
+    {
+        //참격 발사 
+        GameObject instantSlash = Instantiate(slash, slashPos.position, slashPos.rotation);
+        Rigidbody slashRigid = instantSlash.GetComponent<Rigidbody>();
+        slashRigid.velocity = slashPos.forward * 50;
+        yield return null;
     }
 }

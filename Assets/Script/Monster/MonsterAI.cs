@@ -81,13 +81,16 @@ public class MonsterAI : MonoBehaviour
             StartCoroutine(OnDamage(reactVec));
         }
         //원거리 공격일때 
-        /*        else if(other.tag == "Bullet")
-                {
-                    Bullet bullet = other.GetComponent<Bullet>();
-                    curHealth -= bullet.damage;
-
-                    StartCoroutine(OnDamage(reactVec));
-                }*/
+        else if (other.tag == "Slash")
+        {
+            Slash slash = other.GetComponent<Slash>();
+            curHealth -= slash.damage;
+            //참격이 적과 닿았을때 삭제 되도록 
+            Destroy(other.gameObject);
+            //넉백 위치 or 전달
+            Vector3 reactVec = transform.position - other.transform.position;
+            StartCoroutine(OnDamage(reactVec));
+        }
     }
     //데미지 로직 
     IEnumerator OnDamage(Vector3 reactVec)

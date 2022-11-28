@@ -10,7 +10,7 @@ public class Orbit : MonoBehaviour
     private float orbitSpeed;
     Vector3 offset;
 
-    private void Start()
+    private void Awake()
     {
         offset = transform.position - target.position;
         StartCoroutine(OrbitSkill());

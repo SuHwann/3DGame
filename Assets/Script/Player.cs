@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     private bool isJump; //무한 점프 방지용 변수
     private bool iDown;  //플레이어 무기 입수 변수
     private bool isSwap;  //무기 스왑 변수
+    //플레이어가 공격을 받고 무적 타임을 위해 bool 변수 추가
+    private bool isDamage;
     //플레이어의 무기관련 배열 함수 2개 선언
     public GameObject[] weapons;
     public bool[] hasWeapons;
@@ -86,7 +88,7 @@ public class Player : MonoBehaviour
         wRun = Input.GetButton("Run");
         jDown = Input.GetButtonDown("Jump");
         iDown = Input.GetButtonDown("Interation");
-        fDown = Input.GetButtonDown("Fire1"); 
+        fDown = Input.GetButton("Fire1");                //꾹 눌러도 자동으로 나감 
         sDown1 = Input.GetButtonDown("Swap1");
         sDown2 = Input.GetButtonDown("Swap2");
         sDown3 = Input.GetButtonDown("Swap3");
@@ -171,10 +173,23 @@ public class Player : MonoBehaviour
             //먹은 아이템은 삭제
             Destroy(other.gameObject);
         }
-/*        else if (other.tag == "EnemyBullet")
+        //Slash 스크립트 재활용하여 데미지 적용 
+        else if (other.tag == "EnemyBullet")
         {
-            Bullet
-        }*/
+            if(!isDamage)
+            {
+                Slash enemySlash = other.GetComponent<Slash>();
+                health -= enemySlash.damage;
+                StartCoroutine(OnDamage());
+            }
+        }
+    }
+    //플레이어가 공격 받았을때 
+    IEnumerator OnDamage()
+    {
+        isDamage = true;
+        yield return new WaitForSeconds(1f);// 무적 시간 
+        isDamage = false;
     }
     //other 영역에서 벗어났을땐 null을 저장한다.
     void OnTriggerExit(Collider other)
@@ -257,7 +272,7 @@ public class Player : MonoBehaviour
         if(fDown && isFireReady && !isSwap)
         {
             equipWeapon.Use();
-            anim.SetTrigger("doSwing");
+            anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doSlash");
             fireDelay = 0;
         }
     }
