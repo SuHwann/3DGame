@@ -27,13 +27,14 @@ public class MonsterAI : MonoBehaviour
     Collider monsterCol;      //몬스터 콜라이더 
     Material mat;             //몬스터 공격시 색변화 
     Animator anim;            //몬스터 행동 애니메이션
-    Coroutine co;  //코루틴 변수  
+    Coroutine co,attack;  //코루틴 변수  
     private void Awake()
     {
         GetPoint();
         VariableRest();
         randomInt = Random.Range(0, movePoint.Length); //랜덤 변수 저장
         co = StartCoroutine(AiMonster());
+        attack = StartCoroutine(Attack());
         anim.SetBool("isWalk", true);   //첫시작시 걷는 행동 실행 
     }
     void GetPoint()  //Point들의 위치를 인스펙터에 저장한다.
@@ -115,7 +116,7 @@ public class MonsterAI : MonoBehaviour
         else
         {
             StopCoroutine(co);
-            agent.enabled = false;
+            monsterCol.enabled = false;
             mat.color = Color.gray;
             gameObject.layer = 7;
             anim.SetTrigger("doDie");

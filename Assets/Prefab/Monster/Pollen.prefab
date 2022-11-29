@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1353284268834731290}
   - component: {fileID: 7202980005069105021}
   - component: {fileID: 8393648360083818548}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FX Orb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4822,7 +4822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8862441549288110170}
   - component: {fileID: 8770973639882720110}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pollen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4837,7 +4837,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295734774219671232}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0.000000005358038}
+  m_LocalPosition: {x: -0, y: -0.645, z: 0.000000005358038}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4910,7 +4910,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4991153169811935882}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4942,7 +4942,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5150800743936110362}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4973,7 +4973,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7468012616842329170}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigPelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4988,7 +4988,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6672699438476128696}
   m_LocalRotation: {x: 0.50000006, y: -0.50000006, z: -0.49999997, w: 0.49999997}
-  m_LocalPosition: {x: 5.739219e-14, y: 0.81988555, z: -0.00000019604002}
+  m_LocalPosition: {x: 5.739219e-14, y: 0.118, z: -0.00000019604002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5006,7 +5006,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 504407518542756394}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigSpine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5038,7 +5038,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5176575173626260921}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigLeaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5074,9 +5074,9 @@ GameObject:
   - component: {fileID: 743090589}
   - component: {fileID: 743090587}
   - component: {fileID: 743090588}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pollen
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5146,8 +5146,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.92, z: 0}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0.62, z: 0}
 --- !u!114 &743090587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5171,7 +5171,7 @@ MonoBehaviour:
   - {fileID: 0}
   Player: {fileID: 0}
   meleeArea: {fileID: 0}
-  slashOb: {fileID: 0}
+  slashOb: {fileID: 1541847680934240335, guid: 3cbfd000fc4a71545b6773c7af14bc76, type: 3}
 --- !u!195 &743090588
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5190,7 +5190,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
