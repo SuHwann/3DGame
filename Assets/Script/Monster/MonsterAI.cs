@@ -5,6 +5,9 @@ using UnityEngine.AI;
 //EnemyScript랑 합친 ai스크립트 
 public class MonsterAI : MonoBehaviour
 {
+    public enum Type { A , B, C} //몬스터 타입
+    [SerializeField]
+    Type enemyType; //몬스터 타입 변수 
     [SerializeField]
     private int maxHealth; //최대 체력
     [SerializeField]
@@ -15,10 +18,13 @@ public class MonsterAI : MonoBehaviour
     private Transform Player;         //몬스터 추적 Target변수
     [SerializeField]
     private BoxCollider meleeArea;      //근접 공격 박스콜라이더
+    [SerializeField]
+    private GameObject slashOb;         //원거리 공격 오브젝트
     NavMeshAgent agent;       //NMA 변수
     int randomInt;            //movePoint 순서를 랜덤하게 저장 할 변수
     private bool isAttack;    //현재 공격중인지 확인하는 변수 
     Rigidbody rigid;          //충돌시 일어나는 예외 상황 방지 변수
+    Collider monsterCol;      //몬스터 콜라이더 
     Material mat;             //몬스터 공격시 색변화 
     Animator anim;            //몬스터 행동 애니메이션
     Coroutine co;  //코루틴 변수  
@@ -40,7 +46,6 @@ public class MonsterAI : MonoBehaviour
          {
             if (Vector3.Distance(transform.position, Player.position) <= 20f) //Player와 가까워지면 플레이어를 따라간다.
             {
-                print("Player추격");
                 agent.SetDestination(Player.position);
             }
 /*            if(Vector3.Distance(transform.position , Player.position) <= 5f) //Player와 매우 가까워지면 멈춤
@@ -59,6 +64,7 @@ public class MonsterAI : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         mat = GetComponentInChildren<SkinnedMeshRenderer>().material;    //Material은 Mesh Renderer 컴포넌트에서 접근가능!
         anim = GetComponent<Animator>();
+        monsterCol = GetComponent<Collider>();
     }
     void FreezeVelocity()   //ai 몬스터 충돌시 뒤로 밀리는 충돌 멈춤 
     {
@@ -123,8 +129,24 @@ public class MonsterAI : MonoBehaviour
     //Player에게 Ray를 쏜다
     void Targerting()
     {
-        float targetRadius = 1.5f;
-        float targetRange = 3f;
+        float targetRadius = 0f;
+        float targetRange = 0f;
+        //몬스터 타입 분기문
+        switch (enemyType)
+        {
+            case Type.A:
+                targetRadius = 1.5f;
+                targetRange = 3f;
+                break;
+            case Type.B:
+                targetRadius = 1f;
+                targetRange = 3f;
+                break;
+            case Type.C:
+                targetRadius = 0.5f;
+                targetRange = 25f;
+                break;
+        }
 
         RaycastHit[] rayHits =
              Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange,
@@ -142,14 +164,40 @@ public class MonsterAI : MonoBehaviour
         isAttack = true;
         anim.SetBool("isAttack", true);
 
-        yield return new WaitForSeconds(0.2f);
-        meleeArea.enabled = true;
+        switch (enemyType)
+        {
+            case Type.A: //일반 몬스터 행동 
+                yield return new WaitForSeconds(0.2f);
+                meleeArea.enabled = true;
 
-        yield return new WaitForSeconds(1f);
-        meleeArea.enabled = false;
+                yield return new WaitForSeconds(1f);
+                meleeArea.enabled = false;
 
-        yield return new WaitForSeconds(1f);
-        agent.isStopped = true;
+                yield return new WaitForSeconds(1f);
+                break;
+            case Type.B: //돌격형 몬스터 행동
+                yield return new WaitForSeconds(0.1f);
+                rigid.AddForce(transform.forward * 20 , ForceMode.Impulse); //돌격 구현 
+                meleeArea.enabled = true;
+
+                yield return new WaitForSeconds(0.5f);
+                rigid.velocity = Vector3.zero; //속도 제어 
+                meleeArea.enabled = false;
+
+                yield return new WaitForSeconds(2f);
+                break;
+            case Type.C:
+                yield return new WaitForSeconds(0.5f);
+                Vector3 pos = new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z);
+                GameObject instantSlash = Instantiate(slashOb, pos, transform.rotation);
+                Rigidbody rigidSlash = instantSlash.GetComponent<Rigidbody>();
+                rigidSlash.velocity = transform.forward * 20f;
+
+                yield return new WaitForSeconds(2f);
+                Destroy(instantSlash, 1f);
+                break;
+        }
+        agent.isStopped = false;
         isAttack = false;
         anim.SetBool("isAttack", false);
     }

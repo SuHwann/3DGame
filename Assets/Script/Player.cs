@@ -185,6 +185,10 @@ public class Player : MonoBehaviour
             {
                 Slash enemySlash = other.GetComponent<Slash>();
                 health -= enemySlash.damage;
+                if (other.GetComponent<Rigidbody>() != null)
+                {
+                    Destroy(other.gameObject);
+                }
                 StartCoroutine(OnDamage());
             }
         }

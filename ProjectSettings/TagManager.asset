@@ -10,6 +10,7 @@ TagManager:
   - Melee
   - Slash
   - EnemyFar
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - Floor
   - Weapon
   - Player
-  - 
-  - 
+  - EnemyFar
+  - Enemy
   - 
   - 
   - 

@@ -26,6 +26,7 @@ public class Weapon : MonoBehaviour
         }
         else if(type == Type.Blue)
         {
+            slash.SetActive(true);
             StartCoroutine(SlashShot());
         }
     }
