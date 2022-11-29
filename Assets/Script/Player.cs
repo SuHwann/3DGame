@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public GameObject[] weapons;
     public bool[] hasWeapons;
     //공전하는 물체 배열 변수 생성 
-    private GameObject[] grenades;
+/*    private GameObject[] grenades;*/
     //무기교체 
     bool sDown1;
     bool sDown2;

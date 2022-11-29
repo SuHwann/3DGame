@@ -1,32 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
+//Switch Property 공부 스크립트
+public enum Choice
+{
+    Mon,
+    Tue,
+    Wed,
+    Thu,
+    Fri,
+    Sat,
+    Sun
+}
 public class Test : MonoBehaviour
 {
-    Coroutine co = null;
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        co = StartCoroutine(CoroutineTest());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyUp(KeyCode.K))
+        if(Input.GetMouseButtonDown(0))
         {
-            print("k를 눌렀습니다");
-            StopCoroutine(co); 
+            State = Choice.Wed;
         }
     }
-    IEnumerator CoroutineTest()
+    //현재 상태 
+    [SerializeField]
+    Choice choice;
+    public Choice State
     {
-        while(true)
+        get => choice; //현재 상태를 읽어옴
+        set
         {
-            yield return new WaitForFixedUpdate();
-            print("코루틴 실행");
-            yield return null;
+            Operate = value switch
+            {
+                Choice.Mon => Mon,
+                Choice.Tue => Tue,
+                Choice.Wed => Wed,
+                _ => null,//switch에 해당되는게 없으면 null로 
+            };
+            Operate?.Invoke();//Operate를 실행하겠다는 뜻
         }
+    }
+    public System.Action Operate;
+    void Mon()
+    {
+        print("월요일입니다.");
+    }
+    void Tue()
+    {
+        print("화요일입니다.");
+    }
+    void Wed()
+    {
+        print("수요일입니다.");
     }
 }

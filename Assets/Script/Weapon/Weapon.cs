@@ -46,6 +46,7 @@ public class Weapon : MonoBehaviour
         GameObject instantSlash = Instantiate(slash, slashPos.position, slashPos.rotation);
         Rigidbody slashRigid = instantSlash.GetComponent<Rigidbody>();
         slashRigid.velocity = slashPos.forward * 50;
+        Destroy(instantSlash,1.5f);
         yield return null;
     }
 }

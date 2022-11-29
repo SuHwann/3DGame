@@ -36,17 +36,18 @@ public class MonsterAI : MonoBehaviour
     }
     IEnumerator AiMonster()    //몬스터 정찰 기능 
     { 
-         while (true)
+         while (agent.SetDestination(movePoint[randomInt].transform.position))//랜덤하게 목적지로 이동 시작 
          {
-            agent.SetDestination(movePoint[randomInt].transform.position); //ai몬스터 목적지로 이동 시작
             if (Vector3.Distance(transform.position, Player.position) <= 20f) //Player와 가까워지면 플레이어를 따라간다.
             {
+                print("Player추격");
                 agent.SetDestination(Player.position);
             }
-            else if(Vector3.Distance(transform.position , Player.position)<=5f)
+/*            if(Vector3.Distance(transform.position , Player.position) <= 5f) //Player와 매우 가까워지면 멈춤
             {
-                agent.isStopped = false;
-            }
+                agent.isStopped = true;
+                print("정지");
+            }*/
             Destination();
             yield return new WaitForSeconds(Time.deltaTime);
          }
@@ -119,15 +120,38 @@ public class MonsterAI : MonoBehaviour
             Destroy(gameObject, 3f);
         }
     }
-    //2022/11/28여기 까지 마무리함
+    //Player에게 Ray를 쏜다
     void Targerting()
     {
         float targetRadius = 1.5f;
         float targetRange = 3f;
 
         RaycastHit[] rayHits =
-             Physics.SphereCastAll(transform.position, targetRadius, transform.forward, 0f,
-             LayerMask.GetMask("Enemy"));
+             Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange,
+             LayerMask.GetMask("Player"));
+        //rayHit 변수에 데이터가 들어오면 공격 코루틴 실행 , 이미 공격중일땐 실행 안됨
+        if(rayHits.Length > 0 && !isAttack)
+        {
+            StartCoroutine(Attack());
+        }
+    }
+    //몬스터 공격기능 BoxCollider false true로 공격 전달
+    IEnumerator Attack()
+    {
+        agent.isStopped = true;
+        isAttack = true;
+        anim.SetBool("isAttack", true);
+
+        yield return new WaitForSeconds(0.2f);
+        meleeArea.enabled = true;
+
+        yield return new WaitForSeconds(1f);
+        meleeArea.enabled = false;
+
+        yield return new WaitForSeconds(1f);
+        agent.isStopped = true;
+        isAttack = false;
+        anim.SetBool("isAttack", false);
     }
     private void FixedUpdate()
     {
