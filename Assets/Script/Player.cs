@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
     //물리효과를 위해 Rigidbody 변수 선언 후 , 초기화
     Rigidbody rigid;
-    //Player Anim 변수
+    //player Anim 변수
     Animator anim;
     //트리거 된 아이템을 저장하기 위한 변수 선언
     GameObject nearObject;
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     //기존 플레이어가 기본적으로 들고있는 무기 
     [SerializeField]
     GameObject basicSword;
-    //Player 능력치
+    //player 능력치
     [SerializeField]
     private int ammo;
     [SerializeField]

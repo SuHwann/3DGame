@@ -5,7 +5,7 @@ using UnityEngine.AI;
 //EnemyScript랑 합친 ai스크립트 
 public class MonsterAI : MonoBehaviour
 {
-    public enum Type { A , B, C} //몬스터 타입
+    public enum Type { A , B, C , D} //몬스터 타입
     [SerializeField]
     Type enemyType; //몬스터 타입 변수 
     [SerializeField]
@@ -15,26 +15,24 @@ public class MonsterAI : MonoBehaviour
     [SerializeField]
     Transform[] movePoint;    //몬스터 목표 위치 변수
     [SerializeField]
-    private Transform Player;         //몬스터 추적 Target변수
-    [SerializeField]
     private BoxCollider meleeArea;      //근접 공격 박스콜라이더
     [SerializeField]
     private GameObject slashOb;         //원거리 공격 오브젝트
+    public Transform player;         //몬스터 추적 Target변수
     NavMeshAgent agent;       //NMA 변수
     int randomInt;            //movePoint 순서를 랜덤하게 저장 할 변수
     private bool isAttack;    //현재 공격중인지 확인하는 변수 
-    Rigidbody rigid;          //충돌시 일어나는 예외 상황 방지 변수
-    Collider monsterCol;      //몬스터 콜라이더 
-    Material mat;             //몬스터 공격시 색변화 
-    Animator anim;            //몬스터 행동 애니메이션
-    Coroutine co,attack;  //코루틴 변수  
+    public Rigidbody rigid;          //충돌시 일어나는 예외 상황 방지 변수
+    public Collider monsterCol;      //몬스터 콜라이더 
+    public MeshRenderer[] meshs;             //피격시 모든 메테리얼을 변경
+    public Animator anim;            //몬스터 행동 애니메이션
+    Coroutine co;  //코루틴 변수  
     private void Awake()
     {
         GetPoint();
         VariableRest();
         randomInt = Random.Range(0, movePoint.Length); //랜덤 변수 저장
-        co = StartCoroutine(AiMonster());
-        attack = StartCoroutine(Attack());
+        StartCoroutine(Attack());
         anim.SetBool("isWalk", true);   //첫시작시 걷는 행동 실행 
     }
     void GetPoint()  //Point들의 위치를 인스펙터에 저장한다.
@@ -43,29 +41,32 @@ public class MonsterAI : MonoBehaviour
     }
     IEnumerator AiMonster()    //몬스터 정찰 기능 
     { 
-         while (agent.SetDestination(movePoint[randomInt].transform.position))//랜덤하게 목적지로 이동 시작 
-         {
-            if (Vector3.Distance(transform.position, Player.position) <= 20f) //Player와 가까워지면 플레이어를 따라간다.
+        if(enemyType != Type.D) //보스몬스터가 아니면 실행
+        {
+            while (agent.SetDestination(movePoint[randomInt].transform.position))//랜덤하게 목적지로 이동 시작 
             {
-                agent.SetDestination(Player.position);
+                if (Vector3.Distance(transform.position, player.position) <= 20f) //Player와 가까워지면 플레이어를 따라간다.
+                {
+                    agent.SetDestination(player.position);
+                }
+                /*            if(Vector3.Distance(transform.position , player.position) <= 5f) //Player와 매우 가까워지면 멈춤
+                            {
+                                agent.isStopped = true;
+                                print("정지");
+                            }*/
+                Destination();
+                yield return new WaitForSeconds(Time.deltaTime);
             }
-/*            if(Vector3.Distance(transform.position , Player.position) <= 5f) //Player와 매우 가까워지면 멈춤
-            {
-                agent.isStopped = true;
-                print("정지");
-            }*/
-            Destination();
-            yield return new WaitForSeconds(Time.deltaTime);
-         }
-
+        }
     }
     void VariableRest() //변수 초기화.
     {
         agent = GetComponent<NavMeshAgent>();
         rigid = GetComponent<Rigidbody>();
-        mat = GetComponentInChildren<SkinnedMeshRenderer>().material;    //Material은 Mesh Renderer 컴포넌트에서 접근가능!
+        meshs = GetComponentsInChildren<MeshRenderer>();    //Material은 Mesh Renderer 컴포넌트에서 접근가능!
         anim = GetComponent<Animator>();
         monsterCol = GetComponent<Collider>();
+        co = StartCoroutine(AiMonster());
     }
     void FreezeVelocity()   //ai 몬스터 충돌시 뒤로 밀리는 충돌 멈춤 
     {
@@ -105,58 +106,66 @@ public class MonsterAI : MonoBehaviour
     //데미지 로직 
     IEnumerator OnDamage(Vector3 reactVec)
     {
-        mat.color = Color.red;
+        foreach (MeshRenderer mesh in meshs)
+            mesh.material.color = Color.red;
+  
         yield return new WaitForSeconds(0.1f);
         //몬스터 살아있음 
         if (curHealth > 0)
         {
-            mat.color = Color.white;
+            foreach (MeshRenderer mesh in meshs)
+                mesh.material.color = Color.white;
         }
         //몬스터 죽음 
         else
         {
+            foreach (MeshRenderer mesh in meshs)
+                mesh.material.color = Color.gray;
             StopCoroutine(co);
             monsterCol.enabled = false;
-            mat.color = Color.gray;
             gameObject.layer = 7;
             anim.SetTrigger("doDie");
             //몬스터가 죽으면서 뒤로 밀림
             reactVec = reactVec.normalized;
             reactVec += Vector3.up;
             rigid.AddForce(reactVec * 5, ForceMode.Impulse);
-            Destroy(gameObject, 3f);
+            if(enemyType != Type.D) {Destroy(gameObject, 3f);} //보스가 아닐때만 삭제
         }
     }
     //Player에게 Ray를 쏜다
     void Targerting()
     {
-        float targetRadius = 0f;
-        float targetRange = 0f;
-        //몬스터 타입 분기문
-        switch (enemyType)
+        if(enemyType != Type.D)
         {
-            case Type.A:
-                targetRadius = 1.5f;
-                targetRange = 3f;
-                break;
-            case Type.B:
-                targetRadius = 1f;
-                targetRange = 3f;
-                break;
-            case Type.C:
-                targetRadius = 0.5f;
-                targetRange = 25f;
-                break;
-        }
+            float targetRadius = 0f;
+            float targetRange = 0f;
+            //몬스터 타입 분기문
+            switch (enemyType)
+            {
+                case Type.A:
+                    targetRadius = 1.5f;
+                    targetRange = 3f;
+                    break;
+                case Type.B:
+                    targetRadius = 1f;
+                    targetRange = 3f;
+                    break;
+                case Type.C:
+                    targetRadius = 0.5f;
+                    targetRange = 25f;
+                    break;
+            }
 
-        RaycastHit[] rayHits =
-             Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange,
-             LayerMask.GetMask("Player"));
-        //rayHit 변수에 데이터가 들어오면 공격 코루틴 실행 , 이미 공격중일땐 실행 안됨
-        if(rayHits.Length > 0 && !isAttack)
-        {
-            StartCoroutine(Attack());
+            RaycastHit[] rayHits =
+                 Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange,
+                 LayerMask.GetMask("Player"));
+            //rayHit 변수에 데이터가 들어오면 공격 코루틴 실행 , 이미 공격중일땐 실행 안됨
+            if (rayHits.Length > 0 && !isAttack)
+            {
+                StartCoroutine(Attack());
+            }
         }
+       
     }
     //몬스터 공격기능 BoxCollider false true로 공격 전달
     IEnumerator Attack()

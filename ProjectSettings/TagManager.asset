@@ -11,6 +11,7 @@ TagManager:
   - Slash
   - EnemyFar
   - Enemy
+  - Floor
   layers:
   - Default
   - TransparentFX

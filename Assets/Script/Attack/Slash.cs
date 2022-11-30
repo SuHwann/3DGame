@@ -8,13 +8,14 @@ public class Slash : MonoBehaviour
     public int damage;
     [SerializeField]
     bool isMelee;       //근접 공격
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Floor")
+        if (!isMelee && other.gameObject.tag == "Wall") //근접이 아니고 Wall일경우에만 삭제 
         {
-            Destroy(gameObject, 3f);
+            Destroy(gameObject);
         }
-        else if(!isMelee && collision.gameObject.tag =="Wall") //근접이 아니고 Wall일경우에만 삭제 
+        if (other.gameObject.tag == "Floor")
         {
             Destroy(gameObject);
         }
