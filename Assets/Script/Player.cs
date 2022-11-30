@@ -185,11 +185,12 @@ public class Player : MonoBehaviour
             {
                 Slash enemySlash = other.GetComponent<Slash>();
                 health -= enemySlash.damage;
-                if (other.GetComponent<Rigidbody>() != null)
-                {
-                    Destroy(other.gameObject);
-                }
-                StartCoroutine(OnDamage());
+                bool isBoosAtk = other.name == "BossMeleeArea";
+                StartCoroutine(OnDamage(isBoosAtk));
+            }
+            if (other.GetComponent<Rigidbody>() != null)
+            {
+                Destroy(other.gameObject);
             }
         }
     }
@@ -197,7 +198,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     SkinnedMeshRenderer skinnMesh;
     //플레이어가 공격 받았을때 
-    IEnumerator OnDamage()
+    IEnumerator OnDamage(bool isBossAtk)
     {
         isDamage = true;
         foreach (MeshRenderer mesh in meshs) //공격을 받았을때 색변화 
@@ -205,6 +206,8 @@ public class Player : MonoBehaviour
             skinnMesh.material.color = Color.red;
             mesh.material.color = Color.red;
         }
+        if (isBossAtk)
+            rigid.AddForce(transform.forward * -25, ForceMode.Impulse);
         yield return new WaitForSeconds(1f);// 무적 시간 
         isDamage = false;
         foreach (MeshRenderer mesh in meshs) //다시 돌아옴
@@ -212,6 +215,8 @@ public class Player : MonoBehaviour
             skinnMesh.material.color = Color.white;
             mesh.material.color = Color.white;
         }
+        if (isBossAtk)
+            rigid.velocity = Vector3.zero;
     }
     //other 영역에서 벗어났을땐 null을 저장한다.
     void OnTriggerExit(Collider other)

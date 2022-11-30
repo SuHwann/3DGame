@@ -13,9 +13,9 @@ public class Boss : MonsterAI
     Vector3 lookVec; //플레이어 방향 미리 예상
     Vector3 tautVec;
 
-
     private void Start()
     {
+        agent.isStopped = true;
         isLook = true;
         StartCoroutine(Look());
         StartCoroutine(Think());
@@ -24,6 +24,11 @@ public class Boss : MonsterAI
     {
         while(true)
         {
+            if(isDead)
+            {
+                StopAllCoroutines();
+                yield break;
+            }
             if(isLook)
             {
                 float h = Input.GetAxisRaw("Horizontal");
@@ -31,6 +36,8 @@ public class Boss : MonsterAI
                 lookVec = new Vector3(h, 0, v) * 1f; //플레이어 입력값으로 예측 벡터값 생성
                 transform.LookAt(player.position + lookVec); //플레이어를 바라봄
             }
+            else
+                agent.SetDestination(tautVec);
             yield return null;
         }
     }
@@ -57,6 +64,7 @@ public class Boss : MonsterAI
                 break;
         }
     }
+    //검은 불꽃 발사 
     IEnumerator SkillA()
     {
         anim.SetTrigger("doAttack1");
@@ -66,16 +74,34 @@ public class Boss : MonsterAI
         yield return new WaitForSeconds(2.5f);
         StartCoroutine(Think());
     }
+    //큰 검은 불꽃 발사
     IEnumerator SkillB()
     {
+        isLook = false;
         anim.SetTrigger("doAttack2");
+        Instantiate(skillB,skillpointB.position,skillpointB.rotation);
+
         yield return new WaitForSeconds(2.5f);
+        isLook = true;
         StartCoroutine(Think());
     }
+    //내려 찍는 스킬 
     IEnumerator SkillJump()
     {
+        tautVec = player.position + lookVec;
+
+        isLook = false;
+        agent.isStopped = false;
+        monsterCol.enabled = false;
         anim.SetTrigger("doAttack3");
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
+        meleeArea.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        meleeArea.enabled = false;
+        yield return new WaitForSeconds(1f);
+        isLook = true;
+        agent.isStopped = true;
+        monsterCol.enabled = true;
         StartCoroutine(Think());
     }
 }

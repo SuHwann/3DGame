@@ -14,21 +14,22 @@ public class MonsterAI : MonoBehaviour
     private int curHealth; //현재 체력 
     [SerializeField]
     Transform[] movePoint;    //몬스터 목표 위치 변수
-    [SerializeField]
-    private BoxCollider meleeArea;      //근접 공격 박스콜라이더
+    public BoxCollider meleeArea;      //근접 공격 박스콜라이더
     [SerializeField]
     private GameObject slashOb;         //원거리 공격 오브젝트
     public Transform player;         //몬스터 추적 Target변수
-    NavMeshAgent agent;       //NMA 변수
+    public NavMeshAgent agent;       //NMA 변수
     int randomInt;            //movePoint 순서를 랜덤하게 저장 할 변수
     private bool isAttack;    //현재 공격중인지 확인하는 변수 
     public Rigidbody rigid;          //충돌시 일어나는 예외 상황 방지 변수
     public Collider monsterCol;      //몬스터 콜라이더 
-    public MeshRenderer[] meshs;             //피격시 모든 메테리얼을 변경
+    public SkinnedMeshRenderer[] meshs;             //피격시 모든 메테리얼을 변경
     public Animator anim;            //몬스터 행동 애니메이션
+    public bool isDead;               //몬스터의 죽음 체크 변수
     Coroutine co;  //코루틴 변수  
     private void Awake()
     {
+        co = StartCoroutine(AiMonster());
         GetPoint();
         VariableRest();
         randomInt = Random.Range(0, movePoint.Length); //랜덤 변수 저장
@@ -63,10 +64,10 @@ public class MonsterAI : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         rigid = GetComponent<Rigidbody>();
-        meshs = GetComponentsInChildren<MeshRenderer>();    //Material은 Mesh Renderer 컴포넌트에서 접근가능!
+        meshs = GetComponentsInChildren<SkinnedMeshRenderer>();    //Material은 Mesh Renderer 컴포넌트에서 접근가능!
         anim = GetComponent<Animator>();
         monsterCol = GetComponent<Collider>();
-        co = StartCoroutine(AiMonster());
+
     }
     void FreezeVelocity()   //ai 몬스터 충돌시 뒤로 밀리는 충돌 멈춤 
     {
@@ -106,24 +107,25 @@ public class MonsterAI : MonoBehaviour
     //데미지 로직 
     IEnumerator OnDamage(Vector3 reactVec)
     {
-        foreach (MeshRenderer mesh in meshs)
-            mesh.material.color = Color.red;
+        foreach (SkinnedMeshRenderer mesh in meshs)
+        { mesh.material.color = Color.red;}
   
         yield return new WaitForSeconds(0.1f);
         //몬스터 살아있음 
         if (curHealth > 0)
         {
-            foreach (MeshRenderer mesh in meshs)
-                mesh.material.color = Color.white;
+            foreach (SkinnedMeshRenderer mesh in meshs)
+            { mesh.material.color = Color.white; }
         }
         //몬스터 죽음 
         else
         {
-            foreach (MeshRenderer mesh in meshs)
-                mesh.material.color = Color.gray;
-            StopCoroutine(co);
+            foreach (SkinnedMeshRenderer mesh in meshs)
+            { mesh.material.color = Color.gray; }
+            StopAllCoroutines();
             monsterCol.enabled = false;
             gameObject.layer = 7;
+            isDead = true;
             anim.SetTrigger("doDie");
             //몬스터가 죽으면서 뒤로 밀림
             reactVec = reactVec.normalized;
@@ -135,7 +137,7 @@ public class MonsterAI : MonoBehaviour
     //Player에게 Ray를 쏜다
     void Targerting()
     {
-        if(enemyType != Type.D)
+        if(!isDead && enemyType != Type.D)
         {
             float targetRadius = 0f;
             float targetRange = 0f;
