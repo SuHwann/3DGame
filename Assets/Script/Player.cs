@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
         Interation();
         Swap();
     }
+    //플레이어 입력기능
     protected void GetInput()
     {
         //Axis 값을 정수로 반환하는 함수
@@ -98,6 +99,7 @@ public class Player : MonoBehaviour
         sDown2 = Input.GetButtonDown("Swap2");
         sDown3 = Input.GetButtonDown("Swap3");
     }
+    //Player 이동 기능 
     protected void Move()
     {
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;//normalized 로 방향값 1로 보정
@@ -130,7 +132,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //바닦이 닿으면 Jump를 다시 할수 있다 
-       if(collision.gameObject.tag == "Floor")
+       if(collision.gameObject.name == "Floor")
         {
             anim.SetBool("isJump", false);
             isJump = false;

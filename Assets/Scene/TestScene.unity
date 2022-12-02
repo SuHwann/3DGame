@@ -1652,7 +1652,7 @@ PrefabInstance:
     - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
       propertyPath: cameraArm
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1907442433}
     - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
       propertyPath: characterBody
       value: 
@@ -2687,6 +2687,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2dfbb63c9cdf7504faf4ff26b0581598, type: 3}
+--- !u!4 &1907442433 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 593843956960220621, guid: 9011eab7755f53244b286edf68be1c00, type: 3}
+  m_PrefabInstance: {fileID: 593843956782124380}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &579373983867797338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2785,7 +2790,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 593843956960220620, guid: 9011eab7755f53244b286edf68be1c00, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 593843956960220620, guid: 9011eab7755f53244b286edf68be1c00, type: 3}
       propertyPath: objectTofollow

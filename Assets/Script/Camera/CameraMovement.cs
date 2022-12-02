@@ -34,8 +34,9 @@ public class CameraMovement : MonoBehaviour
         rotY += Input.GetAxis("Mouse X") * sensitibity * Time.deltaTime;
 
         rotX = Mathf.Clamp(rotX, -clamAngle, clamAngle);
-        Quaternion rot = Quaternion.Euler(rotX, rotY, 0); 
+        Quaternion rot = Quaternion.Euler(rotX, rotY, 0);
         transform.rotation = rot;
+        VecMove();
     }
     private void LateUpdate()
     {
@@ -44,9 +45,9 @@ public class CameraMovement : MonoBehaviour
 
         RaycastHit hit;
 
-        if(Physics.Linecast(transform.position, finalDir,out hit))
+        if (Physics.Linecast(transform.position, finalDir, out hit))
         {
-            finalDistance = Mathf.Clamp(hit.distance,minDistance,maxDistance);  
+            finalDistance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
         }
         else
         {
@@ -54,4 +55,9 @@ public class CameraMovement : MonoBehaviour
         }
         realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNoramlized * finalDistance, Time.deltaTime * smoothness);
     }
+    private void VecMove()
+    {
+       
+    }
+    
 }
