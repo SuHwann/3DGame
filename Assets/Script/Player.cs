@@ -65,8 +65,7 @@ public class Player : MonoBehaviour
     private int maxHealth;
     [SerializeField]
     private int maxHasGrenades;
-    [SerializeField]
-    private Transform cameraArm;
+ 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
