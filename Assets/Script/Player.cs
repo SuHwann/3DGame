@@ -65,7 +65,8 @@ public class Player : MonoBehaviour
     private int maxHealth;
     [SerializeField]
     private int maxHasGrenades;
- 
+    [SerializeField]
+    private Transform cameraArm;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
@@ -130,7 +131,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //바닦이 닿으면 Jump를 다시 할수 있다 
-       if(collision.gameObject.name == "Terrain")
+       if(collision.gameObject.tag == "Floor")
         {
             anim.SetBool("isJump", false);
             isJump = false;
