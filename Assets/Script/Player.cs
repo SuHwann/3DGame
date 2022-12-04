@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //바닦이 닿으면 Jump를 다시 할수 있다 
-       if(collision.gameObject.name == "Floor")
+       if(collision.gameObject.tag == "Floor")
         {
             anim.SetBool("isJump", false);
             isJump = false;
