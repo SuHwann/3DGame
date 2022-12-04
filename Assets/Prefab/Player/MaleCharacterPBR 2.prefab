@@ -1454,6 +1454,7 @@ MonoBehaviour:
   maxCoin: 99999
   maxHealth: 100
   maxHasGrenades: 4
+  cameraArm: {fileID: 0}
   skinnMesh: {fileID: 5305999411072556210}
 --- !u!1 &4064301822121560568
 GameObject:

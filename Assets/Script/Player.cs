@@ -106,7 +106,8 @@ public class Player : MonoBehaviour
         Vector2 moveInput = new Vector2(hAxis, vAxis);
         bool isMove = moveInput.magnitude != 0;
         anim.SetBool("isRun", isMove);
-        if(isMove)
+        anim.SetBool("isWalk", wRun); //walk 다운
+        if (isMove)
         {
             Vector3 lookForward = new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized;
             Vector3 lookRIght = new Vector3(cameraArm.right.x, 0f, cameraArm.right.z).normalized;
@@ -115,11 +116,10 @@ public class Player : MonoBehaviour
             transform.forward = moveDir;
             transform.position += moveDir * speed * (wRun ? 1.5f : 1f) * Time.deltaTime; //Time.deltaTime 으로 이동속도 조절 
         }
-        if(isSwap || !isFireReady)
+        if (isSwap || !isFireReady)
         {
             moveVec = Vector3.zero;
         }
-        anim.SetBool("isWalk", wRun); //walk 다운
     }
     //Player가 이동 방향에 따라 바로 본다 LookAt
     protected void Trun()

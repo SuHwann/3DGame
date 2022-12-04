@@ -31,8 +31,7 @@ public class CameraMovement : MonoBehaviour
                 finalDistance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
             }
             else { finalDistance = maxDistance; }
-            //realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNoramlized * finalDistance, Time.deltaTime * smoothness);
-            realCamera.localPosition = new Vector3(dirNoramlized.x * finalDistance, dirNoramlized.y * finalDistance, dirNoramlized.z * finalDistance);
+            realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNoramlized * finalDistance, Time.deltaTime * smoothness);
             yield return null;
         }
     }
