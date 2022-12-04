@@ -22,25 +22,25 @@ public class CameraMovement : MonoBehaviour
     public float smoothness = 10f;
     private void Start()
     {
-        rotX = transform.localRotation.eulerAngles.x;
-        rotY = transform.localRotation.eulerAngles.y;
+/*        rotX = transform.localRotation.eulerAngles.x;
+        rotY = transform.localRotation.eulerAngles.y;*/
 
         dirNoramlized = realCamera.localPosition.normalized;
         finalDistance = realCamera.localPosition.magnitude;
     }
+    /*    private void Update()
+        {
+            rotX += -(Input.GetAxis("Mouse Y")) * sensitibity * Time.deltaTime;
+            rotY += Input.GetAxis("Mouse X") * sensitibity * Time.deltaTime;
+
+            rotX = Mathf.Clamp(rotX, -clamAngle, clamAngle);
+            Quaternion rot = Quaternion.Euler(rotX, rotY, 0);
+            transform.rotation = rot;
+            VecMove();
+        }*/
     private void Update()
     {
-        rotX += -(Input.GetAxis("Mouse Y")) * sensitibity * Time.deltaTime;
-        rotY += Input.GetAxis("Mouse X") * sensitibity * Time.deltaTime;
-
-        rotX = Mathf.Clamp(rotX, -clamAngle, clamAngle);
-        Quaternion rot = Quaternion.Euler(rotX, rotY, 0);
-        transform.rotation = rot;
-        VecMove();
-    }
-    private void LateUpdate()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, objectTofollow.position, followSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, objectTofollow.position, followSpeed * Time.deltaTime); //플레이어 이동 
         finalDir = transform.TransformPoint(dirNoramlized * maxDistance);
 
         RaycastHit hit;
@@ -55,9 +55,4 @@ public class CameraMovement : MonoBehaviour
         }
         realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNoramlized * finalDistance, Time.deltaTime * smoothness);
     }
-    private void VecMove()
-    {
-       
-    }
-    
 }

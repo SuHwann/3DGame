@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 593843956960220621}
-  - component: {fileID: 593843956960220620}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -33,29 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &593843956960220620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 593843956960220627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d56064d00325bc489bb9212be74de53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectTofollow: {fileID: 0}
-  followSpeed: 10
-  sensitibity: 500
-  clamAngle: 70
-  realCamera: {fileID: 593843958095950343}
-  dirNoramlized: {x: 0, y: 0, z: 0}
-  finalDir: {x: 0, y: 0, z: 0}
-  minDistance: 10
-  maxDistance: 20
-  finalDistance: 0
-  smoothness: 10
 --- !u!1 &593843958095950340
 GameObject:
   m_ObjectHideFlags: 0

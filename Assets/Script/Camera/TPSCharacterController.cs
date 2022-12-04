@@ -23,7 +23,7 @@ public class TPSCharacterController : MonoBehaviour
             Vector3 moveDir = lookForward * moveInput.y + lookRight * moveInput.x;
             characterBody.forward = moveDir;
      
-        
+            
     }
     //Camera회전 기능
     private void LookAround()
