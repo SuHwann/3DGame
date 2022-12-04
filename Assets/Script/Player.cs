@@ -67,14 +67,6 @@ public class Player : MonoBehaviour
     private int maxHasGrenades;
     [SerializeField]
     private Transform cameraArm;
-/*    public Transform objectTofollow;
-    public float followSpeed = 10f;
-    public Vector3 dirNoramlized;
-    public Vector3 finalDir;
-    public float minDistance;
-    public float maxDistance;
-    public float finalDistance;
-    public float smoothness = 10f;*/
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
@@ -83,12 +75,6 @@ public class Player : MonoBehaviour
         skinnmeshs = GetComponentsInChildren<SkinnedMeshRenderer>();
         equipWeapon = basicSword.GetComponent<Weapon>(); //처음엔 기본칼을 사용한다.
     }
-    private void Start()
-    {
-/*        dirNoramlized = cameraArm.localPosition.normalized;
-        finalDistance = cameraArm.localPosition.magnitude;*/
-    }
-
     private void Update()
     {
         GetInput();
@@ -100,22 +86,6 @@ public class Player : MonoBehaviour
         Interation();
         Swap();
     }
-/*    private void LateUpdate()
-    {
-        finalDir = transform.TransformPoint(dirNoramlized * maxDistance);
-        RaycastHit hit;
-
-        if (Physics.Linecast(transform.position, finalDir, out hit))
-        {
-            finalDistance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
-        }
-        else
-        {
-            finalDistance = maxDistance;
-        }
-        cameraArm.localPosition = Vector3.Lerp(cameraArm.localPosition, dirNoramlized * finalDistance, Time.deltaTime * smoothness);
-    }
-*/
     //플레이어 입력기능
     protected void GetInput()
     {
@@ -133,7 +103,6 @@ public class Player : MonoBehaviour
     //Player 이동 기능 
     protected void Move()
     {
-        //moveVec = new Vector3(hAxis, 0, vAxis).normalized;//normalized 로 방향값 1로 보정
         Vector2 moveInput = new Vector2(hAxis, vAxis);
         bool isMove = moveInput.magnitude != 0;
         anim.SetBool("isRun", isMove);
@@ -150,11 +119,7 @@ public class Player : MonoBehaviour
         {
             moveVec = Vector3.zero;
         }
-        //transform.position += moveVec * speed * (wRun ? 1.5f : 1f) * Time.deltaTime; //Time.deltaTime 으로 이동속도 조절
-
-        //anim.SetBool("isRun", moveVec != Vector3.zero);//SetBool() 함수로 파라메터 값을 설정
         anim.SetBool("isWalk", wRun); //walk 다운
-
     }
     //Player가 이동 방향에 따라 바로 본다 LookAt
     protected void Trun()
