@@ -12,6 +12,8 @@ TagManager:
   - EnemyFar
   - Enemy
   - Floor
+  - Shop
+  - Item
   layers:
   - Default
   - TransparentFX

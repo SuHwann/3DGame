@@ -16,6 +16,8 @@ public class Weapon : MonoBehaviour
         private TrailRenderer trailEffect;*/
     public Transform slashPos;      //참격생성 위치  
     public GameObject slash;        //참격 오브젝트
+    public GameObject curAmmo;      //방어 오브젝트
+    public GameObject maxcurAmmo;   //max 방어 오브젝트
     //플레이어 무기 사용 
     public void Use()
     {

@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectTofollow: {fileID: 0}
-  followSpeed: 100
   realCamera: {fileID: 593843958095950343}
+  followSpeed: 100
   minDistance: 8
   maxDistance: 10
   finalDistance: 0

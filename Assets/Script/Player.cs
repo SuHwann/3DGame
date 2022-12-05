@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     bool sDown1;
     bool sDown2;
     bool sDown3;
+    //Shoping 변수
+    bool isShop;
     //공격 변수 (키입력 , 공격딜레이 , 공격준비)
     bool fDown;
     bool isFireReady = true;
@@ -34,7 +36,6 @@ public class Player : MonoBehaviour
     private float speed = 10f;
     //move 벡터
     Vector3 moveVec;
-
     //물리효과를 위해 Rigidbody 변수 선언 후 , 초기화
     Rigidbody rigid;
     //player Anim 변수
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
     //트리거 된 아이템을 저장하기 위한 변수 선언
     GameObject nearObject;
     //현재 장비(Weapon)타입 변수 
-    Weapon equipWeapon;
+    public Weapon equipWeapon;
     int equipWeaponIndex = -1;
     //플레이어의 MeshRenderer 배열 변수 추가 
     MeshRenderer[] meshs;
@@ -51,22 +52,22 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject basicSword;
     //player 능력치
+    public int ammo;
+    public int coin;
+    public int health;
     [SerializeField]
-    private int ammo;
+    private int attack;             //공격력
     [SerializeField]
-    private int coin;
-    [SerializeField]
-    private int health;
-    [SerializeField]
-    private int hasGrenades;
+    private int hasGrenades;        //수류탄 갯수 변수
     [SerializeField]
     private int maxAmmo;
     [SerializeField]
     private int maxCoin;
-    [SerializeField]
-    private int maxHealth;
+    public int maxHealth;
     [SerializeField]
     private int maxHasGrenades;
+    [SerializeField]
+    public int score;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
@@ -75,6 +76,8 @@ public class Player : MonoBehaviour
         skinnmeshs = GetComponentsInChildren<SkinnedMeshRenderer>();
         equipWeapon = basicSword.GetComponent<Weapon>(); //처음엔 기본칼을 사용한다.
         StartCoroutine(MoveUpdate());
+        //PlayerPrefs.SetInt("MaxScore", 112500);       //첫 최고 기록 저장
+        Debug.Log(PlayerPrefs.GetInt("MaxScore"));
     }
     IEnumerator MoveUpdate()
     {
@@ -107,7 +110,7 @@ public class Player : MonoBehaviour
     }
     //Player 이동 기능 
     protected void Move()
-    {
+    {   
         Vector2 moveInput = new Vector2(hAxis, vAxis);
         bool isMove = moveInput.magnitude != 0;
         anim.SetBool("isRun", isMove);
@@ -133,7 +136,7 @@ public class Player : MonoBehaviour
     }
     protected void Jump()
     {
-        if(jDown && !isJump && !isSwap)
+        if(jDown && !isJump && !isSwap && !isShop)
         {
             rigid.AddForce(Vector3.up * 15 , ForceMode.Impulse); // 즉발적인 Impulse로 한다.
             anim.SetBool("isJump", true); // 점프가 발동되면 isjump true
@@ -150,10 +153,10 @@ public class Player : MonoBehaviour
             isJump = false;
         }
     }
-    //other가 Weapon 이면 nearObject에 저장
+    //other가 Weapon 이거나 Shop 이면 nearObject에 저장
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag =="Weapon")
+        if(other.tag =="Weapon" || other.tag == "Shop")
         {
             nearObject = other.gameObject;
         }
@@ -181,6 +184,9 @@ public class Player : MonoBehaviour
                     health += item.value;
                     if (health > maxHealth)
                         health = maxHealth;
+                    break;
+                case Item.Type.Attack:
+                    attack += item.value;
                     break;
                     //폭탄을 먹었을때
 /*                case Item.Type.Grenade:
@@ -239,6 +245,13 @@ public class Player : MonoBehaviour
         {
             nearObject = null;
         }
+        else if(other.tag =="Shop")
+        {
+            Shop shop = nearObject.GetComponent<Shop>();
+            shop.Exit();
+            nearObject = null;
+            isShop = false;
+        }
     }
     //무기교체
     void Swap()
@@ -285,6 +298,12 @@ public class Player : MonoBehaviour
                 hasWeapons[weaponIndex] = true;
                 Destroy(nearObject);//오브젝트 삭제
             }
+            else if(nearObject.tag == "Shop")
+            {
+                Shop shop = nearObject.GetComponent<Shop>();
+                shop.Enter(this);
+                isShop = true;
+            }
         }
     }
     //Swap에 Invoke로 사용 
@@ -310,7 +329,7 @@ public class Player : MonoBehaviour
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.rate < fireDelay;
 
-        if(fDown && isFireReady && !isSwap)
+        if(fDown && isFireReady && !isSwap && !isShop)
         {
             equipWeapon.Use();
             anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doSlash");
@@ -320,19 +339,21 @@ public class Player : MonoBehaviour
     //Camera회전 기능
     private void LookAround()
     {
-        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")); //마우스 위아래 수치를 vector2로 mouseDelta에 저장한다.
-        Vector3 camAngle = cameraArm.rotation.eulerAngles; //카메라 position을 값을 Euler값으로 변환해 둔다.
-        float x = camAngle.x - mouseDelta.y;
-        //각도 제한
-        if (x < 180f)
+        if(Input.GetMouseButton(1)) //우클릭시만
         {
-            x = Mathf.Clamp(x, -1f, 70f);
+            Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")); //마우스 위아래 수치를 vector2로 mouseDelta에 저장한다.
+            Vector3 camAngle = cameraArm.rotation.eulerAngles; //카메라 position을 값을 Euler값으로 변환해 둔다.
+            float x = camAngle.x - mouseDelta.y;
+            //각도 제한
+            if (x < 180f)
+            {
+                x = Mathf.Clamp(x, -1f, 70f);
+            }
+            else
+            {
+                x = Mathf.Clamp(x, 355f, 361f);
+            }
+            cameraArm.rotation = Quaternion.Euler(x, camAngle.y + mouseDelta.x, camAngle.z);//camAngle의 새로운값을 cameraArm.rotation에 넣어준다.
         }
-        else
-        {
-            x = Mathf.Clamp(x, 355f, 361f);
-        }
-        cameraArm.rotation = Quaternion.Euler(x, camAngle.y + mouseDelta.x, camAngle.z);//camAngle의 새로운값을 cameraArm.rotation에 넣어준다.
     }
-
 }

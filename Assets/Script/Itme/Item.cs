@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class Item : MonoBehaviour
 {
-    public enum Type { Jewelry ,Ammo , Sword , Weapon ,Coin , Grenade , Heart } // 아이템 타입
+    public enum Type { Jewelry ,Ammo , Sword , Weapon ,Coin , Grenade , Heart ,Attack} // 아이템 타입
     public Type type;
     public int value;             // 아이템 종류와 값을 저장할 변수 
 

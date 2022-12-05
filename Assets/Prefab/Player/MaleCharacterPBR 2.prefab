@@ -903,7 +903,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2708091049116065570}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1213,7 +1213,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3965939857937946965}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1439,6 +1439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc5e8a675ae8af439e634983a276db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraArm: {fileID: 0}
   weapons:
   - {fileID: 1942003435535349375}
   - {fileID: 1942003435341638175}
@@ -1446,15 +1447,15 @@ MonoBehaviour:
   hasWeapons: 000000
   speed: 10
   basicSword: {fileID: 3302235764664560177}
-  ammo: 0
-  coin: 0
+  ammo: 10
+  coin: 99999999
   health: 100
+  attack: 0
   hasGrenades: 0
-  maxAmmo: 999
+  maxAmmo: 99999
   maxCoin: 99999
-  maxHealth: 100
+  maxHealth: 99999
   maxHasGrenades: 4
-  cameraArm: {fileID: 0}
   skinnMesh: {fileID: 5305999411072556210}
 --- !u!1 &4064301822121560568
 GameObject:
@@ -1787,7 +1788,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4944031544800522643}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -2453,7 +2454,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7348152790390214096}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -3655,7 +3656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3309549262970662465, guid: b4dbfcd4a6fa73e49abd2f07827119ec, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3309549264236787784, guid: b4dbfcd4a6fa73e49abd2f07827119ec, type: 3}
       propertyPath: m_LocalPosition.z
