@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private Transform cameraArm;        //플레이어를 따라다닐 카메라
     //Input Axis  값을 받을 전역변수 선언
     float hAxis;
     float vAxis;
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour
     int equipWeaponIndex = -1;
     //플레이어의 MeshRenderer 배열 변수 추가 
     MeshRenderer[] meshs;
-    SkinnedMeshRenderer[] skinnmeshs;
+    SkinnedMeshRenderer[] skinnmeshs; //플레이어 메쉬
     //기존 플레이어가 기본적으로 들고있는 무기 
     [SerializeField]
     GameObject basicSword;
@@ -65,8 +67,6 @@ public class Player : MonoBehaviour
     private int maxHealth;
     [SerializeField]
     private int maxHasGrenades;
-    [SerializeField]
-    private Transform cameraArm;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
@@ -74,17 +74,22 @@ public class Player : MonoBehaviour
         meshs = GetComponentsInChildren<MeshRenderer>(); //player 메쉬 초기화 
         skinnmeshs = GetComponentsInChildren<SkinnedMeshRenderer>();
         equipWeapon = basicSword.GetComponent<Weapon>(); //처음엔 기본칼을 사용한다.
+        StartCoroutine(MoveUpdate());
     }
-    private void Update()
+    IEnumerator MoveUpdate()
     {
-        GetInput();
-        Move();
-        LookAround();
-        Trun();
-        Jump();
-        Attack();
-        Interation();
-        Swap();
+        while(true)
+        {
+            GetInput();
+            Move();
+            LookAround();
+            Trun();
+            Jump();
+            Attack();
+            Interation();
+            Swap();
+            yield return null;  
+        }
     }
     //플레이어 입력기능
     protected void GetInput()
@@ -329,4 +334,5 @@ public class Player : MonoBehaviour
         }
         cameraArm.rotation = Quaternion.Euler(x, camAngle.y + mouseDelta.x, camAngle.z);//camAngle의 새로운값을 cameraArm.rotation에 넣어준다.
     }
+
 }

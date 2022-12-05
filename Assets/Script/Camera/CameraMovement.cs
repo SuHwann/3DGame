@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public Transform objectTofollow;
-    public float followSpeed = 10f;
-    public Transform realCamera;
-    private Vector3 dirNoramlized;
-    private Vector3 finalDir;
-    public float minDistance;
-    public float maxDistance;
-    public float finalDistance;
-    public float smoothness = 10f;
+    [SerializeField]
+    private Transform objectTofollow;   //카메라가 바라볼 플레이어 중심
+    [SerializeField] 
+    Transform realCamera;               //mainCamera
+    public float followSpeed = 10f;     //카메라가 따라다닐 속도 
+    private Vector3 dirNoramlized;      
+    private Vector3 finalDir;           //최종 거리 
+    public float minDistance;           //플레이어와의 최소 거리
+    public float maxDistance;           //플레이어와의 최대 거리
+    public float finalDistance;         //최종 거리     
+    public float smoothness = 10f;      //따라다닐 속도를 얼마나 부드럽게 해줄것인가
     private void Start()
     {
-        dirNoramlized = realCamera.localPosition.normalized;
-        finalDistance = realCamera.localPosition.magnitude;
+        dirNoramlized = realCamera.localPosition.normalized;    //정규화
+        finalDistance = realCamera.localPosition.magnitude;     //거리초기화
         StartCoroutine(CameraMove());
     }
+    //플레이어를 목표로 카메라가 따라다님
     IEnumerator CameraMove()
     {
         while(true)
