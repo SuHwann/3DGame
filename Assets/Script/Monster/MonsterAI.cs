@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.SocialPlatforms.Impl;
 //EnemyScript랑 합친 ai스크립트 
 public class MonsterAI : MonoBehaviour
 {
     public enum Type { A , B, C , D} //몬스터 타입
     [SerializeField]
     Type enemyType; //몬스터 타입 변수 
-    [SerializeField]
-    private int maxHealth; //최대 체력
-    [SerializeField]
-    private int curHealth; //현재 체력 
+    public int maxHealth; //최대 체력
+    public int curHealth; //현재 체력 
     [SerializeField]
     Transform[] movePoint;    //몬스터 목표 위치 변수
     public BoxCollider meleeArea;      //근접 공격 박스콜라이더
@@ -26,10 +26,12 @@ public class MonsterAI : MonoBehaviour
     public SkinnedMeshRenderer[] meshs;             //피격시 모든 메테리얼을 변경
     public Animator anim;            //몬스터 행동 애니메이션
     public bool isDead;               //몬스터의 죽음 체크 변수
-    Coroutine co;  //코루틴 변수  
+    [SerializeField]
+    GameObject[] coins;               //몬스터 사망시 드랍 코인
+    public int score;                 //몬스터 사망시 점수 
     private void Awake()
     {
-        co = StartCoroutine(AiMonster());
+        StartCoroutine(AiMonster());
         GetPoint();
         VariableRest();
         randomInt = Random.Range(0, movePoint.Length); //랜덤 변수 저장
@@ -127,6 +129,11 @@ public class MonsterAI : MonoBehaviour
             gameObject.layer = 7;
             isDead = true;
             anim.SetTrigger("doDie");
+            //적이 죽는 로직에 점수 부여와 동전 드랍 구현
+            Player play = player.GetComponent<Player>();
+            play.score += score;
+            int ranCoin = Random.Range(0, 3);
+            Instantiate(coins[ranCoin],transform.position,Quaternion.identity);
             //몬스터가 죽으면서 뒤로 밀림
             reactVec = reactVec.normalized;
             reactVec += Vector3.up;

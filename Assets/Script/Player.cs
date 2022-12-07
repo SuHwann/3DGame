@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     bool fDown;
     bool isFireReady = true;
     float fireDelay;
+    //플레이어 죽음 bool 처리 변수 
+    bool isDead;
     //캐릭터 이동 속도
     [SerializeField]
     private float speed = 10f;
@@ -68,6 +70,7 @@ public class Player : MonoBehaviour
     private int maxHasGrenades;
     [SerializeField]
     public int score;
+    public GameManager manager; //GameManager 변수
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
@@ -79,6 +82,7 @@ public class Player : MonoBehaviour
         //PlayerPrefs.SetInt("MaxScore", 112500);       //첫 최고 기록 저장
         Debug.Log(PlayerPrefs.GetInt("MaxScore"));
     }
+    // ReSharper disable Unity.PerformanceAnalysis
     IEnumerator MoveUpdate()
     {
         while(true)
@@ -86,7 +90,6 @@ public class Player : MonoBehaviour
             GetInput();
             Move();
             LookAround();
-            Trun();
             Jump();
             Attack();
             Interation();
@@ -112,31 +115,27 @@ public class Player : MonoBehaviour
     protected void Move()
     {   
         Vector2 moveInput = new Vector2(hAxis, vAxis);
+        Vector3 lookForward = new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized;
+        Vector3 lookRIght = new Vector3(cameraArm.right.x, 0f, cameraArm.right.z).normalized;
+        Vector3 moveDir = lookForward * moveInput.y + lookRIght * moveInput.x;
         bool isMove = moveInput.magnitude != 0;
         anim.SetBool("isRun", isMove);
         anim.SetBool("isWalk", wRun); //walk 다운
-        if (isMove)
-        {
-            Vector3 lookForward = new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized;
-            Vector3 lookRIght = new Vector3(cameraArm.right.x, 0f, cameraArm.right.z).normalized;
-            Vector3 moveDir = lookForward * moveInput.y + lookRIght * moveInput.x;
 
-            transform.forward = moveDir;
-            transform.position += moveDir * speed * (wRun ? 1.5f : 1f) * Time.deltaTime; //Time.deltaTime 으로 이동속도 조절 
-        }
-        if (isSwap || !isFireReady)
+        if (isSwap || !isFireReady || fDown || isDead )
         {
-            moveVec = Vector3.zero;
+            moveDir = Vector3.zero;
         }
-    }
-    //Player가 이동 방향에 따라 바로 본다 LookAt
-    protected void Trun()
-    {
-        transform.LookAt(transform.position + moveVec);
+        if (!isDead && moveDir != Vector3.zero)
+        {
+            transform.forward = moveDir;
+            transform.position += moveDir * speed * (wRun ? 1.5f : 1f) * Time.deltaTime;//Time.deltaTime 으로 이동속도 조절
+        }
+
     }
     protected void Jump()
     {
-        if(jDown && !isJump && !isSwap && !isShop)
+        if(jDown && !isJump && !isSwap && !isShop && !isDead)
         {
             rigid.AddForce(Vector3.up * 15 , ForceMode.Impulse); // 즉발적인 Impulse로 한다.
             anim.SetBool("isJump", true); // 점프가 발동되면 isjump true
@@ -147,7 +146,7 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //바닦이 닿으면 Jump를 다시 할수 있다 
-       if(collision.gameObject.tag == "Floor")
+       if(collision.gameObject.CompareTag("Floor"))
         {
             anim.SetBool("isJump", false);
             isJump = false;
@@ -156,7 +155,7 @@ public class Player : MonoBehaviour
     //other가 Weapon 이거나 Shop 이면 nearObject에 저장
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag =="Weapon" || other.tag == "Shop")
+        if(other.CompareTag("Weapon") || other.CompareTag("Shop"))
         {
             nearObject = other.gameObject;
         }
@@ -164,53 +163,53 @@ public class Player : MonoBehaviour
     //other가 Item 이면 item에 저장하는 기능
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag =="Item")
+        switch (other.tag)
         {
-            Item item = other.GetComponent<Item>();
-            switch (item.type)
+            case "Item":
             {
-                //아이템 능력치 플레이어에게 적용
-                case Item.Type.Ammo:
-                    ammo += item.value;
-                    if (ammo > maxAmmo)
-                        ammo = maxAmmo;
-                    break;
-                case Item.Type.Coin:
-                    coin += item.value;
-                    if(coin > maxCoin)
-                        coin = maxCoin;
-                    break;
-                case Item.Type.Heart:
-                    health += item.value;
-                    if (health > maxHealth)
-                        health = maxHealth;
-                    break;
-                case Item.Type.Attack:
-                    attack += item.value;
-                    break;
-                    //폭탄을 먹었을때
-/*                case Item.Type.Grenade:
-                    hasGrenades += item.value;
-                    if(hasGrenades > maxHasGrenades)
-                        hasGrenades = maxHasGrenades;
-                    break;*/
-            }
-            //먹은 아이템은 삭제
-            Destroy(other.gameObject);
-        }
-        //Slash 스크립트 재활용하여 데미지 적용 
-        else if (other.tag == "EnemyFar")
-        {
-            if(!isDamage)
-            {
-                Slash enemySlash = other.GetComponent<Slash>();
-                health -= enemySlash.damage;
-                bool isBoosAtk = other.name == "BossMeleeArea";
-                StartCoroutine(OnDamage(isBoosAtk));
-            }
-            if (other.GetComponent<Rigidbody>() != null)
-            {
+                Item item = other.GetComponent<Item>();
+                switch (item.type)
+                {
+                    //아이템 능력치 플레이어에게 적용
+                    case Item.Type.Ammo:
+                        ammo += item.value;
+                        if (ammo > maxAmmo)
+                            ammo = maxAmmo;
+                        break;
+                    case Item.Type.Coin:
+                        coin += item.value;
+                        if(coin > maxCoin)
+                            coin = maxCoin;
+                        break;
+                    case Item.Type.Heart:
+                        health += item.value;
+                        if (health > maxHealth)
+                            health = maxHealth;
+                        break;
+                    case Item.Type.Attack:
+                        attack += item.value;
+                        break;
+                }
+                //먹은 아이템은 삭제
                 Destroy(other.gameObject);
+                break;
+            }
+            //Slash 스크립트 재활용하여 데미지 적용 
+            case "EnemyFar":
+            {
+                if(!isDamage)
+                {
+                    Slash enemySlash = other.GetComponent<Slash>();
+                    health -= enemySlash.damage;
+                    bool isBoosAtk = other.name == "BossMeleeArea";
+                    StartCoroutine(OnDamage(isBoosAtk));
+                }
+                if (other.GetComponent<Rigidbody>() != null)
+                {
+                    Destroy(other.gameObject);
+                }
+
+                break;
             }
         }
     }
@@ -228,6 +227,10 @@ public class Player : MonoBehaviour
         }
         if (isBossAtk)
             rigid.AddForce(transform.forward * -25, ForceMode.Impulse);
+        if (health <= 0 && !isDead) //플레이어 체력이 0 이하면 사망 처리 
+        {
+            OnDie();
+        }
         yield return new WaitForSeconds(1f);// 무적 시간 
         isDamage = false;
         foreach (MeshRenderer mesh in meshs) //다시 돌아옴
@@ -238,14 +241,21 @@ public class Player : MonoBehaviour
         if (isBossAtk)
             rigid.velocity = Vector3.zero;
     }
+    void OnDie()
+    {
+        anim.SetTrigger("doDie");
+        isDead = true;
+        manager.GameOver();
+    }
+
     //other 영역에서 벗어났을땐 null을 저장한다.
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Weapon")
+        if (other.CompareTag("Weapon"))
         {
             nearObject = null;
         }
-        else if(other.tag =="Shop")
+        else if(other.CompareTag("Shop"))
         {
             Shop shop = nearObject.GetComponent<Shop>();
             shop.Exit();
@@ -329,7 +339,7 @@ public class Player : MonoBehaviour
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.rate < fireDelay;
 
-        if(fDown && isFireReady && !isSwap && !isShop)
+        if(fDown && isFireReady && !isSwap && !isShop &&!isDead)
         {
             equipWeapon.Use();
             anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doSlash");
