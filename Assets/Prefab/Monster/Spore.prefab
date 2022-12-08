@@ -918,9 +918,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Player: {fileID: 0}
-  meleeArea: {fileID: 601246003}
+  meleeArea: {fileID: 654399393}
   slashOb: {fileID: 0}
+  player: {fileID: 0}
+  agent: {fileID: 0}
+  rigid: {fileID: 0}
+  monsterCol: {fileID: 0}
+  meshs: []
+  anim: {fileID: 0}
+  isDead: 0
+  coins: []
+  score: 0
 --- !u!195 &654399392
 NavMeshAgent:
   m_ObjectHideFlags: 0

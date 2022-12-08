@@ -31,9 +31,9 @@ public class MonsterAI : MonoBehaviour
     public int score;                 //몬스터 사망시 점수 
     private void Awake()
     {
+        VariableRest();
         StartCoroutine(AiMonster());
         GetPoint();
-        VariableRest();
         randomInt = Random.Range(0, movePoint.Length); //랜덤 변수 저장
         StartCoroutine(Attack());
         anim.SetBool("isWalk", true);   //첫시작시 걷는 행동 실행 
@@ -133,7 +133,9 @@ public class MonsterAI : MonoBehaviour
             Player play = player.GetComponent<Player>();
             play.score += score;
             int ranCoin = Random.Range(0, 3);
-            Instantiate(coins[ranCoin],transform.position,Quaternion.identity);
+            Vector3 itemVec = new Vector3(transform.position.x, transform.position.y * 1.5f, transform.position.z);
+            coins[ranCoin].transform.localScale = Vector3.one * 3f;
+            Instantiate(coins[ranCoin], itemVec, Quaternion.identity);
             //몬스터가 죽으면서 뒤로 밀림
             reactVec = reactVec.normalized;
             reactVec += Vector3.up;
@@ -179,46 +181,49 @@ public class MonsterAI : MonoBehaviour
     //몬스터 공격기능 BoxCollider false true로 공격 전달
     IEnumerator Attack()
     {
-        agent.isStopped = true;
-        isAttack = true;
-        anim.SetBool("isAttack", true);
-
-        switch (enemyType)
+        if (!isDead) //몬스터가 죽지 않으면 공격 실행
         {
-            case Type.A: //일반 몬스터 행동 
-                yield return new WaitForSeconds(0.2f);
-                meleeArea.enabled = true;
+            agent.isStopped = true;
+            isAttack = true;
+            anim.SetBool("isAttack", true);
 
-                yield return new WaitForSeconds(1f);
-                meleeArea.enabled = false;
+            switch (enemyType)
+            {
+                case Type.A: //일반 몬스터 행동 
+                    yield return new WaitForSeconds(0.2f);
+                    meleeArea.enabled = true;
 
-                yield return new WaitForSeconds(1f);
-                break;
-            case Type.B: //돌격형 몬스터 행동
-                yield return new WaitForSeconds(0.1f);
-                rigid.AddForce(transform.forward * 20 , ForceMode.Impulse); //돌격 구현 
-                meleeArea.enabled = true;
+                    yield return new WaitForSeconds(1f);
+                    meleeArea.enabled = false;
 
-                yield return new WaitForSeconds(0.5f);
-                rigid.velocity = Vector3.zero; //속도 제어 
-                meleeArea.enabled = false;
+                    yield return new WaitForSeconds(1f);
+                    break;
+                case Type.B: //돌격형 몬스터 행동
+                    yield return new WaitForSeconds(0.1f);
+                    rigid.AddForce(transform.forward * 20, ForceMode.Impulse); //돌격 구현 
+                    meleeArea.enabled = true;
 
-                yield return new WaitForSeconds(2f);
-                break;
-            case Type.C:
-                yield return new WaitForSeconds(0.5f);
-                Vector3 pos = new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z);
-                GameObject instantSlash = Instantiate(slashOb, pos, transform.rotation);
-                Rigidbody rigidSlash = instantSlash.GetComponent<Rigidbody>();
-                rigidSlash.velocity = transform.forward * 20f;
+                    yield return new WaitForSeconds(0.5f);
+                    rigid.velocity = Vector3.zero; //속도 제어 
+                    meleeArea.enabled = false;
 
-                yield return new WaitForSeconds(2f);
-                Destroy(instantSlash, 1f);
-                break;
+                    yield return new WaitForSeconds(2f);
+                    break;
+                case Type.C:
+                    yield return new WaitForSeconds(0.5f);
+                    Vector3 pos = new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z);
+                    GameObject instantSlash = Instantiate(slashOb, pos, transform.rotation);
+                    Rigidbody rigidSlash = instantSlash.GetComponent<Rigidbody>();
+                    rigidSlash.velocity = transform.forward * 20f;
+
+                    yield return new WaitForSeconds(2f);
+                    Destroy(instantSlash, 1f);
+                    break;
+            }
+            agent.isStopped = false;
+            isAttack = false;
+            anim.SetBool("isAttack", false);
         }
-        agent.isStopped = false;
-        isAttack = false;
-        anim.SetBool("isAttack", false);
     }
     private void FixedUpdate()
     {

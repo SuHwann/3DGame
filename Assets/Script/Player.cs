@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -159,41 +160,49 @@ public class Player : MonoBehaviour
         {
             nearObject = other.gameObject;
         }
+        if (iDown)
+        {
+            switch (other.tag)
+            {
+                case "Item":
+                    {
+                        Item item = other.GetComponent<Item>();
+                        switch (item.type)
+                        {
+                            //아이템 능력치 플레이어에게 적용
+                            case Item.Type.Ammo:
+                                ammo += item.value;
+                                if (ammo > maxAmmo)
+                                    ammo = maxAmmo;
+                                break;
+                            case Item.Type.Coin:
+                                coin += item.value;
+                                if (coin > maxCoin)
+                                    coin = maxCoin;
+                                print("현재 코인은: " + coin);
+                                break;
+                            case Item.Type.Heart:
+                                health += item.value;
+                                if (health > maxHealth)
+                                    health = maxHealth;
+                                break;
+                            case Item.Type.Attack:
+                                attack += item.value;
+                                break;
+                        }
+                        //먹은 아이템은 삭제
+                        Destroy(other.gameObject);
+                        break;
+                    }
+            }
+        }
     }
     //other가 Item 이면 item에 저장하는 기능
     private void OnTriggerEnter(Collider other)
     {
         switch (other.tag)
         {
-            case "Item":
-            {
-                Item item = other.GetComponent<Item>();
-                switch (item.type)
-                {
-                    //아이템 능력치 플레이어에게 적용
-                    case Item.Type.Ammo:
-                        ammo += item.value;
-                        if (ammo > maxAmmo)
-                            ammo = maxAmmo;
-                        break;
-                    case Item.Type.Coin:
-                        coin += item.value;
-                        if(coin > maxCoin)
-                            coin = maxCoin;
-                        break;
-                    case Item.Type.Heart:
-                        health += item.value;
-                        if (health > maxHealth)
-                            health = maxHealth;
-                        break;
-                    case Item.Type.Attack:
-                        attack += item.value;
-                        break;
-                }
-                //먹은 아이템은 삭제
-                Destroy(other.gameObject);
-                break;
-            }
+           
             //Slash 스크립트 재활용하여 데미지 적용 
             case "EnemyFar":
             {
@@ -208,7 +217,6 @@ public class Player : MonoBehaviour
                 {
                     Destroy(other.gameObject);
                 }
-
                 break;
             }
         }
