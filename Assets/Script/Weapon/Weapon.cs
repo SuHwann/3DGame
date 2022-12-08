@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,11 @@ public class Weapon : MonoBehaviour
     public GameObject slash;        //참격 오브젝트
     public GameObject curAmmo;      //방어 오브젝트
     public GameObject maxcurAmmo;   //max 방어 오브젝트
+    public static Action<int> Damage; //액션 이벤트
+    private void Awake()
+    {
+        Damage = (int i) =>{AttackDamage(i);};
+    }
     //플레이어 무기 사용 
     public void Use()
     {
@@ -51,5 +57,10 @@ public class Weapon : MonoBehaviour
         slashRigid.velocity = slashPos.forward * 50;
         Destroy(instantSlash,1.5f);
         yield return null;
+    }
+    //플레이어의 공격력을 받아와서 더하기
+    public void AttackDamage(int Damage)
+    {
+        damage += Damage;
     }
 }

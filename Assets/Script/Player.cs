@@ -58,8 +58,7 @@ public class Player : MonoBehaviour
     public int ammo;
     public int coin;
     public int health;
-    [SerializeField]
-    private int attack;             //공격력
+    public int attack;
     [SerializeField]
     private int hasGrenades;        //수류탄 갯수 변수
     [SerializeField]
@@ -82,6 +81,7 @@ public class Player : MonoBehaviour
         StartCoroutine(MoveUpdate());
         //PlayerPrefs.SetInt("MaxScore", 112500);       //첫 최고 기록 저장
         Debug.Log(PlayerPrefs.GetInt("MaxScore"));
+        Weapon.Damage(attack);//Weapon 스크립트에 플레이어 공격력 전달.
     }
     // ReSharper disable Unity.PerformanceAnalysis
     IEnumerator MoveUpdate()
@@ -153,7 +153,7 @@ public class Player : MonoBehaviour
             isJump = false;
         }
     }
-    //other가 Weapon 이거나 Shop 이면 nearObject에 저장
+    //other가 Weapon 이거나 Shop 이면 nearObject에 저장,other가 Item 이면 item에 저장하는 기능
     private void OnTriggerStay(Collider other)
     {
         if(other.CompareTag("Weapon") || other.CompareTag("Shop"))
@@ -197,7 +197,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-    //other가 Item 이면 item에 저장하는 기능
+
     private void OnTriggerEnter(Collider other)
     {
         switch (other.tag)
@@ -255,7 +255,6 @@ public class Player : MonoBehaviour
         isDead = true;
         manager.GameOver();
     }
-
     //other 영역에서 벗어났을땐 null을 저장한다.
     void OnTriggerExit(Collider other)
     {
@@ -298,11 +297,9 @@ public class Player : MonoBehaviour
 
             anim.SetTrigger("doSwap");
             isSwap = true;
-
             Invoke("SwapOut", 0.4f);
         }
     }
-
     //무기 입수
     void Interation()
     {

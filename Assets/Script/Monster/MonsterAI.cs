@@ -29,6 +29,7 @@ public class MonsterAI : MonoBehaviour
     [SerializeField]
     GameObject[] coins;               //몬스터 사망시 드랍 코인
     public int score;                 //몬스터 사망시 점수 
+    Player playerAttack;
     private void Awake()
     {
         VariableRest();
@@ -81,16 +82,17 @@ public class MonsterAI : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //근거리 공격일때 
-        if (other.tag == "Melee")
+        if (other.tag == "Melee"&&!isDead)
         {
             Weapon weapon = other.GetComponent<Weapon>();
+            print(weapon.damage);
             curHealth -= weapon.damage;
             //넉백 위치 or 전달
             Vector3 reactVec = transform.position - other.transform.position;
             StartCoroutine(OnDamage(reactVec));
         }
         //원거리 공격일때 
-        else if (other.tag == "Slash")
+        else if (other.tag == "Slash" && !isDead)
         {
             Slash slash = other.GetComponent<Slash>();
             curHealth -= slash.damage;
@@ -117,12 +119,13 @@ public class MonsterAI : MonoBehaviour
         //몬스터 죽음 
         else
         {
+
             foreach (SkinnedMeshRenderer mesh in meshs)
             { mesh.material.color = Color.gray; }
             StopAllCoroutines();
-            monsterCol.enabled = false;
             gameObject.layer = 7;
             isDead = true;
+            monsterCol.enabled = false;
             anim.SetTrigger("doDie");
             //적이 죽는 로직에 점수 부여와 동전 드랍 구현
             Player play = player.GetComponent<Player>();

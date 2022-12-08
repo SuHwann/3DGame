@@ -8,13 +8,15 @@ public class Shop : MonoBehaviour
     RectTransform uiGroup;      //UI 위치
     [SerializeField]
     GameObject[] itemObj;       
-    Player enterPlayer;
+    Player enterPlayer;        //player변수
     [SerializeField]
     int[] itemPrice;            //Item 가격 배열
     [SerializeField]
     Transform[] itemPos;        //Item 생성위치
     [SerializeField]
     Text talkText;
+    [SerializeField]
+    int health, attack, ammo;   //상점 상품 능력치;
     public string[] talkData;     //NPC 대사
     public void Enter(Player player) //UI 위로올리기
     {
@@ -35,11 +37,22 @@ public class Shop : MonoBehaviour
             return;
         }
         enterPlayer.coin -= price;
-        Vector3 ranVec = Vector3.right * Random.Range(-3, 3)
-            +Vector3.forward * Random.Range(-3, 3);
-        //구입성공시 아이템 생성
-        Instantiate(itemObj[index], itemPos[index].position + ranVec, itemPos[index].rotation);
-        itemObj[index].transform.localScale = new Vector3(4, 4, 4);
+        switch (index)
+        { 
+            case 0:
+                enterPlayer.health += health;
+                print("체력이 증가했다 : " + enterPlayer.health);
+                break;
+            case 1:
+                enterPlayer.attack += attack;
+                Weapon.Damage(attack);
+                print("공격력이 증가했다"+ enterPlayer.attack);
+                break;
+            case 2:
+                enterPlayer.ammo += ammo;
+                print("방어력이 증가했다 : "+ enterPlayer.ammo);
+                break;
+        }
     }
     //NPC 대사 기능
     IEnumerator Talk()
