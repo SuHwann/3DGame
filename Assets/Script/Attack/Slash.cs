@@ -11,11 +11,7 @@ public class Slash : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isMelee && other.gameObject.tag == "Wall") //근접이 아니고 Wall일경우에만 삭제 
-        {
-            Destroy(gameObject);
-        }
-        if (other.gameObject.tag == "Floor")
+        if (!isMelee && other.CompareTag("Floor")) //근접이 아니고 Floor일경우에만 삭제 
         {
             Destroy(gameObject);
         }

@@ -52,11 +52,6 @@ public class MonsterAI : MonoBehaviour
                 {
                     agent.SetDestination(player.position);
                 }
-                /*            if(Vector3.Distance(transform.position , player.position) <= 5f) //Player와 매우 가까워지면 멈춤
-                            {
-                                agent.isStopped = true;
-                                print("정지");
-                            }*/
                 Destination();
                 yield return new WaitForSeconds(Time.deltaTime);
             }
@@ -211,6 +206,7 @@ public class MonsterAI : MonoBehaviour
                     break;
                 case Type.C:
                     yield return new WaitForSeconds(0.5f);
+
                     Vector3 pos = new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z);
                     GameObject instantSlash = Instantiate(slashOb, pos, transform.rotation);
                     Rigidbody rigidSlash = instantSlash.GetComponent<Rigidbody>();

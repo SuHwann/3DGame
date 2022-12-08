@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
         {
             nearObject = other.gameObject;
         }
-        if (iDown)
+        if (iDown) //E키일때만 아이템 드랍 가능
         {
             switch (other.tag)
             {
