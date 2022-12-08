@@ -28,8 +28,6 @@ public class MonsterAI : MonoBehaviour
     public bool isDead;               //몬스터의 죽음 체크 변수
     [SerializeField]
     GameObject[] coins;               //몬스터 사망시 드랍 코인
-    public int score;                 //몬스터 사망시 점수 
-    Player playerAttack;
     private void Awake()
     {
         VariableRest();
@@ -127,9 +125,7 @@ public class MonsterAI : MonoBehaviour
             isDead = true;
             monsterCol.enabled = false;
             anim.SetTrigger("doDie");
-            //적이 죽는 로직에 점수 부여와 동전 드랍 구현
-            Player play = player.GetComponent<Player>();
-            play.score += score;
+            //적이 죽는 로직에 동전 드랍 구현
             int ranCoin = Random.Range(0, 3);
             Vector3 itemVec = new Vector3(transform.position.x, transform.position.y * 1.5f, transform.position.z);
             coins[ranCoin].transform.localScale = Vector3.one * 3f;

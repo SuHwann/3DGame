@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     int enemyCntA, enemyCntB, enemyCntC;
     public GameObject menuPanel, gamePanel , overPanel;
-    public Text maxScoreTxt,scoreTxt,stageTxt,playTimeTxt,playerHealthTxt,playerAmmoTxt,playerCoinTxt;
+    public Text maxScoreTxt,stageTxt,playTimeTxt,playerHealthTxt,playerAmmoTxt,playerCoinTxt;
     public Image weapon1Image, weapon2Image, weapon3Image;
     public Text enemyAtxt, enemyBtxt, enemyCtxt;
     public RectTransform bossHealthGroup,bossHealthBar;
@@ -59,14 +59,6 @@ public class GameManager : MonoBehaviour
     {
         gamePanel.SetActive(false);
         overPanel.SetActive(true);
-        curScoreText.text = scoreTxt.text;
-
-        int maxScore = PlayerPrefs.GetInt("MaxScore");
-        if(player.score > maxScore)
-        {
-            bestText.gameObject.SetActive(true);
-            PlayerPrefs.SetInt("MaxScore", player.score);
-        }
     }
     public void Restart()
     {
@@ -74,8 +66,7 @@ public class GameManager : MonoBehaviour
     }
     private void LateUpdate()
     {
-        //상단UI
-        scoreTxt.text = string.Format("{0:n0}", player.score);
+        //상단 UI
         stageTxt.text = "STAGE" + stage;
         //시간
         int hour = (int)(playTime / 3600);

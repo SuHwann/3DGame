@@ -68,8 +68,6 @@ public class Player : MonoBehaviour
     public int maxHealth;
     [SerializeField]
     private int maxHasGrenades;
-    [SerializeField]
-    public int score;
     public GameManager manager; //GameManager º¯¼ö
     private void Awake()
     {
