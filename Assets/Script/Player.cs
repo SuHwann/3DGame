@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     float fireDelay;
     //플레이어 죽음 bool 처리 변수 
     bool isDead;
+    //NPC와 대화 중일경이 이동 통제 
+    bool isTalk;
     //캐릭터 이동 속도
     [SerializeField]
     private float speed = 10f;
@@ -156,7 +158,7 @@ public class Player : MonoBehaviour
     //other가 Weapon 이거나 Shop 이면 nearObject에 저장,other가 Item 이면 item에 저장하는 기능
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Weapon") || other.CompareTag("Shop"))
+        if(other.CompareTag("Weapon") || other.CompareTag("Shop") || other.CompareTag("NPC"))
         {
             nearObject = other.gameObject;
         }
@@ -269,6 +271,13 @@ public class Player : MonoBehaviour
             nearObject = null;
             isShop = false;
         }
+        else if(other.CompareTag("NPC"))
+        {
+            NPCTalk talk = nearObject.GetComponent<NPCTalk>();
+            talk.Exit();
+            nearObject= null;
+            isTalk= false;
+        }
     }
     //무기교체
     void Swap()
@@ -306,18 +315,24 @@ public class Player : MonoBehaviour
         //E(iDown)를 활성화 되고 nearObject 가 null이 아니고 점프와 Run이 아닐때 
         if(iDown && nearObject != null && !isJump && !wRun)
         {
-            if (nearObject.tag == "Weapon")
+            if (nearObject.CompareTag("Weapon"))
             {
                 Item item = nearObject.GetComponent<Item>();
                 int weaponIndex = item.value;
                 hasWeapons[weaponIndex] = true;
                 Destroy(nearObject);//오브젝트 삭제
             }
-            else if(nearObject.tag == "Shop")
+            else if (nearObject.CompareTag("Shop"))
             {
                 Shop shop = nearObject.GetComponent<Shop>();
                 shop.Enter(this);
                 isShop = true;
+            }
+            else if (nearObject.CompareTag("NPC"))
+            {
+                NPCTalk npc = nearObject.GetComponent<NPCTalk>();
+                npc.Enter(this);
+                isTalk = true;
             }
         }
     }
