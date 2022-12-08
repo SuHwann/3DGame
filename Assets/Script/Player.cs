@@ -39,8 +39,6 @@ public class Player : MonoBehaviour
     //캐릭터 이동 속도
     [SerializeField]
     private float speed = 10f;
-    //move 벡터
-    Vector3 moveVec;
     //물리효과를 위해 Rigidbody 변수 선언 후 , 초기화
     Rigidbody rigid;
     //player Anim 변수
@@ -138,7 +136,7 @@ public class Player : MonoBehaviour
     }
     protected void Jump()
     {
-        if(jDown && !isJump && !isSwap && !isShop && !isDead)
+        if(jDown && !isJump && !isSwap && !isShop && !isDead && !isTalk)
         {
             rigid.AddForce(Vector3.up * 15 , ForceMode.Impulse); // 즉발적인 Impulse로 한다.
             anim.SetBool("isJump", true); // 점프가 발동되면 isjump true
@@ -293,7 +291,7 @@ public class Player : MonoBehaviour
         if(sDown2) weaponIndex = 1;
         if(sDown3) weaponIndex = 2;
         //셋중 하나만 눌러도 작동 or 조건 작성
-        if((sDown1 || sDown2 || sDown3) && !isJump && !wRun)
+        if((sDown1 || sDown2 || sDown3) && !isJump && !wRun && !isTalk)
         {
             basicSword.SetActive(false);//기존의 칼도 비활성화 시킨다
             if (equipWeapon != null)
@@ -313,7 +311,7 @@ public class Player : MonoBehaviour
     void Interation()
     {
         //E(iDown)를 활성화 되고 nearObject 가 null이 아니고 점프와 Run이 아닐때 
-        if(iDown && nearObject != null && !isJump && !wRun)
+        if(iDown && nearObject != null && !isJump && !wRun )
         {
             if (nearObject.CompareTag("Weapon"))
             {
@@ -359,7 +357,7 @@ public class Player : MonoBehaviour
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.rate < fireDelay;
 
-        if(fDown && isFireReady && !isSwap && !isShop &&!isDead)
+        if(fDown && isFireReady && !isSwap && !isShop &&!isDead && !isTalk)
         {
             equipWeapon.Use();
             anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doSlash");
