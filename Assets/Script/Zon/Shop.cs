@@ -45,7 +45,7 @@ public class Shop : MonoBehaviour
                 break;
             case 1:
                 enterPlayer.attack += attack;
-                Weapon.Damage(attack);
+                Weapon.Damage(attack); //Weapon 함수의 Damage 함수를 실행시켜서 데미지를 증가 시킨다.
                 print("공격력이 증가했다"+ enterPlayer.attack);
                 break;
             case 2:
