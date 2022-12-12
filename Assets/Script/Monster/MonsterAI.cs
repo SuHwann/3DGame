@@ -27,7 +27,7 @@ public class MonsterAI : MonoBehaviour
     public Animator anim;            //몬스터 행동 애니메이션
     public bool isDead;               //몬스터의 죽음 체크 변수
     [SerializeField]
-    GameObject[] coins;               //몬스터 사망시 드랍 코인
+    GameObject[] dropItem;               //몬스터 사망시 드랍 코인
     private void Awake()
     {
         VariableRest();
@@ -126,10 +126,10 @@ public class MonsterAI : MonoBehaviour
             monsterCol.enabled = false;
             anim.SetTrigger("doDie");
             //적이 죽는 로직에 동전 드랍 구현
-            int ranCoin = Random.Range(0, 3);
-            Vector3 itemVec = new Vector3(transform.position.x, transform.position.y * 1.5f, transform.position.z);
-            coins[ranCoin].transform.localScale = Vector3.one * 3f;
-            Instantiate(coins[ranCoin], itemVec, Quaternion.identity);
+            int ranCoin = Random.Range(0, dropItem.Length);
+            Vector3 itemVec = new Vector3(transform.position.x, dropItem[ranCoin].transform.position.y, transform.position.z);
+            dropItem[ranCoin].transform.localScale = Vector3.one * 3f;
+            Instantiate(dropItem[ranCoin], itemVec, Quaternion.identity);
             //몬스터가 죽으면서 뒤로 밀림
             reactVec = reactVec.normalized;
             reactVec += Vector3.up;

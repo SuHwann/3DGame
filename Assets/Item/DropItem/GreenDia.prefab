@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 3977289997794262707}
   - component: {fileID: 5509268097331320459}
   - component: {fileID: 2407625070781982422}
-  - component: {fileID: 182303461119088093}
   - component: {fileID: 6630989302884414115}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GreenDia
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3979390622497525029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 6, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49,7 +48,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -66,19 +65,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &182303461119088093
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3979390622497525029}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.1, z: 1}
-  m_Center: {x: 0, y: -0.85, z: 0}
 --- !u!114 &6630989302884414115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c757b85de79bf0d49988a91ecbc53caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 8
   value: 0
 --- !u!1 &3980847291457102675
 GameObject:
@@ -104,7 +90,7 @@ GameObject:
   - component: {fileID: 3977766110652477323}
   - component: {fileID: 3984275929642674281}
   - component: {fileID: 3994232161508691879}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Diamond1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,9 +169,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3977289997794262707}
     m_Modifications:
+    - target: {fileID: 1064834829004598, guid: 968c924d2be019d4b9e67647551eec3e, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278236788414174, guid: 968c924d2be019d4b9e67647551eec3e, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1844191813266838, guid: 968c924d2be019d4b9e67647551eec3e, type: 3}
       propertyPath: m_Name
       value: CFX4 Aura Bubble C
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844191813266838, guid: 968c924d2be019d4b9e67647551eec3e, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4299952606933750, guid: 968c924d2be019d4b9e67647551eec3e, type: 3}
       propertyPath: m_RootOrder
