@@ -86,11 +86,11 @@ public class Player : MonoBehaviour
     {
         while(true)
         {
+            Attack();
             GetInput();
             Move();
             LookAround();
             Jump();
-            Attack();
             Interation();
             Swap();
             yield return null;  
