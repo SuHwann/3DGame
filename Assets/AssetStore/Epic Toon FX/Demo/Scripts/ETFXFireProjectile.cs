@@ -47,13 +47,13 @@ namespace EpicToonFX
 
             if (Input.GetKeyDown(KeyCode.Mouse0)) //On left mouse down-click
             {
-                if (!EventSystem.current.IsPointerOverGameObject()) //Checks if the mouse is not over a UI part
+                if (!EventSystem.current.IsPointerOverGameObject()) //마우스가 UI 부분 위에 있지 않은지 확인
                 {
-                    if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100f)) //Finds the point where you click with the mouse
+                    if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100f))//마우스로 클릭한 지점을 찾습니다.
                     {
-                        GameObject projectile = Instantiate(projectiles[currentProjectile], spawnPosition.position, Quaternion.identity) as GameObject; //Spawns the selected projectile
-                        projectile.transform.LookAt(hit.point); //Sets the projectiles rotation to look at the point clicked
-                        projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * speed); //Set the speed of the projectile by applying force to the rigidbody
+                        GameObject projectile = Instantiate(projectiles[currentProjectile], spawnPosition.position, Quaternion.identity) as GameObject; //선택한 발사체 생성
+                        projectile.transform.LookAt(hit.point);//클릭한 지점을 보도록 발사체 회전을 설정합니다.
+                        projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * speed);  //강체에 힘을 가하여 발사체의 속도를 설정합니다.
                     }
                 }
             }

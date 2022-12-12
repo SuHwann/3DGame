@@ -88,8 +88,7 @@ public class Boss : MonsterAI
     //내려 찍는 스킬 
     IEnumerator SkillJump()
     {
-        tautVec = player.position + lookVec;
-
+        tautVec = player.position + lookVec; //돌진공격을 할 위치 변수 저장
         isLook = false;
         agent.isStopped = false;
         monsterCol.enabled = false;
