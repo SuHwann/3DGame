@@ -13,8 +13,6 @@ public class Weapon : MonoBehaviour
     public float rate;
     [SerializeField]
     private BoxCollider meleeArea;
-    /*    [SerializeField]
-        private TrailRenderer trailEffect;*/
     public Transform slashPos;      //참격생성 위치  
     public GameObject slash;        //참격 오브젝트
     public GameObject curAmmo;      //방어 오브젝트
@@ -43,11 +41,9 @@ public class Weapon : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         meleeArea.enabled = true;
-/*        trailEffect.enabled = true;*/
         yield return new WaitForSeconds(0.3f);
         meleeArea.enabled = false;
         yield return new WaitForSeconds(0.3f);
-/*        trailEffect.enabled = false;*/
     }
     IEnumerator SlashShot()
     {

@@ -211,10 +211,6 @@ public class Player : MonoBehaviour
                     bool isBoosAtk = other.name == "BossMeleeArea";
                     StartCoroutine(OnDamage(isBoosAtk));
                 }
-                if (other.GetComponent<Rigidbody>() != null)
-                {
-                    Destroy(other.gameObject);
-                }
                 break;
             }
         }

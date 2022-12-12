@@ -31,6 +31,37 @@ Transform:
   m_Father: {fileID: 4431549714563669124}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &840783760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 840783761}
+  m_Layer: 0
+  m_Name: ImpactWave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &840783761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840783760}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 457746309441447023}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1452811569
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +327,7 @@ Transform:
   - {fileID: 4354740507310978274}
   - {fileID: 2161754427325412019}
   - {fileID: 1452811570}
+  - {fileID: 840783761}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -385,7 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyType: 3
   maxHealth: 2000
-  curHealth: 2000
+  curHealth: 30
   movePoint: []
   meleeArea: {fileID: 1452811572}
   slashOb: {fileID: 0}
@@ -396,9 +428,15 @@ MonoBehaviour:
   meshs: []
   anim: {fileID: 0}
   isDead: 0
-  coins: []
+  coins:
+  - {fileID: 5630632750519058090, guid: c90a2e8b5de58074697ecc044ec6f615, type: 3}
+  - {fileID: 3979390622497525029, guid: d5cc29bf3c27f8b449db313868c8735a, type: 3}
+  - {fileID: 5724613329583538012, guid: 58b811a5ae23c1340a73ce926162712a, type: 3}
   skillA: {fileID: 128572, guid: 8bfc41e9c1e26a7479b0385993c276b5, type: 3}
+  impactWave: {fileID: 100002, guid: ae5ec65fc4184544f9632d832229f9d0, type: 3}
+  impactWavePosition: {fileID: 840783761}
   skillPointA: {fileID: 837626025}
+  speed: 1000
 --- !u!1 &1208261590018475792
 GameObject:
   m_ObjectHideFlags: 0

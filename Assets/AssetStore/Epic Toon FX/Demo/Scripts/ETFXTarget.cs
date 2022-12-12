@@ -33,7 +33,7 @@ public class ETFXTarget : MonoBehaviour
         {
             if (hitParticle)
             {
-				//Debug.Log("Target hit!");
+				Debug.Log("Target hit!");
 				GameObject destructibleEffect = Instantiate(hitParticle, transform.position, transform.rotation) as GameObject; // Spawns attached hit effect
 				Destroy(destructibleEffect, 2f); // Removes hit effect after x seconds
 				targetRenderer.enabled = false; // Hides the target
