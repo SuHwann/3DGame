@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     bool sDown1;
     bool sDown2;
     bool sDown3;
+    //벽충돌 플래그 bool 변수 생성
+    bool isBorder;
     //Shoping 변수
     bool isShop;
     //공격 변수 (키입력 , 공격딜레이 , 공격준비)
@@ -121,16 +123,15 @@ public class Player : MonoBehaviour
         anim.SetBool("isRun", isMove);
         anim.SetBool("isWalk", wRun); //walk 다운
 
-        if (isSwap || !isFireReady || fDown || isDead )
+        if (isSwap || !isFireReady || fDown || isDead)
         {
             moveDir = Vector3.zero;
         }
         if (!isDead && moveDir != Vector3.zero)
         {
             transform.forward = moveDir;
-            transform.position += moveDir * speed * (wRun ? 1.5f : 1f) * Time.deltaTime;//Time.deltaTime 으로 이동속도 조절
+            if (!isBorder){transform.position += moveDir * speed * (wRun ? 1.5f : 1f) * Time.deltaTime;};//Time.deltaTime 으로 이동속도 조절
         }
-
     }
     protected void Jump()
     {
@@ -341,6 +342,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         FreezeRotation();
+        StopToWall();
     }
     //공격 함수 (무기가 있을때만 실행)
     void Attack()
@@ -378,4 +380,10 @@ public class Player : MonoBehaviour
             cameraArm.rotation = Quaternion.Euler(x, camAngle.y + mouseDelta.x, camAngle.z);//camAngle의 새로운값을 cameraArm.rotation에 넣어준다.
         }
     }
+    //벽 통과 방지
+    void StopToWall()
+    {
+        isBorder = Physics.Raycast(transform.position, transform.forward, 5, LayerMask.GetMask("Wall"));
+    }
+
 }

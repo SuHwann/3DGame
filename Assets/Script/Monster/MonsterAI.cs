@@ -17,6 +17,8 @@ public class MonsterAI : MonoBehaviour
     public BoxCollider meleeArea;      //근접 공격 박스콜라이더
     [SerializeField]
     private GameObject slashOb;         //원거리 공격 오브젝트
+    [SerializeField]
+    Transform farSkillPointA;              //원거리 공격 생성 위치 
     public  Transform player;         //몬스터 추적 Target변수
     public NavMeshAgent agent;       //NMA 변수
     int randomInt;            //movePoint 순서를 랜덤하게 저장 할 변수
@@ -34,7 +36,6 @@ public class MonsterAI : MonoBehaviour
         StartCoroutine(AiMonster());
         GetPoint();
         randomInt = Random.Range(0, movePoint.Length); //랜덤 변수 저장
-        StartCoroutine(Attack());
         anim.SetBool("isWalk", true);   //첫시작시 걷는 행동 실행 
     }
     void GetPoint()  //Point들의 위치를 인스펙터에 저장한다.
@@ -74,6 +75,7 @@ public class MonsterAI : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, movePoint[randomInt].transform.position) < 1f)
         {
+            print(movePoint[randomInt].name);
             randomInt = Random.Range(0, movePoint.Length);
         }
     }
@@ -117,7 +119,6 @@ public class MonsterAI : MonoBehaviour
         //몬스터 죽음 
         else
         {
-
             foreach (SkinnedMeshRenderer mesh in meshs)
             { mesh.material.color = Color.gray; }
             StopAllCoroutines();
@@ -206,11 +207,9 @@ public class MonsterAI : MonoBehaviour
                 case Type.C:
                     yield return new WaitForSeconds(0.5f);
 
-                    Vector3 pos = new Vector3(transform.position.x, transform.position.y + 4f, transform.position.z);
-                    GameObject instantSlash = Instantiate(slashOb, pos, transform.rotation);
-                    Rigidbody rigidSlash = instantSlash.GetComponent<Rigidbody>();
-                    rigidSlash.velocity = transform.forward * 20f;
-
+                    GameObject instantSlash = Instantiate(slashOb, farSkillPointA.position, farSkillPointA.rotation);
+                    instantSlash.transform.LookAt(player);
+                    instantSlash.GetComponent<Rigidbody>().AddForce(instantSlash.transform.forward * 1000f);
                     yield return new WaitForSeconds(2f);
                     Destroy(instantSlash, 1f);
                     break;

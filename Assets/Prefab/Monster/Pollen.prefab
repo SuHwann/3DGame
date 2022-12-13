@@ -5171,6 +5171,7 @@ MonoBehaviour:
   - {fileID: 0}
   meleeArea: {fileID: 0}
   slashOb: {fileID: 1541847680934240335, guid: 3cbfd000fc4a71545b6773c7af14bc76, type: 3}
+  farSkillPointA: {fileID: 0}
   player: {fileID: 0}
   agent: {fileID: 0}
   rigid: {fileID: 0}
@@ -5178,8 +5179,7 @@ MonoBehaviour:
   meshs: []
   anim: {fileID: 0}
   isDead: 0
-  coins: []
-  score: 0
+  dropItem: []
 --- !u!195 &743090588
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5190,7 +5190,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 10
   m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 480
