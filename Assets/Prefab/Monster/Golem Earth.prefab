@@ -421,17 +421,14 @@ MonoBehaviour:
   movePoint: []
   meleeArea: {fileID: 1452811572}
   slashOb: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 3703623855141202827, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
   agent: {fileID: 0}
   rigid: {fileID: 0}
   monsterCol: {fileID: 0}
   meshs: []
   anim: {fileID: 0}
   isDead: 0
-  coins:
-  - {fileID: 5630632750519058090, guid: c90a2e8b5de58074697ecc044ec6f615, type: 3}
-  - {fileID: 3979390622497525029, guid: d5cc29bf3c27f8b449db313868c8735a, type: 3}
-  - {fileID: 5724613329583538012, guid: 58b811a5ae23c1340a73ce926162712a, type: 3}
+  dropItem: []
   skillA: {fileID: 128572, guid: 8bfc41e9c1e26a7479b0385993c276b5, type: 3}
   impactWave: {fileID: 100002, guid: ae5ec65fc4184544f9632d832229f9d0, type: 3}
   impactWavePosition: {fileID: 840783761}

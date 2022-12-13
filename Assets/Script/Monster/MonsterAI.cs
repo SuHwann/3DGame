@@ -17,7 +17,7 @@ public class MonsterAI : MonoBehaviour
     public BoxCollider meleeArea;      //근접 공격 박스콜라이더
     [SerializeField]
     private GameObject slashOb;         //원거리 공격 오브젝트
-    public Transform player;         //몬스터 추적 Target변수
+    public  Transform player;         //몬스터 추적 Target변수
     public NavMeshAgent agent;       //NMA 변수
     int randomInt;            //movePoint 순서를 랜덤하게 저장 할 변수
     private bool isAttack;    //현재 공격중인지 확인하는 변수 
