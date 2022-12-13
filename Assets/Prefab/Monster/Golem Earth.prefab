@@ -421,7 +421,7 @@ MonoBehaviour:
   movePoint: []
   meleeArea: {fileID: 1452811572}
   slashOb: {fileID: 0}
-  player: {fileID: 3703623855141202827, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+  player: {fileID: 0}
   agent: {fileID: 0}
   rigid: {fileID: 0}
   monsterCol: {fileID: 0}
