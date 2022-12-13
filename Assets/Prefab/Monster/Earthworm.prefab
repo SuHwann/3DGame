@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &496083454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 496083455}
+  m_Layer: 12
+  m_Name: SkillPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &496083455
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496083454}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.191, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4355727494435111105}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &536953043580927954
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2649192469775650863}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigMouthBR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,14 +54,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536953043580927954}
-  m_LocalRotation: {x: -0.06285288, y: -0.11439676, z: -0.2594528, w: 0.9568946}
+  m_LocalRotation: {x: -0.06285286, y: -0.114396915, z: -0.2594528, w: 0.9568945}
   m_LocalPosition: {x: -0.04852375, y: 0.17752753, z: -0.1864277}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4355727494435111105}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -12.247231, y: -9.469343, z: -36.999714}
 --- !u!1 &1189205117506568537
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3916743192703052132}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigNeck1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,15 +85,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1189205117506568537}
-  m_LocalRotation: {x: -0.0000000023345568, y: -0.0000000015732873, z: -0.19735499, w: 0.9803321}
+  m_LocalRotation: {x: 0.000000027963482, y: 0.000000007362854, z: -0.19733569, w: 0.980336}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99999994, y: 1, z: 1}
+  m_LocalScale: {x: 0.99999964, y: 0.99999976, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1408217053416577170}
   m_Father: {fileID: 2151598447004013796}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.5450438, y: -1.4284782, z: -13.32442}
 --- !u!1 &1427190604649358697
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8407630351372415844}
   - component: {fileID: 7440664474078543424}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Earthworm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4355727494435111105}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,18 +216,19 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2249294889074739661}
-  m_LocalRotation: {x: -0.000000012361248, y: 0.00000006315049, z: -0.00020327052, w: 1}
+  m_LocalRotation: {x: -0.00000006204844, y: 0.00000006401509, z: -0.0002228208, w: 1}
   m_LocalPosition: {x: -0.40212908, y: -0.00000015258789, z: 0}
-  m_LocalScale: {x: 0.9999997, y: 0.99999964, z: 0.99999976}
+  m_LocalScale: {x: 1, y: 0.9999999, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6312373991878893366}
   - {fileID: 2649192469775650863}
   - {fileID: 8722810564884247531}
   - {fileID: 3184474561639298183}
+  - {fileID: 496083455}
   m_Father: {fileID: 5844037538166333388}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5.586813, y: -2.109489, z: 8.347841}
 --- !u!1 &3268372975674109558
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2452986336621241169}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,15 +252,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3268372975674109558}
-  m_LocalRotation: {x: 0.50000006, y: -0.50000006, z: -0.49999997, w: 0.49999997}
-  m_LocalPosition: {x: 0.0000000019398556, y: -0.116316184, z: 0.044377327}
+  m_LocalRotation: {x: 0.46157092, y: -0.46157092, z: -0.5356793, w: 0.5356793}
+  m_LocalPosition: {x: 0.0000000019398623, y: -0.11631615, z: 0.04437735}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4838812910368911453}
   m_Father: {fileID: 5320386252606503684}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -81.500015, z: -90}
 --- !u!1 &4210312635829232928
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3184474561639298183}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigMouthTR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,14 +284,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4210312635829232928}
-  m_LocalRotation: {x: -0.010914156, y: -0.13006905, z: 0.15199761, w: 0.9797243}
+  m_LocalRotation: {x: -0.010914107, y: -0.13006905, z: 0.15199746, w: 0.97972435}
   m_LocalPosition: {x: -0.05602253, y: -0.15088561, z: -0.18642765}
   m_LocalScale: {x: 1, y: 0.9999999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4355727494435111105}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.3234625, y: -19.800022, z: 18.667847}
 --- !u!1 &4450553495997629810
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +301,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5844037538166333388}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigNeck3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,15 +315,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4450553495997629810}
-  m_LocalRotation: {x: 0.00000004122874, y: -0.0000001862235, z: -0.31791407, w: 0.9481196}
-  m_LocalPosition: {x: -0.29611313, y: 0, z: 0}
-  m_LocalScale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+  m_LocalRotation: {x: 0.00000012118748, y: -0.00000012659264, z: -0.31792957, w: 0.94811434}
+  m_LocalPosition: {x: -0.2961132, y: -0.000000076293944, z: 0}
+  m_LocalScale: {x: 1, y: 1.0000007, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4355727494435111105}
   m_Father: {fileID: 1408217053416577170}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.2980528, y: -8.728511, z: 16.926327}
 --- !u!1 &4800309124548731326
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,9 +334,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5320386252606503684}
   - component: {fileID: 2248954067861021054}
-  m_Layer: 0
+  - component: {fileID: 1146523110}
+  - component: {fileID: 1146523109}
+  - component: {fileID: 1146523107}
+  - component: {fileID: 1146523108}
+  m_Layer: 12
   m_Name: Earthworm
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -316,10 +352,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4800309124548731326}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8407630351372415844}
   - {fileID: 8521970412764542255}
@@ -347,6 +383,95 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &1146523110
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800309124548731326}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &1146523109
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800309124548731326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &1146523107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800309124548731326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6193b5940300f6c49bbb695c0f5e5195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyType: 2
+  maxHealth: 200
+  curHealth: 200
+  movePoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  meleeArea: {fileID: 0}
+  slashOb: {fileID: 128572, guid: 1af55e6d1df102d489aad142cd33e9d1, type: 3}
+  farSkillPointA: {fileID: 496083455}
+  player: {fileID: 0}
+  agent: {fileID: 0}
+  rigid: {fileID: 0}
+  monsterCol: {fileID: 0}
+  meshs: []
+  anim: {fileID: 0}
+  isDead: 0
+  dropItem:
+  - {fileID: 1932404851238112, guid: a6c1146434a0bde48994ffe73a954c26, type: 3}
+  - {fileID: 1807571972017418, guid: 6b5c47cc7c7add94c9dfbe5b9001a714, type: 3}
+  - {fileID: 1392136713040706, guid: e22f6d9f81e05354fa2d47fd82b4ab4e, type: 3}
+--- !u!195 &1146523108
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800309124548731326}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 15
+  m_Acceleration: 60
+  avoidancePriority: 50
+  m_AngularSpeed: 480
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5340118015158661091
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1408217053416577170}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigNeck2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,15 +495,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5340118015158661091}
-  m_LocalRotation: {x: 0.00000003903587, y: -0.000000046904034, z: -0.50373125, w: 0.8638604}
-  m_LocalPosition: {x: -0.2901584, y: 0.000000009536743, z: 1.8189894e-14}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.00000007104025, y: -0.00000016261764, z: -0.5037168, w: 0.86386883}
+  m_LocalPosition: {x: -0.2901583, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1.0000008, z: 1.0000001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5844037538166333388}
   m_Father: {fileID: 3916743192703052132}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -3.0286443, y: -8.004366, z: -5.589405}
 --- !u!1 &6773233513898480195
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,7 +513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8722810564884247531}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigMouthTL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,14 +527,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6773233513898480195}
-  m_LocalRotation: {x: 0.01091415, y: 0.13006908, z: 0.15199761, w: 0.9797243}
+  m_LocalRotation: {x: 0.010914217, y: 0.13006923, z: 0.15199743, w: 0.9797243}
   m_LocalPosition: {x: -0.056022566, y: -0.15088546, z: 0.18642765}
   m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4355727494435111105}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.4082367, y: 25.701006, z: 19.518866}
 --- !u!1 &7139373764311769061
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +544,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4838812910368911453}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigSpine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +558,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7139373764311769061}
-  m_LocalRotation: {x: -3.7133566e-10, y: -0.00000005604373, z: -0.21342702, w: 0.976959}
+  m_LocalRotation: {x: 0.0034086811, y: -0.000028493043, z: -0.21336807, w: 0.97696596}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 0
@@ -441,7 +566,7 @@ Transform:
   - {fileID: 5925659521724064272}
   m_Father: {fileID: 2452986336621241169}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.7327446, y: 1.0996549, z: -29.548758}
 --- !u!1 &7163976414539384378
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2151598447004013796}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigRibcage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,15 +590,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7163976414539384378}
-  m_LocalRotation: {x: 0.00000001591566, y: 0.00000013058664, z: -0.064779185, w: 0.99789965}
-  m_LocalPosition: {x: -0.24256706, y: -0.000000038146972, z: -3.6379787e-14}
+  m_LocalRotation: {x: 0.0033861499, y: -0.00080139894, z: -0.06489869, w: 0.9978858}
+  m_LocalPosition: {x: -0.24256709, y: 0, z: 0.0000000011920929}
   m_LocalScale: {x: 0.9999999, y: 0.9999999, z: 0.99999976}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3916743192703052132}
   m_Father: {fileID: 3366457966715310141}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.7974888, y: 0.97813183, z: -12.374663}
 --- !u!1 &7734858485104663625
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +608,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8521970412764542255}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +629,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5320386252606503684}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90.00001, z: -90}
 --- !u!1 &7846665087049782673
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5925659521724064272}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigSpine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,15 +653,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7846665087049782673}
-  m_LocalRotation: {x: -0.000000031434112, y: 0.00000007573579, z: 0.39282274, w: 0.91961426}
-  m_LocalPosition: {x: -0.46655494, y: 0.000000009536743, z: 0}
+  m_LocalRotation: {x: 0.021470534, y: -0.002789262, z: 0.3927077, w: 0.91940844}
+  m_LocalPosition: {x: -0.46655494, y: -0.000000028610229, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000002, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1476647285208541683}
   m_Father: {fileID: 4838812910368911453}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.211665, y: 7.7704372, z: 15.714494}
 --- !u!1 &7956847749152988052
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +671,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3366457966715310141}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigSpine4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,15 +685,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7956847749152988052}
-  m_LocalRotation: {x: -0.0000002113246, y: -0.0000008998583, z: -0.13416143, w: 0.9909595}
-  m_LocalPosition: {x: -0.2667721, y: 0, z: -7.2759575e-14}
+  m_LocalRotation: {x: 0.018263835, y: -0.011717452, z: -0.1343598, w: 0.990695}
+  m_LocalPosition: {x: -0.26677212, y: 0.000000076293944, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000006, z: 1.0000002}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2151598447004013796}
   m_Father: {fileID: 1476647285208541683}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 7.6388645, y: 2.4632225, z: -45.98917}
 --- !u!1 &8093191866351532102
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +703,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6312373991878893366}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigMouthBL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,14 +717,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8093191866351532102}
-  m_LocalRotation: {x: 0.06285291, y: 0.11439672, z: -0.2594527, w: 0.9568946}
+  m_LocalRotation: {x: 0.06285296, y: 0.11439679, z: -0.2594526, w: 0.95689464}
   m_LocalPosition: {x: -0.04852375, y: 0.17752753, z: 0.1864277}
-  m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 1.0000001}
+  m_LocalScale: {x: 0.9999991, y: 0.9999998, z: 1.0000004}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4355727494435111105}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 16.511593, y: 20.131563, z: -31.752995}
 --- !u!1 &8600858596424994228
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +734,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1476647285208541683}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RigSpine3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,12 +748,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8600858596424994228}
-  m_LocalRotation: {x: 0.00000012503943, y: 0.0000007876834, z: 0.23826456, w: 0.9712003}
-  m_LocalPosition: {x: -0.25409448, y: 0.000000038146972, z: 0}
+  m_LocalRotation: {x: 0.02354007, y: -0.017008828, z: 0.2380174, w: 0.9708266}
+  m_LocalPosition: {x: -0.25409448, y: 0, z: 0.000000001490116}
   m_LocalScale: {x: 0.9999996, y: 0.9999996, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3366457966715310141}
   m_Father: {fileID: 5925659521724064272}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.543697, y: 5.397469, z: -13.639832}
