@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 13576440}
   - component: {fileID: 5479992}
   - component: {fileID: 11464288}
+  - component: {fileID: 218205169277099443}
   m_Layer: 11
   m_Name: SharpMissilePinkOBJ
   m_TagString: EnemyFar
@@ -42,7 +43,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128572}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.15
@@ -80,3 +81,17 @@ MonoBehaviour:
   muzzleParticle: {fileID: 1554507625626636, guid: d76d7dc7d7528004fa56259fa85400b7, type: 3}
   colliderRadius: 0.1
   collideOffset: 0.1
+--- !u!114 &218205169277099443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f16344fc31276a44b51f6deb5b9477f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  isMelee: 0
