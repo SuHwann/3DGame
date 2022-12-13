@@ -34,13 +34,8 @@ public class MonsterAI : MonoBehaviour
     {
         VariableRest();
         StartCoroutine(AiMonster());
-        GetPoint();
         randomInt = Random.Range(0, movePoint.Length); //랜덤 변수 저장
         anim.SetBool("isWalk", true);   //첫시작시 걷는 행동 실행 
-    }
-    void GetPoint()  //Point들의 위치를 인스펙터에 저장한다.
-    {
-        movePoint = GameObject.Find("Point").GetComponentsInChildren<Transform>();
     }
     IEnumerator AiMonster()    //몬스터 정찰 기능 
     { 
@@ -73,7 +68,7 @@ public class MonsterAI : MonoBehaviour
     }
     void Destination() //목적지에 도착하면 목적지 변경
     {
-        if (Vector3.Distance(transform.position, movePoint[randomInt].transform.position) < 1f)
+        if (Vector3.Distance(transform.position, movePoint[randomInt].transform.position) < 3f)
         {
             print(movePoint[randomInt].name);
             randomInt = Random.Range(0, movePoint.Length);
@@ -127,10 +122,10 @@ public class MonsterAI : MonoBehaviour
             monsterCol.enabled = false;
             anim.SetTrigger("doDie");
             //적이 죽는 로직에 동전 드랍 구현
-            int ranCoin = Random.Range(0, dropItem.Length);
-            Vector3 itemVec = new Vector3(transform.position.x, dropItem[ranCoin].transform.position.y, transform.position.z);
-            dropItem[ranCoin].transform.localScale = Vector3.one * 3f;
-            Instantiate(dropItem[ranCoin], itemVec, Quaternion.identity);
+            int ranItem = Random.Range(0, dropItem.Length);
+            Vector3 itemVec = new Vector3(transform.position.x, dropItem[ranItem].transform.position.y , transform.position.z);
+            dropItem[ranItem].transform.localScale = Vector3.one * 3f;
+            Instantiate(dropItem[ranItem], itemVec, Quaternion.identity);
             //몬스터가 죽으면서 뒤로 밀림
             reactVec = reactVec.normalized;
             reactVec += Vector3.up;
