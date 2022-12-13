@@ -70,7 +70,6 @@ public class MonsterAI : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, movePoint[randomInt].transform.position) < 3f)
         {
-            print(movePoint[randomInt].name);
             randomInt = Random.Range(0, movePoint.Length);
         }
     }
@@ -80,7 +79,6 @@ public class MonsterAI : MonoBehaviour
         if (other.tag == "Melee"&&!isDead)
         {
             Weapon weapon = other.GetComponent<Weapon>();
-            print(weapon.damage);
             curHealth -= weapon.damage;
             //넉백 위치 or 전달
             Vector3 reactVec = transform.position - other.transform.position;
