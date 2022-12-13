@@ -161,6 +161,7 @@ public class MonsterAI : MonoBehaviour
             //rayHit 변수에 데이터가 들어오면 공격 코루틴 실행 , 이미 공격중일땐 실행 안됨
             if (rayHits.Length > 0 && !isAttack)
             {
+                print("공격실행");
                 StartCoroutine(Attack());
             }
         }
