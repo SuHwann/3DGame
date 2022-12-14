@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.TextCore.Text;
 using UnityEngine;
 
 public class GolemFire : MonsterAI
@@ -15,7 +16,6 @@ public class GolemFire : MonsterAI
     bool isLook; //플레이어를 바라볼 방향 체크
     Vector3 lookVec; //플레이어 방향 미리 예상 
     Vector3 tautVec;
-    public float speed = 1000f;
     int count = 0;
     private void Start()
     {
@@ -51,8 +51,8 @@ public class GolemFire : MonsterAI
     IEnumerator Think()
     {
         yield return new WaitForSeconds(1f);
-        int randomAction = Random.Range(0, 2);
-        switch (1)
+        int randomAction = Random.Range(0, 3);
+        switch (randomAction)
         {
             case 0:
                 StartCoroutine(RushAttack());
@@ -68,21 +68,17 @@ public class GolemFire : MonsterAI
     //플레이어에게 돌진 근접공격 시작
     IEnumerator RushAttack()
     {
-        tautVec = player.position + lookVec;//돌진공격을 할 위치 변수 저장
+        tautVec = player.position + lookVec;//돌진공격을 할 위치 변수 저장*/
         isLook = false;
         agent.isStopped = false;
-        monsterCol.enabled = false;
         anim.SetTrigger("isPunch");
-        meleeArea.enabled = true;
-        yield return new WaitForSeconds(2f);
-        meleeArea.enabled = false;
-        isLook = true;
+        yield return new WaitForSeconds(3f);
         agent.isStopped = true;
-        monsterCol.enabled = true;
+        isLook = true;
         StartCoroutine(Think());
     }
     //원거리 공격 오브젝트 생성함수
-    void DistanceAttackOb()
+    void DistanceAttackOb(int speed)
     {
         GameObject instantSkill = Instantiate(skill[count], skillPoint[count].position, skillPoint[count].rotation);
         instantSkill.transform.LookAt(player);//플레이어의 방향으로 회전 
@@ -96,30 +92,37 @@ public class GolemFire : MonsterAI
         yield return new WaitForSeconds(1f);
         for (int i = 0; i < 3; i++)
         {
-            DistanceAttackOb();
+            DistanceAttackOb(1000);
             yield return new WaitForSeconds(0.2f);
         }
         count++;
         yield return new WaitForSeconds(1f);
         for(int i = 0; i < 3; i++)
         {
-            DistanceAttackOb();
+            DistanceAttackOb(2000);
             yield return new WaitForSeconds(0.1f);
         }
         count++;
-        yield return new WaitForSeconds(1f);
-        DistanceAttackOb();
+        yield return new WaitForSeconds(1.5f);
+        DistanceAttackOb(1000);
         yield return new WaitForSeconds(1.5f);
         StartCoroutine(Think());
     }
     //광역스킬
     IEnumerator WideSkill()
     {
+        isLook = false;
         anim.SetTrigger("isCastSpell");
-        yield return new WaitForSeconds(0.8f);
         GameObject instantSkillB = Instantiate(impactWave, impactWavePosition.position, impactWavePosition.rotation);
+        yield return new WaitForSeconds(1.8f);
+        instantSkillB.transform.GetComponent<SphereCollider>().enabled = true;
+        print("콜라이더킴");
         yield return new WaitForSeconds(1f);
+        instantSkillB.transform.GetComponent<SphereCollider>().enabled = false;
+        yield return new WaitForSeconds(2f);
+        print("콜라이더끔");
         Destroy(instantSkillB);
+        isLook = true;
         StartCoroutine(Think());
     }
 }

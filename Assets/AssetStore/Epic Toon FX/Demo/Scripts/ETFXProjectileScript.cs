@@ -49,7 +49,7 @@ namespace EpicToonFX
             if (Physics.SphereCast(transform.position, radius, direction, out hit, detectionDistance)) //충돌이 발생하는지 확인
             {
                 transform.position = hit.point + (hit.normal * collideOffset); //발사체를 충돌 지점으로 이동
-
+                
                 GameObject impactP = Instantiate(impactParticle, transform.position, Quaternion.FromToRotation(Vector3.up, hit.normal)) as GameObject; // 충격 효과 생성
 
                 ParticleSystem[] trails = GetComponentsInChildren<ParticleSystem>();/* 트레일을 분리해야 하므로 파티클 시스템 목록을 가져옵니다.*/

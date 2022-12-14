@@ -8,5 +8,4 @@ public class Slash : MonoBehaviour
     public int damage; //데미지
     [SerializeField]
     bool isMelee;       //근접 공격
-
 }

@@ -946,7 +946,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cast Spell
-  m_Speed: 1
+  m_Speed: 0.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -3727409094672965890}
@@ -1476,7 +1476,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Power Shoot Attack
-  m_Speed: 0.5
+  m_Speed: 0.3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -660225436430572582}
@@ -1891,7 +1891,7 @@ AnimatorStateMachine:
     m_Position: {x: 290, y: -90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 38139473727439108}
-    m_Position: {x: -460, y: 420, z: 0}
+    m_Position: {x: -450, y: 400, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1426192382199180340}
     m_Position: {x: -1560, y: 360, z: 0}
