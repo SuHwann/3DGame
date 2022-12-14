@@ -104,7 +104,11 @@ public class EffectSettings : MonoBehaviour
   private int currentInactiveGo;
   private bool deactivatedIsWait;
 
-  void Start()
+    private void Awake()
+    {
+        Target = GameObject.Find("Player");
+    }
+    void Start()
   {
     if (InstanceBehaviour == DeactivationEnum.DestroyAfterTime) Destroy(gameObject, DestroyTimeDelay);
   }

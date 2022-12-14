@@ -73,6 +73,7 @@ public class GolemEarth : MonsterAI
         agent.isStopped = false;
         monsterCol.enabled = false;
         anim.SetTrigger("isPunch");
+        yield return new WaitForSeconds(1f);
         meleeArea.enabled = true;
         yield return new WaitForSeconds(2f);
         meleeArea.enabled = false;
@@ -84,7 +85,6 @@ public class GolemEarth : MonsterAI
     //원거리 공격 스킬 
     IEnumerator Skill()
     {
-        isLook = false;
         anim.SetTrigger("isProjectile Attack");
         yield return new WaitForSeconds(0.8f);
         for(int i =0; i < 3; i++)
@@ -94,7 +94,6 @@ public class GolemEarth : MonsterAI
             instantSkillA.GetComponent<Rigidbody>().AddForce(instantSkillA.transform.forward * speed);  //강체에 힘을 가하여 발사체의 속도를 설정합니다
             yield return new WaitForSeconds(0.2f);
         }
-        isLook= true;
         StartCoroutine(Think());
     }
     //광역스킬
