@@ -47,6 +47,10 @@ public class MonsterAI : MonoBehaviour
                 {
                     agent.SetDestination(player.position);
                 }
+/*                if(rigid.velocity == Vector3.zero && !isAttack) //몬스터가 움직이지 않고 공격하지 않으면
+                {
+                    randomInt = Random.Range(0, movePoint.Length); //다시 섞기
+                }*/
                 Destination();
                 yield return new WaitForSeconds(Time.deltaTime);
             }
@@ -68,7 +72,7 @@ public class MonsterAI : MonoBehaviour
     }
     void Destination() //목적지에 도착하면 목적지 변경
     {
-        if (Vector3.Distance(transform.position, movePoint[randomInt].transform.position) < 3f)
+        if (Vector3.Distance(transform.position, movePoint[randomInt].transform.position) < 5f)
         {
             randomInt = Random.Range(0, movePoint.Length);
         }
@@ -187,14 +191,11 @@ public class MonsterAI : MonoBehaviour
                     yield return new WaitForSeconds(1f);
                     break;
                 case Type.B: //돌격형 몬스터 행동
-                    yield return new WaitForSeconds(0.1f);
-                    rigid.AddForce(transform.forward * 20, ForceMode.Impulse); //돌격 구현 
+                    rigid.AddForce(transform.forward * 50f, ForceMode.Impulse); //돌격 구현 
                     meleeArea.enabled = true;
-
                     yield return new WaitForSeconds(0.5f);
                     rigid.velocity = Vector3.zero; //속도 제어 
                     meleeArea.enabled = false;
-
                     yield return new WaitForSeconds(2f);
                     break;
                 case Type.C:
