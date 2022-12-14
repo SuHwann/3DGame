@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 53566cb953ab1da449b5f45bde888317, type: 2}
 --- !u!1001 &98660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15856,6 +15856,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 6127407423758309325, guid: 3d6a8db643a0f424aad2b26a4665c99e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d6a8db643a0f424aad2b26a4665c99e, type: 3}
 --- !u!1 &1804864295
@@ -20386,6 +20390,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 6127407423758309325, guid: 3d6a8db643a0f424aad2b26a4665c99e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d6a8db643a0f424aad2b26a4665c99e, type: 3}
 --- !u!1001 &90777702329524272
@@ -20833,6 +20841,10 @@ PrefabInstance:
     - target: {fileID: 688867909519224032, guid: 3d6a8db643a0f424aad2b26a4665c99e, type: 3}
       propertyPath: m_TagString
       value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6127407423758309325, guid: 3d6a8db643a0f424aad2b26a4665c99e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d6a8db643a0f424aad2b26a4665c99e, type: 3}
@@ -21835,7 +21847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3770670602796702226, guid: 1f5c86bfa7f2f29449c0bce82095bf3f, type: 3}
       propertyPath: m_Convex
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770670602796702226, guid: 1f5c86bfa7f2f29449c0bce82095bf3f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4077293949230360385, guid: 1f5c86bfa7f2f29449c0bce82095bf3f, type: 3}
       propertyPath: m_Name
