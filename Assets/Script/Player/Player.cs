@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using System;
 public class Player : MonoBehaviour
 {
     [SerializeField]
@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int maxHasGrenades;
     public GameManager manager; //GameManager 변수
+    public static Action<int> SwordSwap; //무기 교체 이벤트 함수
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
@@ -79,11 +80,9 @@ public class Player : MonoBehaviour
         skinnmeshs = GetComponentsInChildren<SkinnedMeshRenderer>();
         equipWeapon = basicSword.GetComponent<Weapon>(); //처음엔 기본칼을 사용한다.
         StartCoroutine(MoveUpdate());
-        //PlayerPrefs.SetInt("MaxScore", 112500);       //첫 최고 기록 저장
-        Debug.Log(PlayerPrefs.GetInt("MaxScore"));
         Weapon.Damage(attack);//Weapon 스크립트에 플레이어 공격력 전달.
+        SwordSwap = (int i) => { SwordChange(i); }; //람다식 무기 교체 이벤트 함수
     }
-    // ReSharper disable Unity.PerformanceAnalysis
     IEnumerator MoveUpdate()
     {
         while(true)
@@ -201,7 +200,6 @@ public class Player : MonoBehaviour
     {
         switch (other.tag)
         {
-           
             //Slash 스크립트 재활용하여 데미지 적용 
             case "EnemyFar":
             {
@@ -209,7 +207,7 @@ public class Player : MonoBehaviour
                 {
                     Slash enemySlash = other.GetComponent<Slash>();
                     health -= enemySlash.damage;
-                    bool isBoosAtk = other.name == "BossMeleeArea";
+                    bool isBoosAtk = other.name == "EnemyFar";
                     StartCoroutine(OnDamage(isBoosAtk));
                 }
                 break;
@@ -289,14 +287,13 @@ public class Player : MonoBehaviour
         if((sDown1 || sDown2 || sDown3) && !isJump && !wRun && !isTalk)
         {
             basicSword.SetActive(false);//기존의 칼도 비활성화 시킨다
-            if (equipWeapon != null)
+            if (equipWeapon != null) //equipWeapon이 null이 아니면 기존의 장비는 비활성화
             {
               equipWeapon.gameObject.SetActive(false);
             }
             equipWeaponIndex = weaponIndex;
             equipWeapon = weapons[weaponIndex].GetComponent<Weapon>();
             equipWeapon.gameObject.SetActive(true);
-
             anim.SetTrigger("doSwap");
             isSwap = true;
             Invoke("SwapOut", 0.4f);
@@ -308,14 +305,7 @@ public class Player : MonoBehaviour
         //E(iDown)를 활성화 되고 nearObject 가 null이 아니고 점프와 Run이 아닐때 
         if(iDown && nearObject != null && !isJump && !wRun )
         {
-            if (nearObject.CompareTag("Weapon"))
-            {
-                Item item = nearObject.GetComponent<Item>();
-                int weaponIndex = item.value;
-                hasWeapons[weaponIndex] = true;
-                Destroy(nearObject);//오브젝트 삭제
-            }
-            else if (nearObject.CompareTag("Shop"))
+            if (nearObject.CompareTag("Shop"))
             {
                 Shop shop = nearObject.GetComponent<Shop>();
                 shop.Enter(this);
@@ -328,6 +318,11 @@ public class Player : MonoBehaviour
                 isTalk = true;
             }
         }
+    }
+    //상점의 통한 무기교체
+    public void SwordChange(int i)
+    {
+        hasWeapons[i] = true;
     }
     //Swap에 Invoke로 사용 
     void SwapOut()

@@ -11,10 +11,8 @@ public class Shop : MonoBehaviour
     Player enterPlayer;        //player변수
     [SerializeField]
     int[] itemPrice;            //Item 가격 배열
-    [SerializeField]
-    Transform[] itemPos;        //Item 생성위치
-    [SerializeField]
-    Text talkText;
+    [SerializeField]    
+    Text talkText;              //NPC 대화
     [SerializeField]
     int health, attack, ammo;   //상점 상품 능력치;
     public string[] talkData;     //NPC 대사
@@ -41,16 +39,13 @@ public class Shop : MonoBehaviour
         { 
             case 0:
                 enterPlayer.health += health;
-                print("체력이 증가했다 : " + enterPlayer.health);
                 break;
             case 1:
                 enterPlayer.attack += attack;
                 Weapon.Damage(attack); //Weapon 함수의 Damage 함수를 실행시켜서 데미지를 증가 시킨다.
-                print("공격력이 증가했다"+ enterPlayer.attack);
                 break;
             case 2:
                 enterPlayer.ammo += ammo;
-                print("방어력이 증가했다 : "+ enterPlayer.ammo);
                 break;
         }
     }

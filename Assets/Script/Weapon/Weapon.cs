@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
 {
 
     //무기타입 
-    public enum Type { Melee, Blue}
+    public enum Type { Melee, Blue ,Green , Red}
     //무기옵션 변수
     public Type type;
     public int damage;
