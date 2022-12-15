@@ -16,7 +16,7 @@ public class GolemFire : MonsterAI
     bool isLook; //플레이어를 바라볼 방향 체크
     Vector3 lookVec; //플레이어 방향 미리 예상 
     Vector3 tautVec;
-    int count = 0;
+    int count = 0; //원거리 공격 카운트 스택
     private void Start()
     {
         //anim.SetTrigger("isSpawn");
@@ -116,11 +116,9 @@ public class GolemFire : MonsterAI
         GameObject instantSkillB = Instantiate(impactWave, impactWavePosition.position, impactWavePosition.rotation);
         yield return new WaitForSeconds(1.8f);
         instantSkillB.transform.GetComponent<SphereCollider>().enabled = true;
-        print("콜라이더킴");
         yield return new WaitForSeconds(1f);
         instantSkillB.transform.GetComponent<SphereCollider>().enabled = false;
         yield return new WaitForSeconds(2f);
-        print("콜라이더끔");
         Destroy(instantSkillB);
         isLook = true;
         StartCoroutine(Think());
