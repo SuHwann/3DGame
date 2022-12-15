@@ -103,9 +103,9 @@ public class MonsterAI : MonoBehaviour
     //데미지 로직 
     IEnumerator OnDamage(Vector3 reactVec)
     {
+        anim.SetTrigger("doDamage");
         foreach (SkinnedMeshRenderer mesh in meshs)
         { mesh.material.color = Color.red;}
-        anim.SetTrigger("doDamage");
         yield return new WaitForSeconds(0.1f);
         //몬스터 살아있음 
         if (curHealth > 0)
