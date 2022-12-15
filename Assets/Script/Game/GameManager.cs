@@ -1,6 +1,3 @@
-using Newtonsoft.Json.Bson;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -9,29 +6,29 @@ using System;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject menuCam, gameCam;
+    GameObject menuCam, gameCam; //°ÔÀÓ Ä«¸Þ¶ó
     [SerializeField]
-    Player player;
+    Player player; //°ÔÀÓ ÇÃ·¹ÀÌ¾î
     [SerializeField]
-    GolemEarth boss;
+    GolemEarth boss; //º¸½º ¸ó½ºÅÍ
     [SerializeField]
-    string bossScript;
+    string bossScript; 
     [SerializeField]
-    int stage;
+    int stage;       //ÇöÀç ½ºÅ×ÀÌÁö º¯¼ö
     [SerializeField]
-    float playTime;
+    float playTime;  //ÇöÀç ÇÃ·¹ÀÌ ½Ã°£
     [SerializeField]
-    bool isBattle;      //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½
+    bool isBattle;      //ÀüÅõ »óÈ²ÀÎÁö ¾Æ´ÑÁö ÆÇ´Ü
     [SerializeField]
-    GameObject monsterGroup;
+    GameObject monsterGroup; //¸ó½ºÅÍ ±×·ì
     [SerializeField]
-    GameObject[] monsters; //ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½Íµï¿½
+    GameObject[] monsters; //ÀÏ¹Ý ¸ó½ºÅÍ ¹è¿­
     public GameObject menuPanel,gamePanel,overPanel;
     public Text stageTxt,playTimeTxt,playerHealthTxt,playerAmmoTxt,playerCoinTxt;
     public RectTransform bossHealthGroup,bossHealthBar;
-    public GameObject itemShop;     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-    public static Action DieCount;
-    private int diecount =0;   //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
+    public GameObject itemShop;     //¾ÆÀÌÅÛ ¼¥
+    public static Action DieCount; //ÀÏ¹Ý ¸ó½ºÅÍ »ç¸Á½Ã ÀÌº¥Æ® ÇÔ¼ö
+    private int diecount =0;   //ÀÏ¹Ý ¸ó½ºÅÍ »ç¸Á °¹¼ö Ä«¿îÆ®
     private void Awake()
     {
         DieCount = () => { BossCondition(); };
@@ -53,7 +50,7 @@ public class GameManager : MonoBehaviour
     {
         if(isBattle)
         {
-            playTime += Time.deltaTime; //deltaï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½×°ï¿½ ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½È´ï¿½.
+            playTime += Time.deltaTime; //¹èÆ² ½ÃÀÛ ¼ø°£ºÎÅÍ ½Ã°£ °è»ê.
         }
     }
     public void GameOver()
@@ -70,13 +67,13 @@ public class GameManager : MonoBehaviour
     }
     private void LateUpdate()
     {
-        //ï¿½ï¿½ï¿½ UI
+        //ÇöÀç ½ºÅ×ÀÌÁö UI
         stageTxt.text = "STAGE" + stage;
-        //ï¿½Ã°ï¿½
+        //½Ã°£ °è»ê
         int hour = (int)(playTime / 3600);
         int min = (int)((playTime - hour * 3600) / 60);
         int second = (int)(playTime  % 60);
-        //Playï¿½Ã°ï¿½ 
+        //Player ÇÃ·¹ÀÌ ½Ã°£
         playTimeTxt.text = string.Format("{0:00}", hour) +":"+ string.Format("{0:00}",min) + ":" + string.Format("{0:00}", second);
         //Player UI
         playerHealthTxt.text = player.health + " / " + player.maxHealth;
@@ -87,7 +84,7 @@ public class GameManager : MonoBehaviour
         playerAmmoTxt.text = "- /" + player.ammo;
         else
             playerAmmoTxt.text = player.equipWeapon.curAmmo + " /" + player.ammo;
-        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
+        //º¸½º°¡ ³ª¿À¸é º¸½º UIÃâÇö
         if(boss != null)
         {
             bossHealthGroup.anchoredPosition = Vector3.down * 30f;
@@ -99,12 +96,12 @@ public class GameManager : MonoBehaviour
         }
         if (boss.curHealth < 0) { bossHealthBar.localScale =  Vector3.zero; };
     }
-    void BossCondition() //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+    void BossCondition() //º¸½º°¡ ³ª¿À´Â »óÈ²
     {
         diecount++;
         if(monsters.Length == diecount)
         {
-            print("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½");
+            print("ÀÏ¹Ý ¸ó½ºÅÍ ÀüºÎ »ç¸Á º¸½º ÃâÇö");
         }
     }
 }
