@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
@@ -11,7 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Player player;
     [SerializeField]
-    Boss boss;
+    GolemEarth boss;
+    [SerializeField]
+    string bossScript;
     [SerializeField]
     int stage;
     [SerializeField]
@@ -19,24 +23,18 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     bool isBattle;      //지금 전투중인가
     [SerializeField]
-    int enemyCntA, enemyCntB, enemyCntC;
-    public GameObject menuPanel, gamePanel , overPanel;
-    public Text maxScoreTxt,stageTxt,playTimeTxt,playerHealthTxt,playerAmmoTxt,playerCoinTxt;
-    public Image weapon1Image, weapon2Image, weapon3Image;
-    public Text enemyAtxt, enemyBtxt, enemyCtxt;
+    GameObject monsterGroup;
+    [SerializeField]
+    GameObject[] monsters; //일반 몬스터들
+    public GameObject menuPanel,gamePanel,overPanel;
+    public Text stageTxt,playTimeTxt,playerHealthTxt,playerAmmoTxt,playerCoinTxt;
     public RectTransform bossHealthGroup,bossHealthBar;
     public GameObject itemShop;     //아이템 상점
-    //public GameObject itemweaponShop; //무기 상점
-    public GameObject startZone;    //스타트 존
-    public Text curScoreText; //최종 점수
-    public Text bestText;  //최고점수
+    public static Action DieCount;
+    private int diecount =0;   //몬스터 사망 카운트
     private void Awake()
     {
-        maxScoreTxt.text = string.Format("{0:n0}", PlayerPrefs.GetInt("MaxScore"));
-        if(PlayerPrefs.HasKey("MaxScore"))
-        {
-            PlayerPrefs.SetInt("MasScore", 0);
-        }
+        DieCount = () => { BossCondition(); };
     }
     public void GameStart()
     {
@@ -47,6 +45,9 @@ public class GameManager : MonoBehaviour
         gamePanel.SetActive(true);
 
         player.gameObject.SetActive(true);
+        isBattle = true;
+        monsterGroup.SetActive(true);
+        itemShop.SetActive(true);
     }
     private void Update()
     {
@@ -59,6 +60,9 @@ public class GameManager : MonoBehaviour
     {
         gamePanel.SetActive(false);
         overPanel.SetActive(true);
+        isBattle = false;
+        monsterGroup.SetActive(false);
+        itemShop.SetActive(false);  
     }
     public void Restart()
     {
@@ -83,15 +87,6 @@ public class GameManager : MonoBehaviour
         playerAmmoTxt.text = "- /" + player.ammo;
         else
             playerAmmoTxt.text = player.equipWeapon.curAmmo + " /" + player.ammo;
-        //스킬 UI
-        weapon1Image.color = new Color(1, 1, 1, player.hasWeapons[0] ? 1 : 0);
-        //-나중에 UI가 정해지면 수정하도록-
-/*        weapon2Image.color = new Color(1, 1, 1, player.hasWeapons[1] ? 1 : 0);
-        weapon3Image.color = new Color(1, 1, 1, player.hasWeapons[2] ? 1 : 0);*/
-        //몬스터 숫자 UI
-        enemyAtxt.text = enemyCntA.ToString();
-        enemyBtxt.text = enemyCntB.ToString();
-        enemyCtxt.text = enemyCntC.ToString();
         //보스 몬스터 체력
         if(boss != null)
         {
@@ -101,6 +96,15 @@ public class GameManager : MonoBehaviour
         else
         {
             bossHealthGroup.anchoredPosition = Vector3.up * 200f;
+        }
+        if (boss.curHealth < 0) { bossHealthBar.localScale =  Vector3.zero; };
+    }
+    void BossCondition() //보스가 등장할 조건 
+    {
+        diecount++;
+        if(monsters.Length == diecount)
+        {
+            print("모든 몬스터 사망");
         }
     }
 }

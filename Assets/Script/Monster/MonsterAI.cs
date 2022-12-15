@@ -105,7 +105,7 @@ public class MonsterAI : MonoBehaviour
     {
         foreach (SkinnedMeshRenderer mesh in meshs)
         { mesh.material.color = Color.red;}
-  
+        anim.SetTrigger("doDamage");
         yield return new WaitForSeconds(0.1f);
         //몬스터 살아있음 
         if (curHealth > 0)
@@ -133,6 +133,7 @@ public class MonsterAI : MonoBehaviour
             reactVec += Vector3.up;
             rigid.AddForce(reactVec * 5, ForceMode.Impulse);
             if(enemyType != Type.D) {Destroy(gameObject, 3f);} //보스가 아닐때만 삭제
+            GameManager.DieCount();
         }
     }
     //Player에게 Ray를 쏜다
