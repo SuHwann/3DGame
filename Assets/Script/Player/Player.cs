@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
     private int maxHasGrenades;
     public GameManager manager; //GameManager 변수
     public static Action<int> SwordSwap; //무기 교체 이벤트 함수
+    public int swordNum = 0; //무기 넘버 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
@@ -155,7 +156,7 @@ public class Player : MonoBehaviour
     //other가 Weapon 이거나 Shop 이면 nearObject에 저장,other가 Item 이면 item에 저장하는 기능
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Weapon") || other.CompareTag("Shop") || other.CompareTag("NPC"))
+        if(other.CompareTag("Shop") || other.CompareTag("NPC") || other.CompareTag("WeaponShop"))
         {
             nearObject = other.gameObject;
         }
@@ -249,11 +250,7 @@ public class Player : MonoBehaviour
     //other 영역에서 벗어났을땐 null을 저장한다.
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Weapon"))
-        {
-            nearObject = null;
-        }
-        else if(other.CompareTag("Shop"))
+        if(other.CompareTag("Shop"))
         {
             Shop shop = nearObject.GetComponent<Shop>();
             shop.Exit();
@@ -266,6 +263,13 @@ public class Player : MonoBehaviour
             talk.Exit();
             nearObject= null;
             isTalk= false;
+        }
+        else if(other.CompareTag("WeaponShop"))
+        {
+            NPCTalk talk = nearObject.GetComponent<NPCTalk>();
+            talk.Exit();
+            nearObject = null;
+            isTalk = false;
         }
     }
     //무기교체
@@ -314,6 +318,12 @@ public class Player : MonoBehaviour
                 NPCTalk npc = nearObject.GetComponent<NPCTalk>();
                 npc.Enter(this);
                 isTalk = true;
+            }
+            else if(nearObject.CompareTag("WeaponShop"))
+            {
+                WeaponShop weaponShop = nearObject.GetComponent<WeaponShop>();
+                weaponShop.Enter(this);
+                isShop = true;
             }
         }
     }
