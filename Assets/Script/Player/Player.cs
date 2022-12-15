@@ -52,10 +52,12 @@ public class Player : MonoBehaviour
     int equipWeaponIndex = -1;
     //플레이어의 MeshRenderer 배열 변수 추가 
     MeshRenderer[] meshs;
-    SkinnedMeshRenderer[] skinnmeshs; //플레이어 메쉬
     //기존 플레이어가 기본적으로 들고있는 무기 
     [SerializeField]
     GameObject basicSword;
+    //플레이어 피격 당했을때 Mesh 색 변화
+    [SerializeField]
+    SkinnedMeshRenderer skinnMesh;
     //player 능력치
     public int ammo;
     public int coin;
@@ -77,7 +79,6 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
         anim = GetComponentInChildren<Animator>(); //Animaltor 변수를 GetCommponentChildren()으로 초기화
         meshs = GetComponentsInChildren<MeshRenderer>(); //player 메쉬 초기화 
-        skinnmeshs = GetComponentsInChildren<SkinnedMeshRenderer>();
         equipWeapon = basicSword.GetComponent<Weapon>(); //처음엔 기본칼을 사용한다.
         StartCoroutine(MoveUpdate());
         Weapon.Damage(attack);//Weapon 스크립트에 플레이어 공격력 전달.
@@ -214,9 +215,6 @@ public class Player : MonoBehaviour
             }
         }
     }
-    //몇개는 MeshRenderer이고 몇개는 SkinMeshRenderer라 이렇게 그냥 따로 선언.
-    [SerializeField]
-    SkinnedMeshRenderer skinnMesh;
     //플레이어가 공격 받았을때 
     IEnumerator OnDamage(bool isBossAtk)
     {
