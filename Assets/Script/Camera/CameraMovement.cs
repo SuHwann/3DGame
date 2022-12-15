@@ -6,10 +6,10 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField]
     private Transform objectTofollow;   //카메라가 바라볼 플레이어 중심
-    [SerializeField] 
+    [SerializeField]
     Transform realCamera;               //mainCamera
     public float followSpeed = 10f;     //카메라가 따라다닐 속도 
-    private Vector3 dirNoramlized;      
+    private Vector3 dirNoramlized;
     private Vector3 finalDir;           //최종 거리 
     public float minDistance;           //플레이어와의 최소 거리
     public float maxDistance;           //플레이어와의 최대 거리
@@ -24,7 +24,7 @@ public class CameraMovement : MonoBehaviour
     //플레이어를 목표로 카메라가 따라다님
     IEnumerator CameraMove()
     {
-        while(true)
+        while (true)
         {
             transform.position = Vector3.MoveTowards(transform.position, objectTofollow.position, followSpeed * Time.deltaTime); //플레이어 이동 
             finalDir = transform.TransformPoint(dirNoramlized * maxDistance);
