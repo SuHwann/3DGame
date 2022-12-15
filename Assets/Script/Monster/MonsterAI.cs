@@ -201,7 +201,6 @@ public class MonsterAI : MonoBehaviour
                     break;
                 case Type.C:
                     yield return new WaitForSeconds(0.5f);
-
                     GameObject instantSlash = Instantiate(slashOb, farSkillPointA.position, farSkillPointA.rotation);
                     instantSlash.transform.LookAt(player);
                     instantSlash.GetComponent<Rigidbody>().AddForce(instantSlash.transform.forward * 1000f);

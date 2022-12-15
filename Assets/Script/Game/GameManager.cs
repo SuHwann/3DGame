@@ -21,17 +21,17 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     float playTime;
     [SerializeField]
-    bool isBattle;      //Áö±Ý ÀüÅõÁßÀÎ°¡
+    bool isBattle;      //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½
     [SerializeField]
     GameObject monsterGroup;
     [SerializeField]
-    GameObject[] monsters; //ÀÏ¹Ý ¸ó½ºÅÍµé
+    GameObject[] monsters; //ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½Íµï¿½
     public GameObject menuPanel,gamePanel,overPanel;
     public Text stageTxt,playTimeTxt,playerHealthTxt,playerAmmoTxt,playerCoinTxt;
     public RectTransform bossHealthGroup,bossHealthBar;
-    public GameObject itemShop;     //¾ÆÀÌÅÛ »óÁ¡
+    public GameObject itemShop;     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public static Action DieCount;
-    private int diecount =0;   //¸ó½ºÅÍ »ç¸Á Ä«¿îÆ®
+    private int diecount =0;   //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
     private void Awake()
     {
         DieCount = () => { BossCondition(); };
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         if(isBattle)
         {
-            playTime += Time.deltaTime; //delta¸¦ ²ÙÁØÈ÷ ´õÇØÁÖ¸é ±×°Ô °ð ½Ã°£ÀÌ µÈ´Ù.
+            playTime += Time.deltaTime; //deltaï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½×°ï¿½ ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½È´ï¿½.
         }
     }
     public void GameOver()
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         gamePanel.SetActive(false);
         overPanel.SetActive(true);
         isBattle = false;
-        monsterGroup.SetActive(false);
+        monsterGroup.SetActive(false); 
         itemShop.SetActive(false);  
     }
     public void Restart()
@@ -70,13 +70,13 @@ public class GameManager : MonoBehaviour
     }
     private void LateUpdate()
     {
-        //»ó´Ü UI
+        //ï¿½ï¿½ï¿½ UI
         stageTxt.text = "STAGE" + stage;
-        //½Ã°£
+        //ï¿½Ã°ï¿½
         int hour = (int)(playTime / 3600);
         int min = (int)((playTime - hour * 3600) / 60);
         int second = (int)(playTime  % 60);
-        //Play½Ã°£ 
+        //Playï¿½Ã°ï¿½ 
         playTimeTxt.text = string.Format("{0:00}", hour) +":"+ string.Format("{0:00}",min) + ":" + string.Format("{0:00}", second);
         //Player UI
         playerHealthTxt.text = player.health + " / " + player.maxHealth;
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         playerAmmoTxt.text = "- /" + player.ammo;
         else
             playerAmmoTxt.text = player.equipWeapon.curAmmo + " /" + player.ammo;
-        //º¸½º ¸ó½ºÅÍ Ã¼·Â
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
         if(boss != null)
         {
             bossHealthGroup.anchoredPosition = Vector3.down * 30f;
@@ -99,12 +99,12 @@ public class GameManager : MonoBehaviour
         }
         if (boss.curHealth < 0) { bossHealthBar.localScale =  Vector3.zero; };
     }
-    void BossCondition() //º¸½º°¡ µîÀåÇÒ Á¶°Ç 
+    void BossCondition() //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
     {
         diecount++;
         if(monsters.Length == diecount)
         {
-            print("¸ðµç ¸ó½ºÅÍ »ç¸Á");
+            print("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½");
         }
     }
 }
