@@ -223,6 +223,7 @@ public class Player : MonoBehaviour
     IEnumerator OnDamage(bool isBossAtk)
     {
         isDamage = true;
+        anim.SetTrigger("doDamage");
         foreach (MeshRenderer mesh in meshs) //공격을 받았을때 색변화 
         {
             skinnMesh.material.color = Color.red;
