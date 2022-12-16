@@ -26,22 +26,25 @@ public class WeaponShop : MonoBehaviour
     }
     public void WeaponBuy(int value) //무기 사기
     {
-        if (value < 0) //가지고 있는 보석이없다면
+        if (enterPlayer.jewel[value] == false) //가지고 있는 보석이없다면
         {
             StopCoroutine(Talk());
             StartCoroutine(Talk());
             return;
         }
-        switch(value) //몇번째 무기를 교환할것인가?
+        switch (value) //몇번째 무기를 교환할것인가?
         {
             case 0: //GreenSword
-                Player.SwordSwap(0);
+                if (enterPlayer.jewel[0] == true)
+                { Player.SwordSwap(0); }
                 break;
             case 1: //RedSword
-                Player.SwordSwap(1);
+                if (enterPlayer.jewel[1] == true)
+                { Player.SwordSwap(1); }
                 break;
             case 2: //BlueSword
-                Player.SwordSwap(2);
+                if (enterPlayer.jewel[2] == true)
+                { Player.SwordSwap(2); }
                 break;
         }
     }

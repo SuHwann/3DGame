@@ -12,9 +12,10 @@ public class NPCTalk : MonoBehaviour
     [SerializeField]
     string[] npctext;            //talk 배열
     int talkIndex;             //talk 배열 index
-
+    [SerializeField]
+    int jewelNum; //몇번째 보석을 줄것인가 변수
     public void Enter(Player player) //UI 위로올리기
-    { 
+    {
         uiGroup.anchoredPosition = Vector2.zero;
         StartCoroutine(Talk());
     }
@@ -39,6 +40,7 @@ public class NPCTalk : MonoBehaviour
         if(npctext.Length == talkIndex) //만약에 대화가 끝났다면
         {
             print("대화 끝");
+            Player.GiveJewel(jewelNum);
         }
         else 
         StartCoroutine(Talk());

@@ -75,6 +75,8 @@ public class Player : MonoBehaviour
     public GameManager manager; //GameManager 변수
     public static Action<int> SwordSwap; //무기 교체 이벤트 함수
     public int swordNum = 0; //무기 넘버 
+    public static Action<int> GiveJewel; //플레이어 보석 얻기
+    public bool[] jewel; //보석 아이템을 가지고있는지 판단
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
@@ -84,6 +86,7 @@ public class Player : MonoBehaviour
         StartCoroutine(MoveUpdate());
         Weapon.Damage(attack);//Weapon 스크립트에 플레이어 공격력 전달.
         SwordSwap = (int i) => { SwordChange(i); }; //람다식 무기 교체 이벤트 함수
+        GiveJewel = (int i) => { JewelGive(i); }; //람다식 보석 추가 함수
     }
     IEnumerator MoveUpdate()
     {
@@ -266,8 +269,8 @@ public class Player : MonoBehaviour
         }
         else if(other.CompareTag("WeaponShop"))
         {
-            NPCTalk talk = nearObject.GetComponent<NPCTalk>();
-            talk.Exit();
+            WeaponShop WeaponShop = nearObject.GetComponent<WeaponShop>();
+            WeaponShop.Exit();
             nearObject = null;
             isTalk = false;
         }
@@ -388,5 +391,20 @@ public class Player : MonoBehaviour
     {
         isBorder = Physics.Raycast(transform.position, transform.forward, 5, LayerMask.GetMask("Wall"));
     }
-
+    //플레이어 보석 증가 
+    public void JewelGive(int i)
+    {
+        switch (i)
+        { 
+            case 0 : //GreenSword Get
+                jewel[0] = true;
+                break;
+            case 1 : //RedSword Get
+                jewel[1] = true;
+                break;
+            case 2: //BlueSword Get
+                jewel[2] = true;
+                break;
+        }
+    }
 }
