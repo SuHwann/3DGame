@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.LowLevel;
@@ -30,6 +31,8 @@ public class MonsterAI : MonoBehaviour
     public bool isDead;               //몬스터의 죽음 체크 변수
     [SerializeField]
     GameObject[] dropItem;               //몬스터 사망시 드랍 코인
+    [SerializeField]
+    float attackRidius;             //몬스터 공격거리
     private void Awake()
     {
         VariableRest();
@@ -47,10 +50,6 @@ public class MonsterAI : MonoBehaviour
                 {
                     agent.SetDestination(player.position);
                 }
-/*                if(rigid.velocity == Vector3.zero && !isAttack) //몬스터가 움직이지 않고 공격하지 않으면
-                {
-                    randomInt = Random.Range(0, movePoint.Length); //다시 섞기
-                }*/
                 Destination();
                 yield return new WaitForSeconds(Time.deltaTime);
             }
@@ -147,7 +146,7 @@ public class MonsterAI : MonoBehaviour
             switch (enemyType)
             {
                 case Type.A:
-                    targetRadius = 1.5f;
+                    targetRadius = attackRidius;
                     targetRange = 3f;
                     break;
                 case Type.B:
@@ -179,7 +178,7 @@ public class MonsterAI : MonoBehaviour
             agent.isStopped = true;
             isAttack = true;
             anim.SetBool("isAttack", true);
-
+            transform.LookAt(player);
             switch (enemyType)
             {
                 case Type.A: //일반 몬스터 행동 

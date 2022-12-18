@@ -26,7 +26,10 @@ public class GameManager : MonoBehaviour
     public GameObject menuPanel,gamePanel,overPanel;
     public Text stageTxt,playTimeTxt,playerHealthTxt,playerAmmoTxt,playerCoinTxt;
     public RectTransform bossHealthGroup,bossHealthBar;
-    public GameObject itemShop;     //아이템 샵
+    [SerializeField]
+    GameObject itemShop;     //아이템 샵
+    [SerializeField]
+    GameObject weaponShop;   //무기 샵
     public static Action DieCount; //일반 몬스터 사망시 이벤트 함수
     private int diecount =0;   //일반 몬스터 사망 갯수 카운트
     private void Awake()
