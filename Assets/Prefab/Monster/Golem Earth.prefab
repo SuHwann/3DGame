@@ -60,68 +60,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 457746309441447023}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1452811569
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1452811570}
-  - component: {fileID: 1452811572}
-  - component: {fileID: 1452811571}
-  m_Layer: 11
-  m_Name: BossMeleeArea
-  m_TagString: EnemyFar
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1452811570
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452811569}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.103, y: 1.336, z: 2.2}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 457746309441447023}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1452811572
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452811569}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 6, y: 7, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1452811571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452811569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f16344fc31276a44b51f6deb5b9477f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
-  isMelee: 1
 --- !u!1 &95531376976658499
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +266,6 @@ Transform:
   - {fileID: 5172902980224988775}
   - {fileID: 4354740507310978274}
   - {fileID: 2161754427325412019}
-  - {fileID: 1452811570}
   - {fileID: 840783761}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -419,8 +358,9 @@ MonoBehaviour:
   maxHealth: 2000
   curHealth: 30
   movePoint: []
-  meleeArea: {fileID: 1452811572}
+  meleeArea: {fileID: 0}
   slashOb: {fileID: 0}
+  farSkillPointA: {fileID: 0}
   player: {fileID: 0}
   agent: {fileID: 0}
   rigid: {fileID: 0}
@@ -429,6 +369,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   isDead: 0
   dropItem: []
+  attackRidius: 0
   skillA: {fileID: 128572, guid: 8bfc41e9c1e26a7479b0385993c276b5, type: 3}
   impactWave: {fileID: 100002, guid: ae5ec65fc4184544f9632d832229f9d0, type: 3}
   impactWavePosition: {fileID: 840783761}

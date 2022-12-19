@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GolemEarth boss; //보스 몬스터
     [SerializeField]
+    GameObject bossob; //보스 
+    [SerializeField]
+    GameObject cinema; //시네마씬
+    [SerializeField]
     string bossScript; 
     [SerializeField]
     int stage;       //현재 스테이지 변수
@@ -105,6 +109,13 @@ public class GameManager : MonoBehaviour
         if(monsters.Length == diecount)
         {
             print("일반 몬스터 전부 사망 보스 출현");
+            bossob.SetActive(true);
+            cinema.SetActive(true); 
         }
+    }
+    public void SIgnalBattleOn()
+    {
+        bossob.GetComponent<GolemEarth>().enabled= true;
+        cinema.SetActive(false);
     }
 }
