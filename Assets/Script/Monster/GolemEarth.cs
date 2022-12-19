@@ -52,7 +52,7 @@ public class GolemEarth : MonsterAI
     {
         yield return new WaitForSeconds(1f);
         int randomAction = Random.Range(0, 3);
-        switch (randomAction)
+        switch (0)
         {
             case 0:
                 StartCoroutine(RushAttack());
@@ -68,19 +68,28 @@ public class GolemEarth : MonsterAI
     //플레이어에게 돌진 근접공격 시작
     IEnumerator RushAttack()
     {
-        tautVec = player.position + lookVec;//돌진공격을 할 위치 변수 저장
+        float targetRadius = 3f;
+        float targetRange = 5f;
         isLook = false;
         agent.isStopped = false;
-        monsterCol.enabled = false;
-        anim.SetTrigger("isPunch");
-        yield return new WaitForSeconds(1f);
-        meleeArea.enabled = true;
-        yield return new WaitForSeconds(2f);
-        meleeArea.enabled = false;
-        isLook= true;
-        agent.isStopped=true;
-        monsterCol.enabled = true;
-        StartCoroutine(Think());
+        while(true)
+        {
+            tautVec = player.position;//돌진공격을 할 위치 변수 저장
+            RaycastHit[] rayHits =
+             Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange,
+             LayerMask.GetMask("Player"));
+            if(rayHits.Length > 0 )
+            {
+                agent.isStopped = true;
+                print("플레이어 찾음");
+                anim.SetTrigger("isPunch");
+                yield return new WaitForSeconds(5f);
+                StartCoroutine(Think());
+                yield break;
+            }
+            yield return null;
+        }
+
     }
     //원거리 공격 스킬 
     IEnumerator Skill()

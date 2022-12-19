@@ -1940,7 +1940,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694129540}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8, z: 0.8}
@@ -3509,8 +3509,12 @@ PrefabInstance:
       value: 4.3959856
       objectReference: {fileID: 0}
     - target: {fileID: 5133692666588372273, guid: fe860f8fa55232f4c86e55945b8d0528, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133692666588372273, guid: fe860f8fa55232f4c86e55945b8d0528, type: 3}
       propertyPath: m_TagString
-      value: Melee
+      value: EnemyFar
       objectReference: {fileID: 0}
     - target: {fileID: 5172902980224988775, guid: fe860f8fa55232f4c86e55945b8d0528, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3626,7 +3630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155466291334625998, guid: fe860f8fa55232f4c86e55945b8d0528, type: 3}
       propertyPath: m_TagString
-      value: Melee
+      value: EnemyFar
       objectReference: {fileID: 0}
     - target: {fileID: 7578091923491249664, guid: fe860f8fa55232f4c86e55945b8d0528, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4052,7 +4056,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1775670291}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.8, z: 0.8}
