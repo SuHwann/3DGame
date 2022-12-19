@@ -10,13 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Player player; //게임 플레이어
     [SerializeField]
-    GolemEarth boss; //보스 몬스터
-    [SerializeField]
     GameObject bossob; //보스 
     [SerializeField]
     GameObject cinema; //시네마씬
-    [SerializeField]
-    string bossScript; 
     [SerializeField]
     int stage;       //현재 스테이지 변수
     [SerializeField]
@@ -92,16 +88,14 @@ public class GameManager : MonoBehaviour
         else
             playerAmmoTxt.text = player.equipWeapon.curAmmo + " /" + player.ammo;
         //보스가 나오면 보스 UI출현
-        if(boss != null)
+        if(bossob.activeSelf)
         {
             bossHealthGroup.anchoredPosition = Vector3.down * 30f;
-            bossHealthBar.localScale = new Vector3((float)boss.curHealth / boss.maxHealth, 1, 1);
         }
         else
         {
             bossHealthGroup.anchoredPosition = Vector3.up * 200f;
         }
-        if (boss.curHealth < 0) { bossHealthBar.localScale =  Vector3.zero; };
     }
     void BossCondition() //보스가 나오는 상황
     {
@@ -112,10 +106,5 @@ public class GameManager : MonoBehaviour
             bossob.SetActive(true);
             cinema.SetActive(true); 
         }
-    }
-    public void SIgnalBattleOn()
-    {
-        bossob.GetComponent<GolemEarth>().enabled= true;
-        cinema.SetActive(false);
     }
 }

@@ -10,7 +10,6 @@ public class Potal : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            print("Æ÷Å»ÀÌµ¿");
             SceneManager.LoadScene(mapname);
         }
     }

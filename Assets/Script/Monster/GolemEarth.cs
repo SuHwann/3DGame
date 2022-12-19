@@ -13,16 +13,19 @@ public class GolemEarth : MonsterAI
     Transform impactWavePosition; //광역스킬 생성 위치
     [SerializeField]
     Transform skillPointA; //원거리 공격스킬 생성 위치
+    public RectTransform bossHealthGroup, bossHealthBar;
     bool isLook; //플레이어를 바라볼 방향 체크
     Vector3 lookVec; //플레이어 방향 미리 예상 
     Vector3 tautVec;
     public float speed = 1000f;
+    [SerializeField]
+    GameObject cinema; //시네마씬
     private void Start()
     {
-        //anim.SetTrigger("isSpawn");
         agent.isStopped = true;
         isLook = true;
         StartCoroutine(Look());
+        StartCoroutine(BossHealth());
         StartCoroutine(Think());
     }
     //플레이어를 바라봄, 플레이어 움직임 미리 예상
@@ -32,8 +35,9 @@ public class GolemEarth : MonsterAI
         {
             if (isDead)
             {
+                print("죽음");
                 StopAllCoroutines();
-                yield break;
+                print("모두 스탑");
             }
             if (isLook)
             {
@@ -49,51 +53,53 @@ public class GolemEarth : MonsterAI
     }
     //랜덤한 공격
     IEnumerator Think()
-    {
-        yield return new WaitForSeconds(1f);
-        int randomAction = Random.Range(0, 3);
-        switch (0)
-        {
-            case 0:
-                StartCoroutine(RushAttack());
-                break;
-            case 1:
-                StartCoroutine(Skill());
-                break;
-            case 2:
-                StartCoroutine(WideSkill());
-                break;
-        }
+    { 
+            yield return new WaitForSeconds(1f);
+            int randomAction = Random.Range(0, 3);
+            switch (randomAction)
+            {
+                case 0:
+                    StartCoroutine(RushAttack());
+                    break;
+                case 1:
+                    StartCoroutine(Skill());
+                    break;
+                case 2:
+                    StartCoroutine(WideSkill());
+                    break;
+            }
     }
     //플레이어에게 돌진 근접공격 시작
     IEnumerator RushAttack()
     {
-        float targetRadius = 3f;
-        float targetRange = 5f;
-        isLook = false;
-        agent.isStopped = false;
-        while(true)
+        if(!isDead)
         {
-            tautVec = player.position;//돌진공격을 할 위치 변수 저장
-            RaycastHit[] rayHits =
-             Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange,
-             LayerMask.GetMask("Player"));
-            if(rayHits.Length > 0 )
+            float targetRadius = 3f;
+            float targetRange = 5f;
+            isLook = false;
+            agent.isStopped = false;
+            while (true)
             {
-                agent.isStopped = true;
-                print("플레이어 찾음");
-                anim.SetTrigger("isPunch");
-                yield return new WaitForSeconds(5f);
-                StartCoroutine(Think());
-                yield break;
+                tautVec = player.position;//돌진공격을 할 위치 변수 저장
+                RaycastHit[] rayHits =
+                 Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange,
+                 LayerMask.GetMask("Player"));
+                if (rayHits.Length > 0)
+                {
+                    agent.isStopped = true;
+                    anim.SetTrigger("isPunch");
+                    yield return new WaitForSeconds(5f);
+                    StartCoroutine(Think());
+                    yield break;
+                }
+                yield return null;
             }
-            yield return null;
         }
-
     }
     //원거리 공격 스킬 
     IEnumerator Skill()
     {
+        isLook= true;
         anim.SetTrigger("isProjectile Attack");
         yield return new WaitForSeconds(0.8f);
         for(int i =0; i < 3; i++)
@@ -114,5 +120,19 @@ public class GolemEarth : MonsterAI
         yield return new WaitForSeconds(1f);
         Destroy(instantSkillB);
         StartCoroutine(Think());
+    }
+    IEnumerator BossHealth()
+    {
+        while(true)
+        {
+            bossHealthBar.localScale = new Vector3((float)curHealth / maxHealth, 1, 1);
+            if (curHealth < 0) { bossHealthBar.localScale = Vector3.zero; };
+            yield return null;
+        }
+    }
+    public void SignalBattleOn()
+    {
+        GetComponent<GolemEarth>().enabled = true;
+        cinema.SetActive(false);
     }
 }

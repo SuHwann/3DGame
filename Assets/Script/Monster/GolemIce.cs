@@ -12,17 +12,20 @@ public class GolemIce : MonsterAI
     GameObject impactWave; //광역 스킬 오브젝트
     [SerializeField]
     Transform impactWavePosition; //광역스킬 생성 위치
+    public RectTransform bossHealthGroup, bossHealthBar;
     bool isLook; //플레이어를 바라볼 방향 체크
     Vector3 lookVec; //플레이어 방향 미리 예상 
     Vector3 tautVec;
     [SerializeField]
     int speed; //원거리 공격 투사체 속도
+    [SerializeField]
+    GameObject cinema; //시네마씬
     private void Start()
     {
-        //anim.SetTrigger("isSpawn");
         agent.isStopped = true;
         isLook = true;
         StartCoroutine(Look());
+        StartCoroutine(BossHealth());
         StartCoroutine(Think());
     }
     //플레이어를 바라봄, 플레이어 움직임 미리 예상
@@ -52,17 +55,20 @@ public class GolemIce : MonsterAI
     {
         yield return new WaitForSeconds(1f);
         int randomAction = Random.Range(0, 3);
-        switch (randomAction)
+        if(!isDead)
         {
-            case 0:
-                StartCoroutine(RushAttack());
-                break;
-            case 1:
-                StartCoroutine(Skill());
-                break;
-            case 2:
-                StartCoroutine(WideSkill());
-                break;
+            switch (randomAction)
+            {
+                case 0:
+                    StartCoroutine(RushAttack());
+                    break;
+                case 1:
+                    StartCoroutine(Skill());
+                    break;
+                case 2:
+                    StartCoroutine(WideSkill());
+                    break;
+            }
         }
     }
     //플레이어에게 돌진 근접공격 시작
@@ -106,5 +112,19 @@ public class GolemIce : MonsterAI
         Destroy(instantSkillB);
         isLook = true;
         StartCoroutine(Think());
+    }
+    IEnumerator BossHealth()
+    {
+        while (true)
+        {
+            bossHealthBar.localScale = new Vector3((float)curHealth / maxHealth, 1, 1);
+            if (curHealth < 0) { bossHealthBar.localScale = Vector3.zero; };
+            yield return null;
+        }
+    }
+    public void SignalBattleOn()
+    {
+        GetComponent<GolemIce>().enabled = true;
+        cinema.SetActive(false);
     }
 }
