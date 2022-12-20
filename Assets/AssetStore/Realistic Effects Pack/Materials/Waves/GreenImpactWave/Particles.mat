@@ -32,6 +32,6 @@ Material:
     - _TintStrength: 5
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _CoreColor: {r: 0.71323526, g: 1, b: 0.73894525, a: 1}
-    - _TintColor: {r: 0.30689663, g: 1, b: 0.25, a: 1}
+    - _CoreColor: {r: 1, g: 0.7137255, b: 0.7137255, a: 1}
+    - _TintColor: {r: 1, g: 0.3706507, b: 0.25098038, a: 1}
   m_BuildTextureStacks: []

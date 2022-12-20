@@ -47,19 +47,23 @@ public class Weapon : MonoBehaviour
             switch (type)
             {
                 case Type.Green:
-                    if(Input.GetKeyDown(KeyCode.Alpha1))
+                    if (Input.GetKeyDown(KeyCode.Alpha1) && player.weaponSwap[0])
                     {
                         //Green 스킬
+                        swapEffect.SetActive(false);
+                        player.anim.SetTrigger("doStrike");
                     }
                     break;
                 case Type.Red:
-                    if(Input.GetKeyDown(KeyCode.Alpha2))
+                    if (Input.GetKeyDown(KeyCode.Alpha2) && player.weaponSwap[1])
                     {
                         //Red 스킬
+                        swapEffect.SetActive(false);
+                        player.anim.SetTrigger("doExplosion");
                     }
                     break;
                 case Type.Blue:
-                    if (Input.GetKeyDown(KeyCode.Alpha3) && player.weaponSwap[2] == true)
+                    if (Input.GetKeyDown(KeyCode.Alpha3) && player.weaponSwap[2])
                     {
                         swapEffect.SetActive(false);
                         player.anim.SetTrigger("doSwing");
