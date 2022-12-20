@@ -21,8 +21,10 @@ public class Weapon : MonoBehaviour
     public static Action<int> Damage; //액션 이벤트
     Player player;  //플레이어 변수
     Sound speaker;  //스피커
+
     private void Awake()
     {
+
         player = FindObjectOfType<Player>();
         speaker= FindObjectOfType<Sound>();
         Damage = (int i) =>{AttackDamage(i);};
@@ -56,7 +58,7 @@ public class Weapon : MonoBehaviour
                     }
                     break;
                 case Type.Blue:
-                    if (Input.GetKeyDown(KeyCode.Alpha3)/* && player.weaponSwap[2]*/)
+                    if (Input.GetKeyDown(KeyCode.Alpha3) && player.weaponSwap[2])
                     {
                         print("안되는 이유는?");
                         player.anim.SetTrigger("doSwing");
@@ -91,5 +93,9 @@ public class Weapon : MonoBehaviour
     public void AttackDamage(int Damage)
     {
         damage += Damage;
+    }
+    private void OnEnable()
+    {
+        StartCoroutine(Skill());
     }
 }
