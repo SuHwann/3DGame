@@ -310,11 +310,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 21c4a37f74ae4d14d8fe4dcc039d0712, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6558,6 +6558,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 263496490}
     - target: {fileID: 760629571, guid: 61b505cd9f94a4244abb04e70c6e5d7b, type: 3}
+      propertyPath: attackRidius
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 760629571, guid: 61b505cd9f94a4244abb04e70c6e5d7b, type: 3}
       propertyPath: movePoint.Array.data[0]
       value: 
       objectReference: {fileID: 65186023}
@@ -7252,6 +7256,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 263496490}
     - target: {fileID: 760629571, guid: 61b505cd9f94a4244abb04e70c6e5d7b, type: 3}
+      propertyPath: attackRidius
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 760629571, guid: 61b505cd9f94a4244abb04e70c6e5d7b, type: 3}
       propertyPath: movePoint.Array.data[0]
       value: 
       objectReference: {fileID: 65186023}
@@ -7500,9 +7508,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1833059751}
     - target: {fileID: 3382363435399976518, guid: db5460b0753242944ba736caea65041d, type: 3}
+      propertyPath: clip.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3382363435399976518, guid: db5460b0753242944ba736caea65041d, type: 3}
       propertyPath: playerHealthTxt
       value: 
       objectReference: {fileID: 1833059757}
+    - target: {fileID: 3382363435399976518, guid: db5460b0753242944ba736caea65041d, type: 3}
+      propertyPath: clip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: ffe717537c4be5940a843acafd6db718, type: 3}
     - target: {fileID: 3382363435399976518, guid: db5460b0753242944ba736caea65041d, type: 3}
       propertyPath: monsters.Array.size
       value: 12
@@ -7690,6 +7706,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 909539568947532623, guid: ee3daf0413292f8429deb99f0aef0d97, type: 3}
   m_PrefabInstance: {fileID: 902228009}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &922464637
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5399246684286197066, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399246684286197066, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30.33162
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399246684286197066, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.9087088
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399246684286197066, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 96.198425
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399246684286197066, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399246684286197066, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399246684286197066, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399246684286197066, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399246684286197066, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399246684286197066, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399246684286197066, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8013149911179851494, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: m_Name
+      value: Speaker Handler
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
 --- !u!1001 &926572139
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9415,7 +9488,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138620524}
-  m_LocalRotation: {x: -0.036611248, y: 0.69479674, z: 0.03545783, w: 0.71739805}
+  m_LocalRotation: {x: -0.036611233, y: 0.69479674, z: 0.035457812, w: 0.71739805}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9434,6 +9507,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 263496490}
+    - target: {fileID: 760629571, guid: 61b505cd9f94a4244abb04e70c6e5d7b, type: 3}
+      propertyPath: attackRidius
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 760629571, guid: 61b505cd9f94a4244abb04e70c6e5d7b, type: 3}
       propertyPath: movePoint.Array.data[0]
       value: 
@@ -12178,6 +12255,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 263496490}
+    - target: {fileID: 760629571, guid: 61b505cd9f94a4244abb04e70c6e5d7b, type: 3}
+      propertyPath: attackRidius
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 760629571, guid: 61b505cd9f94a4244abb04e70c6e5d7b, type: 3}
       propertyPath: movePoint.Array.data[0]
       value: 
@@ -23092,7 +23173,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038226966}
-  m_LocalRotation: {x: -0.036611248, y: 0.69479674, z: 0.03545783, w: 0.71739805}
+  m_LocalRotation: {x: -0.036611233, y: 0.69479674, z: 0.035457812, w: 0.71739805}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

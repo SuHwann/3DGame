@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     public static Action DieCount; //일반 몬스터 사망시 이벤트 함수
     private int diecount =0;   //일반 몬스터 사망 갯수 카운트
     AudioSource audio;
+    [SerializeField]
+    AudioClip[] clip;
     private void Awake()
     {
         DieCount = () => { BossCondition(); };
@@ -107,7 +109,14 @@ public class GameManager : MonoBehaviour
         {
             print("일반 몬스터 전부 사망 보스 출현");
             bossob.SetActive(true);
-            cinema.SetActive(true); 
+            cinema.SetActive(true);
+            BossBGM();
         }
+    }
+    private void BossBGM() //보스 배경음악
+    {
+        //PlayOneShot을하면 딱 한번만 실행
+        audio.clip = clip[0];
+        audio.Play();
     }
 }

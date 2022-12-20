@@ -76,14 +76,17 @@ public class GolemFire : MonsterAI
     //플레이어에게 돌진 근접공격 시작
     IEnumerator RushAttack()
     {
-            tautVec = player.position + lookVec;//돌진공격을 할 위치 변수 저장*/
-            isLook = false;
-            agent.isStopped = false;
-            anim.SetTrigger("isPunch");
-            yield return new WaitForSeconds(3f);
-            agent.isStopped = true;
-            isLook = true;
-            StartCoroutine(Think());
+        if (isDead) { yield break; }
+        tautVec = player.position + lookVec;//돌진공격을 할 위치 변수 저장*/
+        isLook = false;
+        agent.isStopped = false;
+        anim.SetTrigger("isPunch");
+        monsterCol.enabled = false;
+        yield return new WaitForSeconds(3f);
+        agent.isStopped = true;
+        isLook = true;
+        monsterCol.enabled = true;
+        StartCoroutine(Think());
     }
     //원거리 공격 오브젝트 생성함수
     void DistanceAttackOb(int speed)
@@ -95,8 +98,10 @@ public class GolemFire : MonsterAI
     //원거리 공격 스킬 
     IEnumerator Skill()
     {
+        if (isDead) { yield break; }
         count = 0;
         anim.SetTrigger("isShot");
+        monsterCol.enabled = false;
         yield return new WaitForSeconds(1f);
         for (int i = 0; i < 3; i++)
         {
@@ -114,13 +119,16 @@ public class GolemFire : MonsterAI
         yield return new WaitForSeconds(1.5f);
         DistanceAttackOb(1000);
         yield return new WaitForSeconds(1.5f);
+        monsterCol.enabled = true;
         StartCoroutine(Think());
     }
     //광역스킬
     IEnumerator WideSkill()
     {
+        if (isDead) { yield break; }
         isLook = false;
         anim.SetTrigger("isCastSpell");
+        monsterCol.enabled = false;
         GameObject instantSkillB = Instantiate(impactWave, impactWavePosition.position, impactWavePosition.rotation);
         yield return new WaitForSeconds(1.8f);
         instantSkillB.transform.GetComponent<SphereCollider>().enabled = true;
@@ -129,6 +137,7 @@ public class GolemFire : MonsterAI
         yield return new WaitForSeconds(2f);
         Destroy(instantSkillB);
         isLook = true;
+        monsterCol.enabled = true;
         StartCoroutine(Think());
     }
     IEnumerator BossHealth()

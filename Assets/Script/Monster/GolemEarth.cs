@@ -77,15 +77,17 @@ public class GolemEarth : MonsterAI
             while (true)
             {
                 if (isDead) { yield break; }
-                tautVec = player.position;//돌진공격을 할 위치 변수 저장
-                RaycastHit[] rayHits =
+                 tautVec = player.position + lookVec;//돌진공격을 할 위치 변수 저장*/
+                 RaycastHit[] rayHits =
                  Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange,
                  LayerMask.GetMask("Player"));
                 if (rayHits.Length > 0)
                 {
                     agent.isStopped = true;
                     anim.SetTrigger("isPunch");
+                    monsterCol.enabled = false;
                     yield return new WaitForSeconds(5f);
+                    monsterCol.enabled = true;
                     StartCoroutine(Think());
                     yield break;
                 }
@@ -97,26 +99,33 @@ public class GolemEarth : MonsterAI
     {
         isLook= true;
         anim.SetTrigger("isProjectile Attack");
+        monsterCol.enabled = false;
         yield return new WaitForSeconds(0.8f);
         for(int i =0; i < 3; i++)
         {
+            if (isDead) { yield break; }
             GameObject instantSkillA = Instantiate(skillA, skillPointA.position, skillPointA.rotation);
             instantSkillA.transform.LookAt(player);//플레이어의 방향으로 회전
             instantSkillA.GetComponent<Rigidbody>().AddForce(instantSkillA.transform.forward * speed);  //강체에 힘을 가하여 발사체의 속도를 설정합니다
             yield return new WaitForSeconds(0.2f);
         }
+        monsterCol.enabled = true;
         StartCoroutine(Think());
     }
     //광역스킬
     IEnumerator WideSkill()
     {
+        if (isDead) { yield break; }
         anim.SetTrigger("isCastSpell");
+        monsterCol.enabled = false;
         yield return new WaitForSeconds(0.8f);
         GameObject instantSkillB = Instantiate(impactWave,impactWavePosition.position,impactWavePosition.rotation);
         yield return new WaitForSeconds(1f);
         Destroy(instantSkillB);
+        monsterCol.enabled = true;
         StartCoroutine(Think());
     }
+    //몬스터 체력 UI 
     IEnumerator BossHealth()
     {
         while(true)
@@ -126,6 +135,7 @@ public class GolemEarth : MonsterAI
             yield return null;
         }
     }
+    //시네마틱이 끝났을때
     public void SignalBattleOn()
     {
         GetComponent<GolemEarth>().enabled = true;

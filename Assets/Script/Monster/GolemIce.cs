@@ -78,9 +78,11 @@ public class GolemIce : MonsterAI
         isLook = false;
         agent.isStopped = false;
         anim.SetTrigger("isPunch");
+        monsterCol.enabled = false;
         yield return new WaitForSeconds(3f);
         agent.isStopped = true;
         isLook = true;
+        monsterCol.enabled = true;
         yield return new WaitForSeconds(2f);
         StartCoroutine(Think());
     }
@@ -88,6 +90,7 @@ public class GolemIce : MonsterAI
     IEnumerator Skill()
     {
         anim.SetTrigger("isShot");
+        monsterCol.enabled = false;
         yield return new WaitForSeconds(1f);
         for (int i = 0; i < 3; i++)
         {
@@ -96,6 +99,7 @@ public class GolemIce : MonsterAI
             instantSkill.GetComponent<Rigidbody>().AddForce(instantSkill.transform.forward * speed); //강하게 힘을 가하여 발사체 속도 설정
             yield return new WaitForSeconds(0.2f);
         }
+        monsterCol.enabled = true;
         StartCoroutine(Think());
     }
     //광역스킬
@@ -103,6 +107,7 @@ public class GolemIce : MonsterAI
     {
         isLook = false;
         anim.SetTrigger("isCastSpell");
+        monsterCol.enabled = false;
         GameObject instantSkillB = Instantiate(impactWave, impactWavePosition.position, impactWavePosition.rotation);
         yield return new WaitForSeconds(1.8f);
         instantSkillB.transform.GetComponent<SphereCollider>().enabled = true;
@@ -111,8 +116,10 @@ public class GolemIce : MonsterAI
         yield return new WaitForSeconds(2f);
         Destroy(instantSkillB);
         isLook = true;
+        monsterCol.enabled = true;
         StartCoroutine(Think());
     }
+    //보스몬스터 UI
     IEnumerator BossHealth()
     {
         while (true)
@@ -122,6 +129,7 @@ public class GolemIce : MonsterAI
             yield return null;
         }
     }
+    //시네마틱이 끝나면
     public void SignalBattleOn()
     {
         GetComponent<GolemIce>().enabled = true;
