@@ -273,7 +273,7 @@ public class Player : MonoBehaviour
             WeaponShop WeaponShop = nearObject.GetComponent<WeaponShop>();
             WeaponShop.Exit();
             nearObject = null;
-            isTalk = false;
+            isShop = false;
         }
     }
     //무기교체

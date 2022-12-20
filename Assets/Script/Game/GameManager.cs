@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         isBattle = true;
         monsterGroup.SetActive(true);
         itemShop.SetActive(true);
+        weaponShop.SetActive(true);
     }
     private void Update()
     {
