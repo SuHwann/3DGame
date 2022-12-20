@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 public class Weapon : MonoBehaviour
 {
@@ -21,19 +22,44 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         Damage = (int i) =>{AttackDamage(i);};
+        StartCoroutine(Skill());
     }
     //플레이어 무기 사용 
     public void Use()
     {
         if(type == Type.Melee )
         {
-            StopCoroutine("Swing");
-            StartCoroutine("Swing");
+            StopCoroutine(Swing());
+            StartCoroutine(Swing());
         }
-        else if(type == Type.Blue)
+    }
+    IEnumerator Skill()
+    {
+        while(true)
         {
-            slash.SetActive(true);
-            StartCoroutine(SlashShot());
+            switch (type)
+            {
+                case Type.Green:
+                    if(Input.GetKeyDown(KeyCode.Alpha1))
+                    {
+
+                    }
+                    break;
+                case Type.Red:
+                    if(Input.GetKeyDown(KeyCode.Alpha2))
+                    {
+
+                    }
+                    break;
+                case Type.Blue:
+                    if(Input.GetKeyDown(KeyCode.Alpha3))
+                    {
+                        slash.SetActive(true);
+                        StartCoroutine(SlashShot());
+                    }
+                    break;
+            }
+            yield return null;
         }
     }
     //근접 공격 

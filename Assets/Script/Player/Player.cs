@@ -64,8 +64,6 @@ public class Player : MonoBehaviour
     public int health;
     public int attack;
     [SerializeField]
-    private int hasGrenades;        //수류탄 갯수 변수
-    [SerializeField]
     private int maxAmmo;
     [SerializeField]
     private int maxCoin;
@@ -147,6 +145,7 @@ public class Player : MonoBehaviour
             anim.SetBool("isJump", true); // 점프가 발동되면 isjump true
             anim.SetTrigger("doJump");
             isJump = true;
+            speaker.SoundByNum2(6);
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -367,8 +366,9 @@ public class Player : MonoBehaviour
         if(fDown && isFireReady && !isSwap && !isShop &&!isDead && !isTalk)
         {
             equipWeapon.Use();
-            anim.SetTrigger(equipWeapon.type == Weapon.Type.Melee ? "doSwing" : "doSlash");
+            anim.SetTrigger("doSwing" ) ;
             fireDelay = 0;
+            speaker.SoundByNum2(5);
         }
     }
     //Camera회전 기능

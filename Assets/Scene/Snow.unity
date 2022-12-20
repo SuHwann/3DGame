@@ -4971,13 +4971,41 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: ammo
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: coin
+      value: 9999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: attack
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: health
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
       propertyPath: manager
       value: 
       objectReference: {fileID: 199091886}
     - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: maxAmmo
+      value: 9999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: maxCoin
+      value: 9999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
       propertyPath: cameraArm
       value: 
       objectReference: {fileID: 1832581108}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: maxHealth
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
       propertyPath: jewel.Array.size
       value: 3
@@ -16494,6 +16522,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3646006149681359986, guid: e805b284b09e01a49b54e9465e7876e1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0f799ebe641bd4ad0b435cd651cb9624, type: 3}
     - target: {fileID: 3646006149865962794, guid: e805b284b09e01a49b54e9465e7876e1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -20682,6 +20714,18 @@ PrefabInstance:
     - target: {fileID: 593843956960220627, guid: 9011eab7755f53244b286edf68be1c00, type: 3}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 593843958095950342, guid: 9011eab7755f53244b286edf68be1c00, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 593843958095950342, guid: 9011eab7755f53244b286edf68be1c00, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.8895387
+      objectReference: {fileID: 0}
+    - target: {fileID: 593843958095950342, guid: 9011eab7755f53244b286edf68be1c00, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.8160377
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9011eab7755f53244b286edf68be1c00, type: 3}
