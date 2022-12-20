@@ -2461,6 +2461,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1907442433}
     - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: weaponSwap.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
       propertyPath: weapons.Array.data[0]
       value: 
       objectReference: {fileID: 196283371}
@@ -2942,7 +2946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8288488835277262062, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
       propertyPath: clips.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8288488835277262062, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
       propertyPath: clips.Array.data[5]
@@ -2952,6 +2956,10 @@ PrefabInstance:
       propertyPath: clips.Array.data[6]
       value: 
       objectReference: {fileID: 8300000, guid: 674454c953e3cb14491817e4b243bfbb, type: 3}
+    - target: {fileID: 8288488835277262062, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: clips.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 271c401bccc81eb40af3f64baf834a45, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
 --- !u!1 &1344376245

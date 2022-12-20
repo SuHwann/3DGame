@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private bool isJump; //무한 점프 방지용 변수
     private bool iDown;  //플레이어 무기 입수 변수
     private bool isSwap;  //무기 스왑 변수
+    //플레이어가 무기를 교체 했는지 안했는지 체크 변수
+    public bool[] weaponSwap;
     //플레이어가 공격을 받고 무적 타임을 위해 bool 변수 추가
     private bool isDamage;
     //플레이어의 무기관련 배열 함수 2개 선언
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour
     //물리효과를 위해 Rigidbody 변수 선언 후 , 초기화
     Rigidbody rigid;
     //player Anim 변수
-    Animator anim;
+    public Animator anim;
     //트리거 된 아이템을 저장하기 위한 변수 선언
     GameObject nearObject;
     //현재 장비(Weapon)타입 변수 
@@ -296,12 +298,13 @@ public class Player : MonoBehaviour
         if((sDown1 || sDown2 || sDown3) && !isJump && !wRun && !isTalk)
         {
             basicSword.SetActive(false);//기존의 칼도 비활성화 시킨다
+            equipWeaponIndex = weaponIndex;
             if (equipWeapon != null) //equipWeapon이 null이 아니면 기존의 장비는 비활성화
             {
               equipWeapon.gameObject.SetActive(false);
             }
-            equipWeaponIndex = weaponIndex;
             equipWeapon = weapons[weaponIndex].GetComponent<Weapon>();
+            weaponSwap[weaponIndex] = true;
             equipWeapon.gameObject.SetActive(true);
             anim.SetTrigger("doSwap");
             isSwap = true;

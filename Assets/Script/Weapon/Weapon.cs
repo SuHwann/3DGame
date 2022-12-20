@@ -19,8 +19,12 @@ public class Weapon : MonoBehaviour
     public GameObject curAmmo;      //방어 오브젝트
     public GameObject maxcurAmmo;   //max 방어 오브젝트
     public static Action<int> Damage; //액션 이벤트
+    Player player;  //플레이어 변수
+    Sound speaker;  //스피커
     private void Awake()
     {
+        player = FindObjectOfType<Player>();
+        speaker= FindObjectOfType<Sound>();
         Damage = (int i) =>{AttackDamage(i);};
         StartCoroutine(Skill());
     }
@@ -42,18 +46,21 @@ public class Weapon : MonoBehaviour
                 case Type.Green:
                     if(Input.GetKeyDown(KeyCode.Alpha1))
                     {
-
+                        //Green 스킬
                     }
                     break;
                 case Type.Red:
                     if(Input.GetKeyDown(KeyCode.Alpha2))
                     {
-
+                        //Red 스킬
                     }
                     break;
                 case Type.Blue:
-                    if(Input.GetKeyDown(KeyCode.Alpha3))
+                    if (Input.GetKeyDown(KeyCode.Alpha3)/* && player.weaponSwap[2]*/)
                     {
+                        print("안되는 이유는?");
+                        player.anim.SetTrigger("doSwing");
+                        speaker.SoundByNum2(7);
                         slash.SetActive(true);
                         StartCoroutine(SlashShot());
                     }
