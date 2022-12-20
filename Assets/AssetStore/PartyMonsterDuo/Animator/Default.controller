@@ -34,7 +34,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isAttack
+    m_ConditionEvent: isWalk
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102587808605333776}
@@ -939,7 +939,7 @@ AnimatorStateMachine:
     m_Position: {x: -490, y: 420, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102825168595174514}
-    m_Position: {x: -480, y: 580, z: 0}
+    m_Position: {x: -490, y: 580, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102539365866939724}
     m_Position: {x: -480, y: 660, z: 0}
@@ -957,7 +957,7 @@ AnimatorStateMachine:
     m_Position: {x: 1056, y: 276, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102587808605333776}
-    m_Position: {x: -480, y: 500, z: 0}
+    m_Position: {x: -490, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102611061524613988}
     m_Position: {x: 948, y: 408, z: 0}
