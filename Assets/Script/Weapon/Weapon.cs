@@ -14,6 +14,8 @@ public class Weapon : MonoBehaviour
     public float rate;
     [SerializeField]
     private BoxCollider meleeArea;
+    [SerializeField]
+    GameObject swapEffect;          //스왑 번개 파티클
     public Transform slashPos;      //참격생성 위치  
     public GameObject slash;        //참격 오브젝트
     public GameObject curAmmo;      //방어 오브젝트
@@ -24,7 +26,6 @@ public class Weapon : MonoBehaviour
 
     private void Awake()
     {
-
         player = FindObjectOfType<Player>();
         speaker= FindObjectOfType<Sound>();
         Damage = (int i) =>{AttackDamage(i);};
@@ -58,9 +59,9 @@ public class Weapon : MonoBehaviour
                     }
                     break;
                 case Type.Blue:
-                    if (Input.GetKeyDown(KeyCode.Alpha3) && player.weaponSwap[2])
+                    if (Input.GetKeyDown(KeyCode.Alpha3) && player.weaponSwap[2] == true)
                     {
-                        print("안되는 이유는?");
+                        swapEffect.SetActive(false);
                         player.anim.SetTrigger("doSwing");
                         speaker.SoundByNum2(7);
                         slash.SetActive(true);

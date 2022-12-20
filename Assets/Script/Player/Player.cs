@@ -304,10 +304,10 @@ public class Player : MonoBehaviour
               equipWeapon.gameObject.SetActive(false);
             }
             equipWeapon = weapons[weaponIndex].GetComponent<Weapon>();
-            weaponSwap[weaponIndex] = true;
             equipWeapon.gameObject.SetActive(true);
             anim.SetTrigger("doSwap");
             isSwap = true;
+            weaponSwap[weaponIndex] = true;
             Invoke("SwapOut", 0.4f);
         }
     }
