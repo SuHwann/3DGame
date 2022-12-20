@@ -2303,6 +2303,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1067863947}
+    - target: {fileID: 2062251627, guid: 727619b48585cb44e8a7952feeb3a044, type: 3}
+      propertyPath: curHealth
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: 8563959647330389154, guid: 727619b48585cb44e8a7952feeb3a044, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2353,7 +2357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9048465302456112664, guid: 727619b48585cb44e8a7952feeb3a044, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 727619b48585cb44e8a7952feeb3a044, type: 3}
@@ -3153,7 +3157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1399089914
 Transform:
   m_ObjectHideFlags: 0
@@ -3398,7 +3402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 941794910727618261, guid: fe860f8fa55232f4c86e55945b8d0528, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1516780059721055998, guid: fe860f8fa55232f4c86e55945b8d0528, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

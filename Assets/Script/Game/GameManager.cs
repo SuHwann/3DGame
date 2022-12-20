@@ -32,9 +32,11 @@ public class GameManager : MonoBehaviour
     GameObject weaponShop;   //무기 샵
     public static Action DieCount; //일반 몬스터 사망시 이벤트 함수
     private int diecount =0;   //일반 몬스터 사망 갯수 카운트
+    AudioSource audio;
     private void Awake()
     {
         DieCount = () => { BossCondition(); };
+        audio = GetComponent<AudioSource>();
     }
     public void GameStart()
     {
@@ -83,9 +85,9 @@ public class GameManager : MonoBehaviour
         playerHealthTxt.text = player.health + " / " + player.maxHealth;
         playerCoinTxt.text = string.Format("{0:n0}",player.coin);
         if(player.equipWeapon == null)
-        {playerAmmoTxt.text = "- / " + player.ammo;}
+        {playerAmmoTxt.text = "" + player.ammo;}
         else if(player.equipWeapon.type == Weapon.Type.Melee)
-        playerAmmoTxt.text = "- /" + player.ammo;
+        playerAmmoTxt.text = "" + player.ammo;
         else
             playerAmmoTxt.text = player.equipWeapon.curAmmo + " /" + player.ammo;
         //보스가 나오면 보스 UI출현

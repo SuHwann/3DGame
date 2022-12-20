@@ -77,6 +77,7 @@ public class Player : MonoBehaviour
     public int swordNum = 0; //무기 넘버 
     public static Action<int> GiveJewel; //플레이어 보석 얻기
     public bool[] jewel; //보석 아이템을 가지고있는지 판단
+    Sound speaker;
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
@@ -87,6 +88,7 @@ public class Player : MonoBehaviour
         Weapon.Damage(attack);//Weapon 스크립트에 플레이어 공격력 전달.
         SwordSwap = (int i) => { SwordChange(i); }; //람다식 무기 교체 이벤트 함수
         GiveJewel = (int i) => { JewelGive(i); }; //람다식 보석 추가 함수
+        speaker = FindObjectOfType<Sound>();
     }
     IEnumerator MoveUpdate()
     {
@@ -224,6 +226,7 @@ public class Player : MonoBehaviour
     {
         isDamage = true;
         anim.SetTrigger("doDamage");
+        speaker.SoundByNum(2);
         foreach (MeshRenderer mesh in meshs) //공격을 받았을때 색변화 
         {
             skinnMesh.material.color = Color.red;
@@ -247,6 +250,7 @@ public class Player : MonoBehaviour
     }
     void OnDie()
     {
+        speaker.SoundByNum(4);
         anim.SetTrigger("doDie");
         isDead = true;
         manager.GameOver();

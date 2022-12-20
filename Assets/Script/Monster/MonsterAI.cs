@@ -33,12 +33,14 @@ public class MonsterAI : MonoBehaviour
     GameObject[] dropItem;               //몬스터 사망시 드랍 코인
     [SerializeField]
     float attackRidius;             //몬스터 공격거리
+    Sound speaker;                  //사운드 변수
     private void Awake()
     {
         VariableRest();
         StartCoroutine(AiMonster());
         randomInt = Random.Range(0, movePoint.Length); //랜덤 변수 저장
-        anim.SetBool("isWalk", true);   //첫시작시 걷는 행동 실행 
+        anim.SetBool("isWalk", true);   //첫시작시 걷는 행동 실행
+        speaker = FindObjectOfType<Sound>();
     }
     IEnumerator AiMonster()    //몬스터 정찰 기능 
     { 
@@ -115,11 +117,12 @@ public class MonsterAI : MonoBehaviour
         //몬스터 죽음 
         else
         {
+            isDead = true;
+            StopAllCoroutines();
+            speaker.SoundByNum2(4);
             foreach (SkinnedMeshRenderer mesh in meshs)
             { mesh.material.color = Color.gray; }
-            StopAllCoroutines();
             gameObject.layer = 7;
-            isDead = true;
             monsterCol.enabled = false;
             anim.SetTrigger("doDie");
             //적이 죽는 로직에 동전 드랍 구현
@@ -127,11 +130,8 @@ public class MonsterAI : MonoBehaviour
             Vector3 itemVec = new Vector3(transform.position.x, dropItem[ranItem].transform.position.y , transform.position.z);
             dropItem[ranItem].transform.localScale = Vector3.one * 3f;
             Instantiate(dropItem[ranItem], itemVec, Quaternion.identity);
-            //몬스터가 죽으면서 뒤로 밀림
-            reactVec = reactVec.normalized;
-            reactVec += Vector3.up;
-            rigid.AddForce(reactVec * 5, ForceMode.Impulse);
-            if(enemyType != Type.D) {Destroy(gameObject, 3f);} //보스가 아닐때만 삭제
+            //보스가 아닐땐 3초뒤에 오브젝트 삭제
+            if(enemyType != Type.D){ Destroy(gameObject, 3f); };
             GameManager.DieCount();
         }
     }
@@ -184,11 +184,8 @@ public class MonsterAI : MonoBehaviour
                 case Type.A: //일반 몬스터 행동 
                     yield return new WaitForSeconds(0.2f);
                     meleeArea.enabled = true;
-
                     yield return new WaitForSeconds(1f);
                     meleeArea.enabled = false;
-
-                    yield return new WaitForSeconds(1f);
                     break;
                 case Type.B: //돌격형 몬스터 행동
                     rigid.AddForce(transform.forward * 50f, ForceMode.Impulse); //돌격 구현 

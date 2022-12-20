@@ -16,10 +16,16 @@ public class Shop : MonoBehaviour
     [SerializeField]
     int health, attack, ammo;   //상점 상품 능력치;
     public string[] talkData;     //NPC 대사
+    Sound speaker; //스피커 변수
+    private void Awake()
+    {
+        speaker = FindObjectOfType<Sound>();
+    }
     public void Enter(Player player) //UI 위로올리기
     {
         enterPlayer = player;
         uiGroup.anchoredPosition = Vector2.zero;
+        speaker.SoundByNum2(0);
     }
     public void Exit()              //UI 다시 닫기
     {
@@ -48,6 +54,7 @@ public class Shop : MonoBehaviour
                 enterPlayer.ammo += ammo;
                 break;
         }
+        speaker.SoundByNum2(1);
     }
     //NPC 대사 기능
     IEnumerator Talk()

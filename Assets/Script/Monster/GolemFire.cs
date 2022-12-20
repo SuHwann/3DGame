@@ -76,14 +76,14 @@ public class GolemFire : MonsterAI
     //플레이어에게 돌진 근접공격 시작
     IEnumerator RushAttack()
     {
-        tautVec = player.position + lookVec;//돌진공격을 할 위치 변수 저장*/
-        isLook = false;
-        agent.isStopped = false;
-        anim.SetTrigger("isPunch");
-        yield return new WaitForSeconds(3f);
-        agent.isStopped = true;
-        isLook = true;
-        StartCoroutine(Think());
+            tautVec = player.position + lookVec;//돌진공격을 할 위치 변수 저장*/
+            isLook = false;
+            agent.isStopped = false;
+            anim.SetTrigger("isPunch");
+            yield return new WaitForSeconds(3f);
+            agent.isStopped = true;
+            isLook = true;
+            StartCoroutine(Think());
     }
     //원거리 공격 오브젝트 생성함수
     void DistanceAttackOb(int speed)

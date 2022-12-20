@@ -35,9 +35,7 @@ public class GolemEarth : MonsterAI
         {
             if (isDead)
             {
-                print("죽음");
                 StopAllCoroutines();
-                print("모두 스탑");
             }
             if (isLook)
             {
@@ -72,14 +70,13 @@ public class GolemEarth : MonsterAI
     //플레이어에게 돌진 근접공격 시작
     IEnumerator RushAttack()
     {
-        if(!isDead)
-        {
             float targetRadius = 3f;
             float targetRange = 5f;
             isLook = false;
             agent.isStopped = false;
             while (true)
             {
+                if (isDead) { yield break; }
                 tautVec = player.position;//돌진공격을 할 위치 변수 저장
                 RaycastHit[] rayHits =
                  Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange,
@@ -94,7 +91,6 @@ public class GolemEarth : MonsterAI
                 }
                 yield return null;
             }
-        }
     }
     //원거리 공격 스킬 
     IEnumerator Skill()

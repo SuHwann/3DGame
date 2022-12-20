@@ -14,11 +14,16 @@ public class WeaponShop : MonoBehaviour
     Text talkText;      //NPC 대화창
     public string[] talkData; //NPC 대사
     Player enterPlayer; //플레이어
-    int index;
+    Sound speaker;
+    private void Awake()
+    {
+        speaker = FindObjectOfType<Sound>();
+    }
     public void Enter(Player player) //UI 위로 올리기 
     {
         enterPlayer = player;
         uiGroup.anchoredPosition = Vector2.zero;
+        speaker.SoundByNum2(0);
     }
     public void Exit() //다시 닫기 
     {
@@ -47,6 +52,7 @@ public class WeaponShop : MonoBehaviour
                 { Player.SwordSwap(2); }
                 break;
         }
+        speaker.SoundByNum2(1);
     }
     IEnumerator Talk()
     {
