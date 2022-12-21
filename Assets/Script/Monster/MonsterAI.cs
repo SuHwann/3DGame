@@ -124,9 +124,9 @@ public class MonsterAI : MonoBehaviour
             foreach (SkinnedMeshRenderer mesh in meshs)
             { mesh.material.color = Color.gray; }
             gameObject.layer = 7;
-            monsterCol.enabled = false;
             rigid.velocity= Vector3.zero;
             anim.SetTrigger("doDie");
+            monsterCol.enabled = false;
             //적이 죽는 로직에 동전 드랍 구현
             int ranItem = Random.Range(0, dropItem.Length);
             Vector3 itemVec = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
@@ -176,8 +176,6 @@ public class MonsterAI : MonoBehaviour
     //몬스터 공격기능 BoxCollider false true로 공격 전달
     IEnumerator Attack()
     {
-        if (!isDead) //몬스터가 죽지 않으면 공격 실행
-        {
             agent.isStopped = true;
             isAttack = true;
             anim.SetBool("isAttack", true);
@@ -210,10 +208,11 @@ public class MonsterAI : MonoBehaviour
             agent.isStopped = false;
             isAttack = false;
             anim.SetBool("isAttack", false);
-        }
+        
     }
     private void FixedUpdate()
     {
+
         Targerting();
         FreezeVelocity();
     }
