@@ -77,9 +77,11 @@ public class Player : MonoBehaviour
     public int swordNum = 0; //무기 넘버 
     public static Action<int> GiveJewel; //플레이어 보석 얻기
     public bool[] jewel; //보석 아이템을 가지고있는지 판단
-    Sound speaker;
+    Sound speaker; //스피커
+    public CapsuleCollider col; //플레이어 콜라이더
     private void Awake()
     {
+        col = GetComponent<CapsuleCollider>(); //자기 자신 콜라이더 초기화 
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
         anim = GetComponentInChildren<Animator>(); //Animaltor 변수를 GetCommponentChildren()으로 초기화
         meshs = GetComponentsInChildren<MeshRenderer>(); //player 메쉬 초기화 

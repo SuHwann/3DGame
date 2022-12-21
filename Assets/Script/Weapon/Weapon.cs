@@ -23,7 +23,10 @@ public class Weapon : MonoBehaviour
     public static Action<int> Damage; //액션 이벤트
     Player player;  //플레이어 변수
     Sound speaker;  //스피커
-
+    [SerializeField]
+    Transform skillPoint; //광역 스킬 시작 지점
+    [SerializeField]
+    GameObject ChargingOb; //스킬오브젝트
     private void Awake()
     {
         player = FindObjectOfType<Player>();
@@ -60,6 +63,7 @@ public class Weapon : MonoBehaviour
                         //Red 스킬
                         swapEffect.SetActive(false);
                         player.anim.SetTrigger("doExplosion");
+                        StartCoroutine(ChargingSkill());
                     }
                     break;
                 case Type.Blue:
@@ -99,8 +103,18 @@ public class Weapon : MonoBehaviour
     {
         damage += Damage;
     }
+    //아이템이 활성화 될때마다 코루틴 실행
     private void OnEnable()
     {
         StartCoroutine(Skill());
+    }
+    //차징 광역 스킬 
+    IEnumerator ChargingSkill()
+    {
+        player.col.enabled = false;
+        GameObject instantCharging = Instantiate(ChargingOb, skillPoint.position, skillPoint.rotation);
+        Destroy(instantCharging,8f);
+        player.col.enabled = true;
+        yield return null;
     }
 }
