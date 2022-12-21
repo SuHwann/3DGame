@@ -195,6 +195,7 @@ public class Player : MonoBehaviour
                                 attack += item.value;
                                 break;
                         }
+                        speaker.SoundByNum2(9);
                         //먹은 아이템은 삭제
                         Destroy(other.gameObject);
                         break;

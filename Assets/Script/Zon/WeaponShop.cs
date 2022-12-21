@@ -14,7 +14,7 @@ public class WeaponShop : MonoBehaviour
     Text talkText;      //NPC 대화창
     public string[] talkData; //NPC 대사
     Player enterPlayer; //플레이어
-    Sound speaker;
+    Sound speaker; //사운드
     private void Awake()
     {
         speaker = FindObjectOfType<Sound>();
@@ -35,6 +35,7 @@ public class WeaponShop : MonoBehaviour
         {
             StopCoroutine(Talk());
             StartCoroutine(Talk());
+            speaker.SoundByNum2(10);
             return;
         }
         switch (value) //몇번째 무기를 교환할것인가?

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
@@ -127,7 +128,7 @@ public class MonsterAI : MonoBehaviour
             anim.SetTrigger("doDie");
             //적이 죽는 로직에 동전 드랍 구현
             int ranItem = Random.Range(0, dropItem.Length);
-            Vector3 itemVec = new Vector3(transform.position.x, dropItem[ranItem].transform.position.y , transform.position.z);
+            Vector3 itemVec = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
             dropItem[ranItem].transform.localScale = Vector3.one * 3f;
             Instantiate(dropItem[ranItem], itemVec, Quaternion.identity);
             //보스가 아닐땐 3초뒤에 오브젝트 삭제

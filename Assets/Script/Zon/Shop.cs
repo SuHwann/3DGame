@@ -38,6 +38,7 @@ public class Shop : MonoBehaviour
         {
             StopCoroutine(Talk());
             StartCoroutine(Talk());
+            speaker.SoundByNum2(10);
             return;
         }
         enterPlayer.coin -= price;
