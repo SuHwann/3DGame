@@ -125,6 +125,7 @@ public class MonsterAI : MonoBehaviour
             { mesh.material.color = Color.gray; }
             gameObject.layer = 7;
             monsterCol.enabled = false;
+            rigid.velocity= Vector3.zero;
             anim.SetTrigger("doDie");
             //적이 죽는 로직에 동전 드랍 구현
             int ranItem = Random.Range(0, dropItem.Length);
