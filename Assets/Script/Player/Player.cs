@@ -72,7 +72,6 @@ public class Player : MonoBehaviour
     public int maxHealth;
     public GameManager manager; //GameManager 변수
     public static Action<int> SwordSwap; //무기 교체 이벤트 함수
-    public int swordNum = 0; //무기 넘버 
     public static Action<bool> PlayerCol;
     public static Action<int> GiveJewel; //플레이어 보석 얻기
     public bool[] jewel; //보석 아이템을 가지고있는지 판단
