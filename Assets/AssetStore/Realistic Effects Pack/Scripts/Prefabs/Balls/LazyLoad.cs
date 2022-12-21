@@ -26,6 +26,6 @@ public class LazyLoad : MonoBehaviour
   void OnDisable()
   {
     CancelInvoke("LazyEnable");
-    GO.SetActive(false);
+/*    GO.SetActive(false);*/
   }
 }

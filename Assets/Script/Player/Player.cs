@@ -75,13 +75,13 @@ public class Player : MonoBehaviour
     public GameManager manager; //GameManager 변수
     public static Action<int> SwordSwap; //무기 교체 이벤트 함수
     public int swordNum = 0; //무기 넘버 
+    public static Action<bool> PlayerCol;
     public static Action<int> GiveJewel; //플레이어 보석 얻기
     public bool[] jewel; //보석 아이템을 가지고있는지 판단
     Sound speaker; //스피커
-    public CapsuleCollider col; //플레이어 콜라이더
+    public bool isSkill; //스킬 사용중일때 데미지 방지
     private void Awake()
     {
-        col = GetComponent<CapsuleCollider>(); //자기 자신 콜라이더 초기화 
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
         anim = GetComponentInChildren<Animator>(); //Animaltor 변수를 GetCommponentChildren()으로 초기화
         meshs = GetComponentsInChildren<MeshRenderer>(); //player 메쉬 초기화 
@@ -208,19 +208,22 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        switch (other.tag)
+        if (!isSkill)
         {
-            //Slash 스크립트 재활용하여 데미지 적용 
-            case "EnemyFar":
+            switch (other.tag)
             {
-                if(!isDamage)
-                {
-                    Slash enemySlash = other.GetComponent<Slash>();
-                    health -= enemySlash.damage;
-                    bool isBoosAtk = other.name == "EnemyFar";
-                    StartCoroutine(OnDamage(isBoosAtk));
-                }
-                break;
+                //Slash 스크립트 재활용하여 데미지 적용 
+                case "EnemyFar":
+                    {
+                        if (!isDamage)
+                        {
+                            Slash enemySlash = other.GetComponent<Slash>();
+                            health -= enemySlash.damage;
+                            bool isBoosAtk = other.name == "EnemyFar";
+                            StartCoroutine(OnDamage(isBoosAtk));
+                        }
+                        break;
+                    }
             }
         }
     }

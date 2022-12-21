@@ -1441,25 +1441,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraArm: {fileID: 0}
+  weaponSwap: 000000
   weapons:
-  - {fileID: 1942003435535349375}
   - {fileID: 1942003435341638175}
+  - {fileID: 1942003435535349375}
   - {fileID: 1942003434836519958}
-  hasWeapons: 000000
+  hasWeapons: 010101
   speed: 10
+  anim: {fileID: 0}
   equipWeapon: {fileID: 904848465}
   basicSword: {fileID: 3302235764664560177}
+  skinnMesh: {fileID: 5305999411072556210}
   ammo: 10
   coin: 99999999
   health: 90000
   attack: 0
-  hasGrenades: 0
   maxAmmo: 99999
   maxCoin: 99999
   maxHealth: 300
   maxHasGrenades: 4
   manager: {fileID: 0}
-  skinnMesh: {fileID: 5305999411072556210}
+  swordNum: 0
+  jewel: 
+  isSkill: 0
 --- !u!82 &1067863952
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3246,6 +3250,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce5715dcf97590b4cbec21f0ed7cf1ed, type: 3}
+--- !u!1 &2790929075578427476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 107252, guid: ce5715dcf97590b4cbec21f0ed7cf1ed, type: 3}
+  m_PrefabInstance: {fileID: 2790929075578403488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2790929077297365201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3435,6 +3444,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce5715dcf97590b4cbec21f0ed7cf1ed, type: 3}
+--- !u!1 &2790929077297472037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 107252, guid: ce5715dcf97590b4cbec21f0ed7cf1ed, type: 3}
+  m_PrefabInstance: {fileID: 2790929077297365201}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2790929077432056069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3612,6 +3626,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce5715dcf97590b4cbec21f0ed7cf1ed, type: 3}
+--- !u!1 &2790929077432015857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 107252, guid: ce5715dcf97590b4cbec21f0ed7cf1ed, type: 3}
+  m_PrefabInstance: {fileID: 2790929077432056069}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2916479912176691192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4020,14 +4039,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458c8e341c11c064da5e916f84157d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 3
   damage: 25
   rate: 0.4
   meleeArea: {fileID: 512178188}
+  swapEffect: {fileID: 2790929075578427476}
   slashPos: {fileID: 0}
   slash: {fileID: 0}
   curAmmo: {fileID: 0}
   maxcurAmmo: {fileID: 0}
+  skillPoint: {fileID: 2605247977352178210}
+  ChargingOb: {fileID: 100004, guid: 4cbb7bdacd40a2345a5e563053d18f5b, type: 3}
 --- !u!1001 &5298094886474893868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4144,14 +4166,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458c8e341c11c064da5e916f84157d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2
   damage: 25
   rate: 0.4
   meleeArea: {fileID: 1398176016}
+  swapEffect: {fileID: 2790929077432015857}
   slashPos: {fileID: 0}
   slash: {fileID: 0}
   curAmmo: {fileID: 0}
   maxcurAmmo: {fileID: 0}
+  skillPoint: {fileID: 0}
+  ChargingOb: {fileID: 0}
 --- !u!1001 &5298094888049626149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4272,10 +4297,13 @@ MonoBehaviour:
   damage: 0
   rate: 0.4
   meleeArea: {fileID: 1917807328}
+  swapEffect: {fileID: 2790929077297472037}
   slashPos: {fileID: 940911224}
   slash: {fileID: 184538447543580034}
   curAmmo: {fileID: 0}
   maxcurAmmo: {fileID: 0}
+  skillPoint: {fileID: 0}
+  ChargingOb: {fileID: 0}
 --- !u!1001 &6921532044949172418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4396,10 +4424,13 @@ MonoBehaviour:
   damage: 30
   rate: 0.4
   meleeArea: {fileID: 904848464}
+  swapEffect: {fileID: 0}
   slashPos: {fileID: 0}
   slash: {fileID: 0}
   curAmmo: {fileID: 0}
   maxcurAmmo: {fileID: 0}
+  skillPoint: {fileID: 0}
+  ChargingOb: {fileID: 0}
 --- !u!1001 &8735964497379184875
 PrefabInstance:
   m_ObjectHideFlags: 0

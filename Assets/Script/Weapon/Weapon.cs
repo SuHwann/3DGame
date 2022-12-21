@@ -111,10 +111,12 @@ public class Weapon : MonoBehaviour
     //Â÷Â¡ ±¤¿ª ½ºÅ³ 
     IEnumerator ChargingSkill()
     {
-        player.col.enabled = false;
+        player.isSkill = true;
         GameObject instantCharging = Instantiate(ChargingOb, skillPoint.position, skillPoint.rotation);
-        Destroy(instantCharging,8f);
-        player.col.enabled = true;
+        Destroy(instantCharging,4.5f);
+        yield return new WaitForSeconds(4.5f);
+        player.isSkill=false;
+
         yield return null;
     }
 }
