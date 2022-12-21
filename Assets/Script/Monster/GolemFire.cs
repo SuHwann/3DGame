@@ -22,7 +22,6 @@ public class GolemFire : MonsterAI
     GameObject cinema; //시네마씬
     private void Start()
     {
-        //anim.SetTrigger("isSpawn");
         agent.isStopped = true;
         isLook = true;
         StartCoroutine(Look());
@@ -46,8 +45,7 @@ public class GolemFire : MonsterAI
                 lookVec = new Vector3(h, 0, v) * 1f; //플레이어 입력값으로 예측 벡터값 생성
                 transform.LookAt(player.position + lookVec); //플레이어를 바라봄
             }
-            else
-                agent.SetDestination(tautVec);
+            if(!isLook || !isDead) { agent.SetDestination(tautVec); }
             yield return null;
         }
     }
@@ -56,27 +54,22 @@ public class GolemFire : MonsterAI
     {
         yield return new WaitForSeconds(1f);
         int randomAction = Random.Range(0, 3);
-        if(!isDead)
+        switch (randomAction)
         {
-            switch (randomAction)
-            {
-                case 0:
-                    StartCoroutine(RushAttack());
-                    break;
-                case 1:
-                    StartCoroutine(Skill());
-                    break;
-                case 2:
-                    StartCoroutine(WideSkill());
-                    break;
-            }
+            case 0:
+                StartCoroutine(RushAttack());
+                break;
+            case 1:
+                StartCoroutine(Skill());
+                break;
+            case 2:
+                StartCoroutine(WideSkill());
+                break;
         }
-
     }
     //플레이어에게 돌진 근접공격 시작
     IEnumerator RushAttack()
     {
-        if (isDead) { yield break; }
         tautVec = player.position + lookVec;//돌진공격을 할 위치 변수 저장*/
         isLook = false;
         agent.isStopped = false;
@@ -98,7 +91,6 @@ public class GolemFire : MonsterAI
     //원거리 공격 스킬 
     IEnumerator Skill()
     {
-        if (isDead) { yield break; }
         count = 0;
         anim.SetTrigger("isShot");
         monsterCol.enabled = false;
@@ -125,7 +117,6 @@ public class GolemFire : MonsterAI
     //광역스킬
     IEnumerator WideSkill()
     {
-        if (isDead) { yield break; }
         isLook = false;
         anim.SetTrigger("isCastSpell");
         monsterCol.enabled = false;

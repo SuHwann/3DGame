@@ -3,7 +3,6 @@ using System.Collections;
 
 public class LazyLoad : MonoBehaviour
 {
-
   public GameObject GO;
   public float TimeDelay = 0.3f;
 	// Use this for initialization

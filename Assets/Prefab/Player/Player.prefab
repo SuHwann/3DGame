@@ -31,6 +31,37 @@ Transform:
   m_Father: {fileID: 3703623855141202827}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &868664743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 868664744}
+  m_Layer: 10
+  m_Name: skillPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &868664744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868664743}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.0159, y: 1.498, z: -0.0096}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1276965628926767269}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &940911223
 GameObject:
   m_ObjectHideFlags: 0
@@ -4050,6 +4081,21 @@ MonoBehaviour:
   maxcurAmmo: {fileID: 0}
   skillPoint: {fileID: 2605247977352178210}
   ChargingOb: {fileID: 100004, guid: 4cbb7bdacd40a2345a5e563053d18f5b, type: 3}
+  particle: {fileID: 0}
+--- !u!114 &1049659752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942003435535349375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f16344fc31276a44b51f6deb5b9477f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 100
+  isMelee: 1
 --- !u!1001 &5298094886474893868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4091,7 +4137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6358568393392945801, guid: 5ffa21eac0be47c409e0bab4eea08790, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6358568393392945801, guid: 5ffa21eac0be47c409e0bab4eea08790, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4172,11 +4218,12 @@ MonoBehaviour:
   meleeArea: {fileID: 1398176016}
   swapEffect: {fileID: 2790929077432015857}
   slashPos: {fileID: 0}
-  slash: {fileID: 0}
+  slash: {fileID: 128572, guid: 6392380a92135284c861f5879cdb167b, type: 3}
   curAmmo: {fileID: 0}
   maxcurAmmo: {fileID: 0}
-  skillPoint: {fileID: 0}
+  skillPoint: {fileID: 868664744}
   ChargingOb: {fileID: 0}
+  particle: {fileID: 105608, guid: bf4b529c30d10bc4889e538f776c595d, type: 3}
 --- !u!1001 &5298094888049626149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4304,6 +4351,7 @@ MonoBehaviour:
   maxcurAmmo: {fileID: 0}
   skillPoint: {fileID: 0}
   ChargingOb: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!1001 &6921532044949172418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4431,6 +4479,7 @@ MonoBehaviour:
   maxcurAmmo: {fileID: 0}
   skillPoint: {fileID: 0}
   ChargingOb: {fileID: 0}
+  particle: {fileID: 0}
 --- !u!1001 &8735964497379184875
 PrefabInstance:
   m_ObjectHideFlags: 0

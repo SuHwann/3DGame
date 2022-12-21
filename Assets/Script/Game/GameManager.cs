@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
         else if(player.equipWeapon.type == Weapon.Type.Melee)
         playerAmmoTxt.text = "" + player.ammo;
         else
-            playerAmmoTxt.text = player.equipWeapon.curAmmo + " /" + player.ammo;
+            playerAmmoTxt.text = ""+ player.ammo;
         //보스가 나오면 보스 UI출현
         if(bossob.activeSelf)
         {

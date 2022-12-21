@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
         anim.SetBool("isRun", isMove);
         anim.SetBool("isWalk", wRun); //walk 다운
 
-        if (isSwap || !isFireReady || fDown || isDead)
+        if (isSwap || !isFireReady || fDown || isDead || isSkill)
         {
             moveDir = Vector3.zero;
         }
@@ -231,7 +231,6 @@ public class Player : MonoBehaviour
     IEnumerator OnDamage(bool isBossAtk)
     {
         isDamage = true;
-        anim.SetTrigger("doDamage");
         speaker.SoundByNum(2);
         foreach (MeshRenderer mesh in meshs) //공격을 받았을때 색변화 
         {
@@ -244,6 +243,7 @@ public class Player : MonoBehaviour
         {
             OnDie();
         }
+        if (!isDead) { anim.SetTrigger("doDamage"); }
         yield return new WaitForSeconds(1f);// 무적 시간 
         isDamage = false;
         foreach (MeshRenderer mesh in meshs) //다시 돌아옴

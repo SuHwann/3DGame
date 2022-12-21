@@ -95,7 +95,7 @@ public class MonsterAI : MonoBehaviour
             Slash slash = other.GetComponent<Slash>();
             curHealth -= slash.damage;
             //참격이 적과 닿았을때 삭제 되도록 
-            Destroy(other.gameObject);
+            Destroy(other.gameObject,1f);
             //넉백 위치 or 전달
             Vector3 reactVec = transform.position - other.transform.position;
             StartCoroutine(OnDamage(reactVec));

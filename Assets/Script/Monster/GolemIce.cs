@@ -45,8 +45,7 @@ public class GolemIce : MonsterAI
                 lookVec = new Vector3(h, 0, v) * 1f; //플레이어 입력값으로 예측 벡터값 생성
                 transform.LookAt(player.position + lookVec); //플레이어를 바라봄
             }
-            else
-                agent.SetDestination(tautVec);
+            if(!isDead || !isLook) { agent.SetDestination(tautVec); }
             yield return null;
         }
     }
@@ -55,8 +54,6 @@ public class GolemIce : MonsterAI
     {
         yield return new WaitForSeconds(1f);
         int randomAction = Random.Range(0, 3);
-        if(!isDead)
-        {
             switch (randomAction)
             {
                 case 0:
@@ -69,7 +66,7 @@ public class GolemIce : MonsterAI
                     StartCoroutine(WideSkill());
                     break;
             }
-        }
+        
     }
     //플레이어에게 돌진 근접공격 시작
     IEnumerator RushAttack()

@@ -18,8 +18,6 @@ public class Weapon : MonoBehaviour
     GameObject swapEffect;          //스왑 번개 파티클
     public Transform slashPos;      //참격생성 위치  
     public GameObject slash;        //참격 오브젝트
-    public GameObject curAmmo;      //방어 오브젝트
-    public GameObject maxcurAmmo;   //max 방어 오브젝트
     public static Action<int> Damage; //액션 이벤트
     Player player;  //플레이어 변수
     Sound speaker;  //스피커
@@ -27,25 +25,23 @@ public class Weapon : MonoBehaviour
     Transform skillPoint; //광역 스킬 시작 지점
     [SerializeField]
     GameObject ChargingOb; //스킬오브젝트
+    [SerializeField]
+    GameObject particle;   //스킬오브젝트
     private void Awake()
     {
         player = FindObjectOfType<Player>();
         speaker= FindObjectOfType<Sound>();
         Damage = (int i) =>{AttackDamage(i);};
-        StartCoroutine(Skill());
     }
     //플레이어 무기 사용 
     public void Use()
     {
-        if(type == Type.Melee )
-        {
-            StopCoroutine(Swing());
-            StartCoroutine(Swing());
-        }
+       StopCoroutine(Swing());
+       StartCoroutine(Swing());
     }
     IEnumerator Skill()
     {
-        while(true)
+        while (true)
         {
             switch (type)
             {
@@ -55,6 +51,8 @@ public class Weapon : MonoBehaviour
                         //Green 스킬
                         swapEffect.SetActive(false);
                         player.anim.SetTrigger("doStrike");
+                        yield return new WaitForSeconds(0.25f);
+                        LightningBall();
                     }
                     break;
                 case Type.Red:
@@ -76,6 +74,7 @@ public class Weapon : MonoBehaviour
                         StartCoroutine(SlashShot());
                     }
                     break;
+
             }
             yield return null;
         }
@@ -114,9 +113,18 @@ public class Weapon : MonoBehaviour
         player.isSkill = true;
         GameObject instantCharging = Instantiate(ChargingOb, skillPoint.position, skillPoint.rotation);
         Destroy(instantCharging,4.5f);
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(6f);
         player.isSkill=false;
-
         yield return null;
+    }
+    //초록 번개 스킬
+    private void LightningBall()
+    {
+        GameObject instantLightning = Instantiate(slash , skillPoint.position,skillPoint.rotation);
+        GameObject instantParticle = Instantiate(particle, skillPoint.position, skillPoint.rotation);
+        Rigidbody slashRigid = instantLightning.GetComponent<Rigidbody>();
+        slashRigid.velocity = player.transform.forward * 50;
+        Destroy(instantLightning, 1f);
+        Destroy(instantParticle, 1f);
     }
 }
