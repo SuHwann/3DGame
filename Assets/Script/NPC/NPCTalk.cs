@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,11 @@ public class NPCTalk : MonoBehaviour
     IEnumerator Talk()
     {
         text.text = " ";
+        if (talkIndex == npctext.Length)
+        {
+            talkIndex = 0;
+            yield break;
+        }
         foreach (char letter in npctext[talkIndex++])
         {
             text.text += letter;

@@ -20,8 +20,11 @@ public class GolemIce : MonsterAI
     int speed; //원거리 공격 투사체 속도
     [SerializeField]
     GameObject cinema; //시네마씬
+    GameManager manager; //게임메니저
+
     private void Start()
     {
+        manager = FindObjectOfType<GameManager>();
         agent.isStopped = true;
         isLook = true;
         StartCoroutine(Look());
@@ -35,6 +38,7 @@ public class GolemIce : MonsterAI
         {
             if (isDead)
             {
+                manager.bossText.text = "x 1";
                 StopAllCoroutines();
                 yield break;
             }

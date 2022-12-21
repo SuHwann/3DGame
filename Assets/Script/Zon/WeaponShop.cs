@@ -41,15 +41,15 @@ public class WeaponShop : MonoBehaviour
         {
             case 0: //GreenSword
                 if (enterPlayer.jewel[0] == true)
-                { Player.SwordSwap(0); }
+                { Player.SwordSwap(0); talkText.text = talkData[2]; }
                 break;
             case 1: //RedSword
                 if (enterPlayer.jewel[1] == true)
-                { Player.SwordSwap(1); }
+                { Player.SwordSwap(1); talkText.text = talkData[2]; }
                 break;
             case 2: //BlueSword
                 if (enterPlayer.jewel[2] == true)
-                { Player.SwordSwap(2); }
+                { Player.SwordSwap(2); talkText.text = talkData[2]; }
                 break;
         }
         speaker.SoundByNum2(1);

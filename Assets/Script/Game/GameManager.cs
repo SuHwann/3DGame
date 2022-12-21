@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject[] monsters; //일반 몬스터 배열
     public GameObject menuPanel,gamePanel,overPanel;
-    public Text stageTxt,playTimeTxt,playerHealthTxt,playerAmmoTxt,playerCoinTxt;
+    public Text stageTxt,playTimeTxt,playerHealthTxt,playerAmmoTxt,playerCoinTxt, bossText;
     public RectTransform bossHealthGroup,bossHealthBar;
     [SerializeField]
     GameObject itemShop;     //아이템 샵
@@ -32,9 +32,10 @@ public class GameManager : MonoBehaviour
     GameObject weaponShop;   //무기 샵
     public static Action DieCount; //일반 몬스터 사망시 이벤트 함수
     private int diecount =0;   //일반 몬스터 사망 갯수 카운트
-    AudioSource audio;
+    AudioSource audio;          //사운드
     [SerializeField]
-    AudioClip[] clip;
+    AudioClip[] clip;           //오디오 클립
+    public Image[] skillImage;         //스킬 이미지 
     private void Awake()
     {
         DieCount = () => { BossCondition(); };

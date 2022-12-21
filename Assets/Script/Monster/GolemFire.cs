@@ -20,8 +20,10 @@ public class GolemFire : MonsterAI
     int count = 0; //원거리 공격 카운트 스택
     [SerializeField]
     GameObject cinema; //시네마씬
+    GameManager manager; //게임메니저
     private void Start()
     {
+        manager = FindObjectOfType<GameManager>();
         agent.isStopped = true;
         isLook = true;
         StartCoroutine(Look());
@@ -35,6 +37,7 @@ public class GolemFire : MonsterAI
         {
             if (isDead)
             {
+                manager.bossText.text = "x 1";
                 StopAllCoroutines();
                 yield break;
             }

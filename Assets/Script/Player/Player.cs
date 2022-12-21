@@ -70,8 +70,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int maxCoin;
     public int maxHealth;
-    [SerializeField]
-    private int maxHasGrenades;
     public GameManager manager; //GameManager 변수
     public static Action<int> SwordSwap; //무기 교체 이벤트 함수
     public int swordNum = 0; //무기 넘버 
@@ -313,6 +311,7 @@ public class Player : MonoBehaviour
             anim.SetTrigger("doSwap");
             isSwap = true;
             weaponSwap[weaponIndex] = true;
+            manager.skillImage[weaponIndex].gameObject.SetActive(true);
             Invoke("SwapOut", 0.4f);
         }
     }

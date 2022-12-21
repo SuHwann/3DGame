@@ -113,7 +113,7 @@ public class Weapon : MonoBehaviour
         player.isSkill = true;
         GameObject instantCharging = Instantiate(ChargingOb, skillPoint.position, skillPoint.rotation);
         Destroy(instantCharging,4.5f);
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(5f);
         player.isSkill=false;
         yield return null;
     }

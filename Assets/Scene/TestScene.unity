@@ -1620,6 +1620,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1067863947}
     - target: {fileID: 654399391, guid: dd460db30e3cc884c980a3e7c622243c, type: 3}
+      propertyPath: curHealth
+      value: 20000
+      objectReference: {fileID: 0}
+    - target: {fileID: 654399391, guid: dd460db30e3cc884c980a3e7c622243c, type: 3}
+      propertyPath: maxHealth
+      value: 20000
+      objectReference: {fileID: 0}
+    - target: {fileID: 654399391, guid: dd460db30e3cc884c980a3e7c622243c, type: 3}
       propertyPath: movePoint.Array.data[0]
       value: 
       objectReference: {fileID: 1470029412}
@@ -1649,7 +1657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7282502595833108011, guid: dd460db30e3cc884c980a3e7c622243c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7952078391758179473, guid: dd460db30e3cc884c980a3e7c622243c, type: 3}
       propertyPath: m_RootOrder
@@ -2357,7 +2365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9048465302456112664, guid: 727619b48585cb44e8a7952feeb3a044, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 727619b48585cb44e8a7952feeb3a044, type: 3}
@@ -2425,6 +2433,10 @@ PrefabInstance:
     - target: {fileID: 4048237894197506353, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
+      propertyPath: health
+      value: 900
       objectReference: {fileID: 0}
     - target: {fileID: 6654112746348131080, guid: 16f1d38a475a9444288e64eeb81f8a84, type: 3}
       propertyPath: manager
@@ -2894,6 +2906,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Speaker Handler
       objectReference: {fileID: 0}
+    - target: {fileID: 8288488835277262062, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: clips.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8288488835277262062, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
+      propertyPath: clips.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 19eb23a6f456591469d92d8eb754dc3d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 905e4671e84d25b4c89db01c3ed5f802, type: 3}
 --- !u!1 &1344376245
@@ -3206,7 +3226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1399089914
 Transform:
   m_ObjectHideFlags: 0

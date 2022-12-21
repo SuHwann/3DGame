@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
+using UnityEngine.UI;
 
 public class GolemEarth : MonsterAI
 {
@@ -20,8 +20,10 @@ public class GolemEarth : MonsterAI
     public float speed = 1000f;
     [SerializeField]
     GameObject cinema; //시네마씬
+    GameManager manager; //게임메니저
     private void Start()
     {
+        manager = FindObjectOfType<GameManager>();
         agent.isStopped = true;
         isLook = true;
         StartCoroutine(Look());
@@ -35,6 +37,7 @@ public class GolemEarth : MonsterAI
         {
             if (isDead)
             {
+                manager.bossText.text = "x 1";
                 StopAllCoroutines();
             }
             if (isLook)

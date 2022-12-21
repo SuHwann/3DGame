@@ -118,8 +118,8 @@ public class MonsterAI : MonoBehaviour
         else
         {
             isDead = true;
-            StopAllCoroutines();
-            speaker.SoundByNum2(4);
+            if (enemyType != Type.D) { StopAllCoroutines(); }
+             speaker.SoundByNum2(4);
             foreach (SkinnedMeshRenderer mesh in meshs)
             { mesh.material.color = Color.gray; }
             gameObject.layer = 7;
@@ -133,6 +133,7 @@ public class MonsterAI : MonoBehaviour
             //보스가 아닐땐 3초뒤에 오브젝트 삭제
             if(enemyType != Type.D){ Destroy(gameObject, 3f); };
             GameManager.DieCount();
+
         }
     }
     //Player에게 Ray를 쏜다
@@ -188,9 +189,9 @@ public class MonsterAI : MonoBehaviour
                     meleeArea.enabled = false;
                     break;
                 case Type.B: //돌격형 몬스터 행동
-                    rigid.AddForce(transform.forward * 50f, ForceMode.Impulse); //돌격 구현 
+                    rigid.AddForce(transform.forward * 30f, ForceMode.Impulse); //돌격 구현 
                     meleeArea.enabled = true;
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(1f);
                     rigid.velocity = Vector3.zero; //속도 제어 
                     meleeArea.enabled = false;
                     yield return new WaitForSeconds(2f);
