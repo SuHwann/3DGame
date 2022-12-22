@@ -121,12 +121,12 @@ public class MonsterAI : MonoBehaviour
             isDead = true;
             if (enemyType != Type.D) { StopAllCoroutines(); }
              speaker.SoundByNum2(4);
+            monsterCol.enabled = false;
             foreach (SkinnedMeshRenderer mesh in meshs)
             { mesh.material.color = Color.gray; }
             gameObject.layer = 7;
             rigid.velocity= Vector3.zero;
             anim.SetTrigger("doDie");
-            monsterCol.enabled = false;
             //적이 죽는 로직에 동전 드랍 구현
             int ranItem = Random.Range(0, dropItem.Length);
             Vector3 itemVec = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
@@ -153,8 +153,8 @@ public class MonsterAI : MonoBehaviour
                     targetRange = 3f;
                     break;
                 case Type.B:
-                    targetRadius = 1f;
-                    targetRange = 3f;
+                    targetRadius = 3f;
+                    targetRange = 4f;
                     break;
                 case Type.C:
                     targetRadius = 1.5f;
@@ -189,7 +189,7 @@ public class MonsterAI : MonoBehaviour
                     meleeArea.enabled = false;
                     break;
                 case Type.B: //돌격형 몬스터 행동
-                    rigid.AddForce(transform.forward * 30f, ForceMode.Impulse); //돌격 구현 
+                    rigid.AddForce(transform.forward * 100f, ForceMode.Impulse); //돌격 구현 
                     meleeArea.enabled = true;
                     yield return new WaitForSeconds(1f);
                     rigid.velocity = Vector3.zero; //속도 제어 
@@ -208,7 +208,6 @@ public class MonsterAI : MonoBehaviour
             agent.isStopped = false;
             isAttack = false;
             anim.SetBool("isAttack", false);
-        
     }
     private void FixedUpdate()
     {

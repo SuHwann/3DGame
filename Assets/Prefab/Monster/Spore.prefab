@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601246000}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.478, z: 0.962}
-  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
+  m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 7952078391758179473}
-  m_RootOrder: 5
+  m_Father: {fileID: 3641071536044607214}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &601246003
 BoxCollider:
@@ -844,7 +844,6 @@ Transform:
   - {fileID: 8147645961345798642}
   - {fileID: 1768840519658972858}
   - {fileID: 7994677749818063537}
-  - {fileID: 601246001}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -920,6 +919,7 @@ MonoBehaviour:
   - {fileID: 0}
   meleeArea: {fileID: 601246003}
   slashOb: {fileID: 0}
+  farSkillPointA: {fileID: 0}
   player: {fileID: 0}
   agent: {fileID: 0}
   rigid: {fileID: 0}
@@ -927,8 +927,8 @@ MonoBehaviour:
   meshs: []
   anim: {fileID: 0}
   isDead: 0
-  coins: []
-  score: 0
+  dropItem: []
+  attackRidius: 0
 --- !u!195 &654399392
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1108,7 +1108,8 @@ Transform:
   m_LocalPosition: {x: -0.082169876, y: 0, z: 1.9826985e-12}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 601246001}
   m_Father: {fileID: 4066933099571702546}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -8.793211, y: 6.5712957, z: 9.273762}
