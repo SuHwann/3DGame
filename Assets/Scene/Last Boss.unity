@@ -2904,6 +2904,7 @@ GameObject:
   - component: {fileID: 116906639}
   - component: {fileID: 116906640}
   - component: {fileID: 116906641}
+  - component: {fileID: 116906642}
   m_Layer: 0
   m_Name: Cinema
   m_TagString: Untagged
@@ -2960,6 +2961,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025b1988803a7184ab8a076e3ea14dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cinema: {fileID: 116906638}
+--- !u!114 &116906642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116906638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: f75afb2b2937e624cbd738c688887138, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 116906641}
+          m_TargetAssemblyTypeName: CinemaOnOff, Assembly-CSharp
+          m_MethodName: CinemaOff
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &118009148 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 408920, guid: fb3f840c826314847ba67aaf7e4aef4e, type: 3}
@@ -6371,7 +6403,7 @@ PlayableDirector:
   - key: {fileID: 266449154353369965, guid: b29639912c7e9a743941d0a839915516, type: 2}
     value: {fileID: 784162006}
   - key: {fileID: 2490720974184093545, guid: b29639912c7e9a743941d0a839915516, type: 2}
-    value: {fileID: 2129814109}
+    value: {fileID: 116906642}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &341031146
@@ -6818,7 +6850,7 @@ PlayableDirector:
   - key: {fileID: 3955983576786150975, guid: 6ab8321fb0801384e817c0443770f9ec, type: 2}
     value: {fileID: 2129814107}
   - key: {fileID: -8720975268600823373, guid: 6ab8321fb0801384e817c0443770f9ec, type: 2}
-    value: {fileID: 2129814109}
+    value: {fileID: 1345373448}
   m_ExposedReferences:
     m_References:
     - 70fe58e59d84ba94087bdc11e8ddd313: {fileID: 1776166478}
@@ -35390,6 +35422,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 523301459223862815, guid: 0a4f1972b79c6be4492c4128d0588956, type: 3}
+      propertyPath: cinema
+      value: 
+      objectReference: {fileID: 1345373444}
+    - target: {fileID: 523301459223862815, guid: 0a4f1972b79c6be4492c4128d0588956, type: 3}
       propertyPath: cinema2
       value: 
       objectReference: {fileID: 1345373444}
@@ -35458,6 +35494,7 @@ GameObject:
   - component: {fileID: 1345373446}
   - component: {fileID: 1345373445}
   - component: {fileID: 1345373447}
+  - component: {fileID: 1345373448}
   m_Layer: 0
   m_Name: Cinema2
   m_TagString: Untagged
@@ -35514,6 +35551,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 025b1988803a7184ab8a076e3ea14dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cinema: {fileID: 1345373444}
+--- !u!114 &1345373448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345373444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: f75afb2b2937e624cbd738c688887138, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1345373447}
+          m_TargetAssemblyTypeName: CinemaOnOff, Assembly-CSharp
+          m_MethodName: CinemaOff
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &1349823838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 454320, guid: 8c2b62e7246b8be418a40cb56f42685a, type: 3}
@@ -58655,36 +58723,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c6935ac6dba66428669abbdac563b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2129814109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129814106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: f75afb2b2937e624cbd738c688887138, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1345373447}
-          m_TargetAssemblyTypeName: CinemaOnOff, Assembly-CSharp
-          m_MethodName: CinemaOff
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1001 &2136688978
 PrefabInstance:
   m_ObjectHideFlags: 0

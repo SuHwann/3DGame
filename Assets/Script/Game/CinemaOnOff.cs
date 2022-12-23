@@ -6,6 +6,8 @@ using UnityEngine;
 public class CinemaOnOff : MonoBehaviour
 {
     public static Action cineAction;
+    [SerializeField]
+    GameObject cinema;
 
     private void Awake()
     {
@@ -13,10 +15,10 @@ public class CinemaOnOff : MonoBehaviour
     }
     public void CinemaOff()
     {
-        this.gameObject.SetActive(false);
+        cinema.SetActive(false);
     }
     public void CinemaOn()
     {
-        this.gameObject.SetActive(true);    
+        cinema.SetActive(true);    
     }
 }

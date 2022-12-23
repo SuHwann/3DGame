@@ -10,7 +10,8 @@ public class Potal : MonoBehaviour
     bool nextScene;     //다음씬으로 갈지 순간이동할지 체크
     [SerializeField]
     Transform teleport; //순간이동 지점
-
+    [SerializeField]
+    GameObject cinema;
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player") && nextScene)
@@ -27,7 +28,7 @@ public class Potal : MonoBehaviour
     IEnumerator LastBossCinema()
     {
         yield return new WaitForSeconds(1.5f);
-        CinemaOnOff.cineAction();
+        cinema.SetActive(true);
         yield return null;
     }
 }
