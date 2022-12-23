@@ -39,5 +39,5 @@ public class PEButtonScript : MonoBehaviour, IEventSystemHandler, IPointerEnterH
 		// Button Click Actions
 		UICanvasManager.GlobalAccess.UIButtonClick(ButtonType);
 	}
-}
+ }
 }

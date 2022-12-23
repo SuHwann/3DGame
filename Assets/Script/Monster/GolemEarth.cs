@@ -39,6 +39,7 @@ public class GolemEarth : MonsterAI
             {
                 manager.bossText.text = "x 1";
                 StopAllCoroutines();
+                print("½ºÅ¾!");
             }
             if (isLook)
             {

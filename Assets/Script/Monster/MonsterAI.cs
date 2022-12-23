@@ -106,6 +106,7 @@ public class MonsterAI : MonoBehaviour
     IEnumerator OnDamage(Vector3 reactVec)
     {
         anim.SetTrigger("doDamage");
+        speaker.SoundByNum2(11);
         foreach (SkinnedMeshRenderer mesh in meshs)
         { mesh.material.color = Color.red;}
         yield return new WaitForSeconds(0.1f);
@@ -118,6 +119,7 @@ public class MonsterAI : MonoBehaviour
         //¸ó½ºÅÍ Á×À½ 
         else
         {
+            anim.SetBool("isAttack", false);
             isDead = true;
             if (enemyType != Type.D) { StopAllCoroutines(); }
              speaker.SoundByNum2(4);
