@@ -129,11 +129,13 @@ public class MonsterAI : MonoBehaviour
             gameObject.layer = 7;
             rigid.velocity= Vector3.zero;
             anim.SetTrigger("doDie");
-            //적이 죽는 로직에 동전 드랍 구현
-            int ranItem = Random.Range(0, dropItem.Length);
-            Vector3 itemVec = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
-            dropItem[ranItem].transform.localScale = Vector3.one * 3f;
-            Instantiate(dropItem[ranItem], itemVec, Quaternion.identity);
+            //적이 죽는 로직에 동전 드랍 구현 , 보스가 아닐때만
+            if (enemyType != Type.D) {
+                int ranItem = Random.Range(0, dropItem.Length);
+                Vector3 itemVec = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+                dropItem[ranItem].transform.localScale = Vector3.one * 3f;
+                Instantiate(dropItem[ranItem], itemVec, Quaternion.identity);
+            }
             //보스가 아닐땐 3초뒤에 오브젝트 삭제
             if(enemyType != Type.D){ Destroy(gameObject, 3f); };
             GameManager.DieCount();

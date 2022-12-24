@@ -14,9 +14,9 @@ public class GolemEarth : MonsterAI
     [SerializeField]
     Transform skillPointA; //원거리 공격스킬 생성 위치
     public RectTransform bossHealthGroup, bossHealthBar;
-    bool isLook; //플레이어를 바라볼 방향 체크
+    bool isLook; //플레이어를 바라볼지 판단
     Vector3 lookVec; //플레이어 방향 미리 예상 
-    Vector3 tautVec;
+    Vector3 tautVec; //돌진할 위치
     public float speed = 1000f;
     [SerializeField]
     GameObject cinema; //시네마씬
@@ -39,8 +39,8 @@ public class GolemEarth : MonsterAI
             {
                 manager.bossText.text = "x 1";
                 StopAllCoroutines();
-                print("스탑!");
             }
+            //Input입력값을 받아와서 방향을 1f 미리 예상한다
             if (isLook)
             {
                 float h = Input.GetAxisRaw("Horizontal");
