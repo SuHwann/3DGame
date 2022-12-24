@@ -55,7 +55,7 @@ public class Wraith : MonsterAI
     {
         yield return new WaitForSeconds(2f);
         int randomAction = Random.Range(0, 3);
-        switch (randomAction)
+        switch (0)
         {
             case 0:
                 StartCoroutine(RushAttack());
@@ -74,7 +74,7 @@ public class Wraith : MonsterAI
     {
         float targetRadius = 10f;
         float targetRange = 25f;
-        isLook = false;
+        isLook = true;
         agent.isStopped = false;
         while (true)
         {
@@ -89,6 +89,7 @@ public class Wraith : MonsterAI
                 yield return new WaitForSeconds(5f);
                 monsterCol.enabled = true;
                 StartCoroutine(Think());
+                isLook = false;
                 yield break;
             }
             yield return null;
@@ -98,14 +99,17 @@ public class Wraith : MonsterAI
     IEnumerator FarSkill()
     {
         isLook = true;
-        agent.isStopped = false;
-        anim.SetTrigger("doFarSkill");
         monsterCol.enabled = false;
-        yield return new WaitForSeconds(0.8f);
-        GameObject instantSkill = Instantiate(skillOb, skillPoint.position, skillPoint.rotation);
+        anim.SetTrigger("doFarSkill");
         yield return new WaitForSeconds(1f);
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject instantSkill = Instantiate(skillOb, skillPoint.position, skillPoint.rotation);
+            instantSkill.transform.LookAt(player);//플레이어의 방향으로 회전 
+            instantSkill.GetComponent<Rigidbody>().AddForce(instantSkill.transform.forward * 1200f); //강하게 힘을 가하여 발사체 속도 설정
+            yield return new WaitForSeconds(0.1f);
+        }
         monsterCol.enabled = true;
-        Destroy(instantSkill);
         StartCoroutine(Think());
         yield return null;
     }

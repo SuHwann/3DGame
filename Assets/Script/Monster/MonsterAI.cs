@@ -226,7 +226,7 @@ public class MonsterAI : MonoBehaviour
     //Hit 오브젝트 생성
     private void HitObject()
     {
-        Vector3 vec = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Vector3 vec = new Vector3(transform.position.x, transform.position.y + 5f, transform.position.z);
         GameObject hit = Instantiate(hitOb, vec, transform.rotation);
         Destroy(hit, 1.5f);
     }

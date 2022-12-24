@@ -37,11 +37,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     AudioClip[] clip;           //오디오 클립
     public Image[] skillImage;         //스킬 이미지 
+    Sound speaker;          //사운드
     private void Awake()
     {
         DieCount = () => { BossCondition(); };
         Clear = () => { GameClear(); };
         audio = GetComponent<AudioSource>();
+        speaker = FindObjectOfType<Sound>();
     }
     public void GameStart()
     {
@@ -74,6 +76,7 @@ public class GameManager : MonoBehaviour
         monsterGroup.SetActive(false); 
         itemShop.SetActive(false);
         weaponShop.SetActive(false);
+        speaker.SoundByNum2(10);
     }
     //게임 클리어
     public void GameClear()
@@ -86,6 +89,7 @@ public class GameManager : MonoBehaviour
         monsterGroup.SetActive(false);
         itemShop.SetActive(false);
         weaponShop.SetActive(false);
+        speaker.SoundByNum2(14);
     }
     public void Restart()
     {
@@ -125,7 +129,6 @@ public class GameManager : MonoBehaviour
         diecount++;
         if(monsters.Length == diecount)
         {
-            print("일반 몬스터 전부 사망 보스 출현");
             bossob.SetActive(true);
             cinema.SetActive(true);
             BossBGM();
