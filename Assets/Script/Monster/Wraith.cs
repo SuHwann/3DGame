@@ -55,7 +55,7 @@ public class Wraith : MonsterAI
     {
         yield return new WaitForSeconds(2f);
         int randomAction = Random.Range(0, 3);
-        switch (0)
+        switch (randomAction)
         {
             case 0:
                 StartCoroutine(RushAttack());
@@ -67,7 +67,6 @@ public class Wraith : MonsterAI
                 StartCoroutine(WideSkill());
                 break;
         }
-        print("생각중");
     }
     //플레이어에게 돌진 근접 공격 시작
     IEnumerator RushAttack()
