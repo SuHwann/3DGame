@@ -35,6 +35,8 @@ public class MonsterAI : MonoBehaviour
     [SerializeField]
     float attackRidius;             //몬스터 공격거리
     Sound speaker;                  //사운드 변수
+    [SerializeField]
+    GameObject hitOb;               //히트 임펙트
     private void Awake()
     {
         VariableRest();
@@ -84,6 +86,7 @@ public class MonsterAI : MonoBehaviour
         //근거리 공격일때 
         if (other.tag == "Melee"&&!isDead)
         {
+            HitObject();
             Weapon weapon = other.GetComponent<Weapon>();
             curHealth -= weapon.damage;
             //넉백 위치 or 전달
@@ -93,6 +96,7 @@ public class MonsterAI : MonoBehaviour
         //원거리 공격일때 
         else if (other.tag == "Slash" && !isDead)
         {
+            HitObject();
             Slash slash = other.GetComponent<Slash>();
             curHealth -= slash.damage;
             //참격이 적과 닿았을때 삭제 되도록 
@@ -218,5 +222,12 @@ public class MonsterAI : MonoBehaviour
 
         Targerting();
         FreezeVelocity();
+    }
+    //Hit 오브젝트 생성
+    private void HitObject()
+    {
+        Vector3 vec = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        GameObject hit = Instantiate(hitOb, vec, transform.rotation);
+        Destroy(hit, 1.5f);
     }
 }
