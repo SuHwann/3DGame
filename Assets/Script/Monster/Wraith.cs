@@ -52,8 +52,8 @@ public class Wraith : MonsterAI
     IEnumerator Think()
     {
         yield return new WaitForSeconds(2f);
-        int randomAction = Random.Range(0, 3);
-        switch (0)
+        int randomAction = Random.Range(0, 2);
+        switch (randomAction)
         {
             case 0:
                 StartCoroutine(RushAttack());
@@ -95,6 +95,18 @@ public class Wraith : MonsterAI
     //원거리 공격 스킬 
     IEnumerator FarSkill()
     {
+        isLook = true;
+        agent.isStopped = false;
+        anim.SetTrigger("doFarSkill");
+        monsterCol.enabled = false;
+        yield return new WaitForSeconds(0.8f);
+        agent.isStopped = true;
+        GameObject instantSkill = Instantiate(skillOb, skillPoint.position, skillPoint.rotation);
+        yield return new WaitForSeconds(1f);
+        monsterCol.enabled = true;
+        isLook = false;
+        Destroy(instantSkill);
+        StartCoroutine(Think());
         yield return null;
     }
     //광역스킬
