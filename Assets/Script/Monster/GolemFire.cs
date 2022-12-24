@@ -55,7 +55,7 @@ public class GolemFire : MonsterAI
     //랜덤한 공격
     IEnumerator Think()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         int randomAction = Random.Range(0, 3);
         switch (randomAction)
         {
@@ -76,8 +76,8 @@ public class GolemFire : MonsterAI
         tautVec = player.position + lookVec;//돌진공격을 할 위치 변수 저장*/
         isLook = false;
         agent.isStopped = false;
-        anim.SetTrigger("isPunch");
         monsterCol.enabled = false;
+        anim.SetTrigger("isPunch");
         yield return new WaitForSeconds(3f);
         agent.isStopped = true;
         isLook = true;
@@ -95,8 +95,8 @@ public class GolemFire : MonsterAI
     IEnumerator Skill()
     {
         count = 0;
-        anim.SetTrigger("isShot");
         monsterCol.enabled = false;
+        anim.SetTrigger("isShot");
         yield return new WaitForSeconds(1f);
         for (int i = 0; i < 3; i++)
         {
@@ -121,8 +121,8 @@ public class GolemFire : MonsterAI
     IEnumerator WideSkill()
     {
         isLook = false;
-        anim.SetTrigger("isCastSpell");
         monsterCol.enabled = false;
+        anim.SetTrigger("isCastSpell");
         GameObject instantSkillB = Instantiate(impactWave, impactWavePosition.position, impactWavePosition.rotation);
         yield return new WaitForSeconds(1.8f);
         instantSkillB.transform.GetComponent<SphereCollider>().enabled = true;

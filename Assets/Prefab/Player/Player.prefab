@@ -4621,7 +4621,7 @@ MonoBehaviour:
   meleeArea: {fileID: 1917807328}
   swapEffect: {fileID: 2790929077297472037}
   slashPos: {fileID: 940911224}
-  slash: {fileID: 0}
+  slash: {fileID: 8913747163088512361, guid: 9fc59cca4e594cc4e838b9f0ed5b41ec, type: 3}
   skillPoint: {fileID: 0}
   ChargingOb: {fileID: 0}
   particle: {fileID: 0}

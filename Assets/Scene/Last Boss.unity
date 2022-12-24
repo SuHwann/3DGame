@@ -49920,7 +49920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 69218832, guid: bc0c3253428f12d47bd333ec53ccc4f6, type: 3}
       propertyPath: m_Speed
-      value: 100
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 69218832, guid: bc0c3253428f12d47bd333ec53ccc4f6, type: 3}
       propertyPath: m_Enabled
@@ -49928,7 +49928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 69218832, guid: bc0c3253428f12d47bd333ec53ccc4f6, type: 3}
       propertyPath: m_AngularSpeed
-      value: 480
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 298581418619186433, guid: bc0c3253428f12d47bd333ec53ccc4f6, type: 3}
       propertyPath: m_Layer
@@ -50284,7 +50284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3506682244022680862, guid: bc0c3253428f12d47bd333ec53ccc4f6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3769591593887612097, guid: bc0c3253428f12d47bd333ec53ccc4f6, type: 3}
       propertyPath: m_LocalScale.x

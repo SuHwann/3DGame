@@ -106,7 +106,7 @@ public class MonsterAI : MonoBehaviour
     IEnumerator OnDamage(Vector3 reactVec)
     {
         anim.SetTrigger("doDamage");
-        speaker.SoundByNum2(11);
+        if (enemyType != Type.D) { speaker.SoundByNum2(11); } else speaker.SoundByNum2(12);
         foreach (SkinnedMeshRenderer mesh in meshs)
         { mesh.material.color = Color.red;}
         yield return new WaitForSeconds(0.1f);
@@ -121,8 +121,8 @@ public class MonsterAI : MonoBehaviour
         {
             anim.SetBool("isAttack", false);
             isDead = true;
-            if (enemyType != Type.D) { StopAllCoroutines(); }
-             speaker.SoundByNum2(4);
+            if (enemyType != Type.D) { StopAllCoroutines(); speaker.SoundByNum2(4); }
+            else speaker.SoundByNum2(13);
             monsterCol.enabled = false;
             foreach (SkinnedMeshRenderer mesh in meshs)
             { mesh.material.color = Color.gray; }
@@ -137,7 +137,7 @@ public class MonsterAI : MonoBehaviour
                 Instantiate(dropItem[ranItem], itemVec, Quaternion.identity);
             }
             //보스가 아닐땐 3초뒤에 오브젝트 삭제
-            if(enemyType != Type.D){ Destroy(gameObject, 3f); };
+            if(enemyType != Type.D){ Destroy(gameObject, 1.5f); };
             GameManager.DieCount();
 
         }
