@@ -55,7 +55,7 @@ public class GolemEarth : MonsterAI
     //ทฃดýวั ฐ๘ฐÝ
     IEnumerator Think()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         int randomAction = Random.Range(0, 3);
         switch (randomAction)
         {
