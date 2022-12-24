@@ -7,9 +7,9 @@ public class Wraith : MonsterAI
     #region 변수
     bool isLook; //플레이어를 바라볼지 판단
     [SerializeField]
-    Transform skillPoint; //스킬생성 위치
+    Transform skillPoint,wideSkilPoint; //스킬생성 위치
     [SerializeField]
-    GameObject skillOb;   //스킬 오브젝트
+    GameObject skillOb , wideSkillOb;   //스킬 오브젝트
     [SerializeField]
     RectTransform bossHealthGroup, bossHealthBar; //보스 체력 UI
     Vector3 lookVec; //플레이어 방향 미리 예상 벡터
@@ -33,7 +33,9 @@ public class Wraith : MonsterAI
         {
             if (isDead)
             {
+                isLook = true;
                 manager.bossText.text = "x 1";
+                GameManager.Clear();
                 StopAllCoroutines();
             }
             //Input입력값을 받아와서 방향을 1f 미리 예상한다
@@ -52,7 +54,7 @@ public class Wraith : MonsterAI
     IEnumerator Think()
     {
         yield return new WaitForSeconds(2f);
-        int randomAction = Random.Range(0, 2);
+        int randomAction = Random.Range(0, 3);
         switch (randomAction)
         {
             case 0:
@@ -71,7 +73,7 @@ public class Wraith : MonsterAI
     IEnumerator RushAttack()
     {
         float targetRadius = 10f;
-        float targetRange = 33f;
+        float targetRange = 25f;
         isLook = false;
         agent.isStopped = false;
         while (true)
@@ -100,11 +102,9 @@ public class Wraith : MonsterAI
         anim.SetTrigger("doFarSkill");
         monsterCol.enabled = false;
         yield return new WaitForSeconds(0.8f);
-        agent.isStopped = true;
         GameObject instantSkill = Instantiate(skillOb, skillPoint.position, skillPoint.rotation);
         yield return new WaitForSeconds(1f);
         monsterCol.enabled = true;
-        isLook = false;
         Destroy(instantSkill);
         StartCoroutine(Think());
         yield return null;
@@ -112,6 +112,17 @@ public class Wraith : MonsterAI
     //광역스킬
     IEnumerator WideSkill()
     {
+        isLook = false;
+        agent.isStopped = true;
+        monsterCol.enabled = false;
+        anim.SetTrigger("doWideSkill");
+        yield return new WaitForSeconds(1f);
+        GameObject instantSkill = Instantiate(wideSkillOb, wideSkilPoint.position, wideSkilPoint.rotation);
+        yield return new WaitForSeconds(1f);
+        monsterCol.enabled = true;
+        Destroy(instantSkill);
+        isLook = true;
+        StartCoroutine(Think());
         yield return null;
     }
     //몬스터 체력 UI 
@@ -120,7 +131,10 @@ public class Wraith : MonsterAI
         while (true)
         {
             bossHealthBar.localScale = new Vector3((float)curHealth / maxHealth, 1, 1);
-            if (curHealth < 0) { bossHealthBar.localScale = Vector3.zero; };
+            if (curHealth < 0) 
+            { 
+                bossHealthBar.localScale = Vector3.zero;
+            };
             yield return null;
         }
     }

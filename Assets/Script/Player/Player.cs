@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
     float fireDelay;
     //플레이어 죽음 bool 처리 변수 
     bool isDead;
+    //플레이어 게임 클리어 판단
+    public bool isClear;
     //NPC와 대화 중일경이 이동 통제 
     bool isTalk;
     //캐릭터 이동 속도
@@ -128,7 +130,7 @@ public class Player : MonoBehaviour
         anim.SetBool("isRun", isMove);
         anim.SetBool("isWalk", wRun); //walk 다운
 
-        if (isSwap || !isFireReady || fDown || isDead || isSkill)
+        if (isSwap || !isFireReady || fDown || isDead || isSkill || isClear)
         {
             moveDir = Vector3.zero;
         }
@@ -140,7 +142,7 @@ public class Player : MonoBehaviour
     }
     protected void Jump()
     {
-        if(jDown && !isJump && !isSwap && !isShop && !isDead && !isTalk)
+        if(jDown && !isJump && !isSwap && !isShop && !isDead && !isTalk &&!isClear)
         {
             rigid.AddForce(Vector3.up * 15 , ForceMode.Impulse); // 즉발적인 Impulse로 한다.
             anim.SetBool("isJump", true); // 점프가 발동되면 isjump true
@@ -370,7 +372,7 @@ public class Player : MonoBehaviour
         fireDelay += Time.deltaTime;
         isFireReady = equipWeapon.rate < fireDelay;
 
-        if(fDown && isFireReady && !isSwap && !isShop &&!isDead && !isTalk)
+        if(fDown && isFireReady && !isSwap && !isShop &&!isDead && !isTalk && !isClear)
         {
             equipWeapon.Use();
             anim.SetTrigger("doSwing" ) ;

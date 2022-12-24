@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     GameObject monsterGroup; //몬스터 그룹
     [SerializeField]
     GameObject[] monsters; //일반 몬스터 배열
-    public GameObject menuPanel,gamePanel,overPanel;
+    public GameObject menuPanel,gamePanel,overPanel,clearPanel;
     public Text stageTxt,playTimeTxt,playerHealthTxt,playerAmmoTxt,playerCoinTxt, bossText;
     public RectTransform bossHealthGroup,bossHealthBar;
     [SerializeField]
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject weaponShop;   //무기 샵
     public static Action DieCount; //일반 몬스터 사망시 이벤트 함수
+    public static Action Clear;    //게임클리어시 발생 이벤트
     private int diecount =0;   //일반 몬스터 사망 갯수 카운트
     AudioSource audio;          //사운드
     [SerializeField]
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         DieCount = () => { BossCondition(); };
+        Clear = () => { GameClear(); };
         audio = GetComponent<AudioSource>();
     }
     public void GameStart()
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
         itemShop.SetActive(true);
         weaponShop.SetActive(true);
     }
+
     private void Update()
     {
         if(isBattle)
@@ -62,13 +65,27 @@ public class GameManager : MonoBehaviour
             playTime += Time.deltaTime; //배틀 시작 순간부터 시간 계산.
         }
     }
+    //게임오버
     public void GameOver()
     {
         gamePanel.SetActive(false);
         overPanel.SetActive(true);
         isBattle = false;
         monsterGroup.SetActive(false); 
-        itemShop.SetActive(false);  
+        itemShop.SetActive(false);
+        weaponShop.SetActive(false);
+    }
+    //게임 클리어
+    public void GameClear()
+    {
+        gamePanel.SetActive(false);
+        clearPanel.SetActive(true);
+        isBattle = false;
+        player.isClear = true;
+        player.anim.SetTrigger("doVictory");
+        monsterGroup.SetActive(false);
+        itemShop.SetActive(false);
+        weaponShop.SetActive(false);
     }
     public void Restart()
     {
