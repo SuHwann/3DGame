@@ -26,7 +26,7 @@ public class CameraMovement : MonoBehaviour
     {
         while (true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, objectTofollow.position, followSpeed * Time.deltaTime); //플레이어 이동 
+            transform.position = Vector3.MoveTowards(transform.position, objectTofollow.position, followSpeed * Time.deltaTime);
             finalDir = transform.TransformPoint(dirNoramlized * maxDistance);
             RaycastHit hit;
             if (Physics.Linecast(transform.position, finalDir, out hit))

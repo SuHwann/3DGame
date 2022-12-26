@@ -5,6 +5,7 @@ using UnityEngine;
 using System;
 public class Player : MonoBehaviour
 {
+    #region 변수
     [SerializeField]
     private Transform cameraArm;        //플레이어를 따라다닐 카메라
     //Input Axis  값을 받을 전역변수 선언
@@ -79,6 +80,8 @@ public class Player : MonoBehaviour
     public bool[] jewel; //보석 아이템을 가지고있는지 판단
     Sound speaker; //스피커
     public bool isSkill; //스킬 사용중일때 데미지 방지
+    #endregion
+    #region 함수
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
@@ -108,13 +111,12 @@ public class Player : MonoBehaviour
     //플레이어 입력기능
     protected void GetInput()
     {
-        //Axis 값을 정수로 반환하는 함수
         hAxis = Input.GetAxisRaw("Horizontal"); 
         vAxis = Input.GetAxisRaw("Vertical");
         wRun = Input.GetButton("Run");
         jDown = Input.GetButtonDown("Jump");
         iDown = Input.GetButtonDown("Interation");
-        fDown = Input.GetButton("Fire1");                //꾹 눌러도 자동으로 나감 
+        fDown = Input.GetButton("Fire1");             
         sDown1 = Input.GetButtonDown("Swap1");
         sDown2 = Input.GetButtonDown("Swap2");
         sDown3 = Input.GetButtonDown("Swap3");
@@ -122,22 +124,26 @@ public class Player : MonoBehaviour
     //Player 이동 기능 
     protected void Move()
     {   
+        //플레이어 vec
         Vector2 moveInput = new Vector2(hAxis, vAxis);
+        //카메라 vec
         Vector3 lookForward = new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized;
         Vector3 lookRIght = new Vector3(cameraArm.right.x, 0f, cameraArm.right.z).normalized;
+        //최종 vec
         Vector3 moveDir = lookForward * moveInput.y + lookRIght * moveInput.x;
         bool isMove = moveInput.magnitude != 0;
         anim.SetBool("isRun", isMove);
         anim.SetBool("isWalk", wRun); //walk 다운
-
+        //플레이어 정지 상황
         if (isSwap || !isFireReady || fDown || isDead || isSkill || isClear)
         {
             moveDir = Vector3.zero;
         }
+        //플레이어 대쉬
         if (!isDead && moveDir != Vector3.zero)
         {
             transform.forward = moveDir;
-            if (!isBorder){transform.position += moveDir * speed * (wRun ? 1.5f : 1f) * Time.deltaTime;};//Time.deltaTime 으로 이동속도 조절
+            if (!isBorder) { transform.position += moveDir * speed * (wRun ? 1.5f : 1f) * Time.deltaTime; };
         }
     }
     protected void Jump()
@@ -421,4 +427,5 @@ public class Player : MonoBehaviour
                 break;
         }
     }
+    #endregion
 }
