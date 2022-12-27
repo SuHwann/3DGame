@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    #region 변수
     [SerializeField]
     private Transform objectTofollow;   //카메라가 바라볼 플레이어 중심
     [SerializeField]
@@ -15,6 +16,8 @@ public class CameraMovement : MonoBehaviour
     public float maxDistance;           //플레이어와의 최대 거리
     public float finalDistance;         //최종 거리     
     public float smoothness = 10f;      //따라다닐 속도를 얼마나 부드럽게 해줄것인가
+    #endregion
+    #region 함수
     private void Start()
     {
         dirNoramlized = realCamera.localPosition.normalized;    //정규화
@@ -26,7 +29,9 @@ public class CameraMovement : MonoBehaviour
     {
         while (true)
         {
+            //objectTofollow 오브젝트를 추적
             transform.position = Vector3.MoveTowards(transform.position, objectTofollow.position, followSpeed * Time.deltaTime);
+            //거리 유지 Ray값
             finalDir = transform.TransformPoint(dirNoramlized * maxDistance);
             RaycastHit hit;
             if (Physics.Linecast(transform.position, finalDir, out hit))
@@ -34,8 +39,10 @@ public class CameraMovement : MonoBehaviour
                 finalDistance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
             }
             else { finalDistance = maxDistance; }
+            //최종 카메라 오브젝트 위치계산
             realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNoramlized * finalDistance, Time.deltaTime * smoothness);
             yield return null;
         }
     }
+    #endregion
 }

@@ -5,7 +5,7 @@ using UnityEditorInternal;
 using UnityEngine;
 public class Weapon : MonoBehaviour
 {
-
+    #region 변수
     //무기타입 
     public enum Type { Melee, Blue ,Green , Red}
     //무기옵션 변수
@@ -27,6 +27,8 @@ public class Weapon : MonoBehaviour
     GameObject ChargingOb; //스킬오브젝트
     [SerializeField]
     GameObject particle;   //스킬오브젝트
+    #endregion
+    #region 함수
     private void Awake()
     {
         player = FindObjectOfType<Player>();
@@ -67,6 +69,7 @@ public class Weapon : MonoBehaviour
                 case Type.Blue:
                     if (Input.GetKeyDown(KeyCode.Alpha3) && player.weaponSwap[2])
                     {
+                        //Blue 스킬
                         swapEffect.SetActive(false);
                         player.anim.SetTrigger("doSwing");
                         speaker.SoundByNum2(7);
@@ -127,4 +130,5 @@ public class Weapon : MonoBehaviour
         Destroy(instantLightning, 1f);
         Destroy(instantParticle, 1f);
     }
+    #endregion
 }
