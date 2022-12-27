@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject[] monsters; //일반 몬스터 배열
     public GameObject menuPanel,gamePanel,overPanel,clearPanel;
-    public Text stageTxt,playTimeTxt,playerHealthTxt,playerAmmoTxt,playerCoinTxt, bossText;
+    public Text stageTxt,playTimeTxt,playerHealthTxt,playerAmmoTxt,playerCoinTxt,playerAttackTxt, bossText;
     public RectTransform bossHealthGroup,bossHealthBar;
     [SerializeField]
     GameObject itemShop;     //아이템 샵
@@ -91,9 +92,14 @@ public class GameManager : MonoBehaviour
         weaponShop.SetActive(false);
         speaker.SoundByNum2(14);
     }
+    //플레이어 스텟 초기화
     public void Restart()
     {
         SceneManager.LoadScene(0);
+        Player.ammo = 300;
+        Player.coin = 9000;
+        Player.health = 1000;
+        Player.attack = 100;
     }
     private void LateUpdate()
     {
@@ -106,14 +112,15 @@ public class GameManager : MonoBehaviour
         //Player 플레이 시간
         playTimeTxt.text = string.Format("{0:00}", hour) +":"+ string.Format("{0:00}",min) + ":" + string.Format("{0:00}", second);
         //Player UI
-        playerHealthTxt.text = player.health + " / " + player.maxHealth;
-        playerCoinTxt.text = string.Format("{0:n0}",player.coin);
+        playerHealthTxt.text = Player.health + " / " + player.maxHealth;
+        playerCoinTxt.text = string.Format("{0:n0}", Player.coin);
+        playerAttackTxt.text = "" + Player.attack;
         if(player.equipWeapon == null)
-        {playerAmmoTxt.text = "" + player.ammo;}
+        {playerAmmoTxt.text = "" + Player.ammo;}
         else if(player.equipWeapon.type == Weapon.Type.Melee)
-        playerAmmoTxt.text = "" + player.ammo;
+        playerAmmoTxt.text = "" + Player.ammo;
         else
-            playerAmmoTxt.text = ""+ player.ammo;
+            playerAmmoTxt.text = ""+ Player.ammo;
         //보스가 나오면 보스 UI출현
         if(bossob.activeSelf)
         {

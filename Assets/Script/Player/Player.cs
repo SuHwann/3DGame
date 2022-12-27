@@ -6,6 +6,7 @@ using System;
 public class Player : MonoBehaviour
 {
     #region 변수
+    public static Player instance;
     [SerializeField]
     private Transform cameraArm;        //플레이어를 따라다닐 카메라
     //Input Axis  값을 받을 전역변수 선언
@@ -64,10 +65,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     SkinnedMeshRenderer skinnMesh;
     //player 능력치
-    public int ammo;
-    public int coin;
-    public int health;
-    public int attack;
+    public static int ammo = 300;
+    public static int coin = 9000;
+    public static int health = 1000;
+    public static int attack = 100;
     [SerializeField]
     private int maxAmmo;
     [SerializeField]
@@ -84,6 +85,7 @@ public class Player : MonoBehaviour
     #region 함수
     private void Awake()
     {
+        instance = this; 
         rigid = GetComponent<Rigidbody>();//자기 자신의 rigid를 가져온다
         anim = GetComponentInChildren<Animator>(); //Animaltor 변수를 GetCommponentChildren()으로 초기화
         meshs = GetComponentsInChildren<MeshRenderer>(); //player 메쉬 초기화 

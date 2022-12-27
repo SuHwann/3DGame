@@ -34,25 +34,25 @@ public class Shop : MonoBehaviour
     public void Buy(int index)               //구입 기능
     {
         int price = itemPrice[index];
-        if(price > enterPlayer.coin)    //만약에 돈이없다면
+        if(price > Player.coin)    //만약에 돈이없다면
         {
             StopCoroutine(Talk());
             StartCoroutine(Talk());
             speaker.SoundByNum2(10);
             return;
         }
-        enterPlayer.coin -= price;
+        Player.coin -= price;
         switch (index)
         { 
             case 0:
-                enterPlayer.health += health;
+                Player.health += health; //체력 증가
                 break;
             case 1:
-                enterPlayer.attack += attack;
+                Player.attack += attack; //공격력 증가
                 Weapon.Damage(attack); //Weapon 함수의 Damage 함수를 실행시켜서 데미지를 증가 시킨다.
                 break;
             case 2:
-                enterPlayer.ammo += ammo;
+                Player.ammo += ammo; //방어력 증가
                 break;
         }
         speaker.SoundByNum2(1);
