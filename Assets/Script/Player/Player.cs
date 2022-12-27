@@ -325,7 +325,7 @@ public class Player : MonoBehaviour
             Invoke("SwapOut", 0.4f);
         }
     }
-    //무기 입수
+    //shop,npc,weapon UI띄우기
     void Interation()
     {
         //E(iDown)를 활성화 되고 nearObject 가 null이 아니고 점프와 Run이 아닐때 

@@ -10,8 +10,6 @@ public class Sound : MonoBehaviour
     [SerializeField]
     AudioClip[] clips;
     #endregion
-
-
     #region ÇÔ¼ö
     private void Start()
     {

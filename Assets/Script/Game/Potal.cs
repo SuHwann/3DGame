@@ -23,7 +23,6 @@ public class Potal : MonoBehaviour
             other.gameObject.transform.position = teleport.position;
             StartCoroutine(LastBossCinema());
         }
-
     }
     IEnumerator LastBossCinema()
     {
