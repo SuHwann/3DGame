@@ -48,7 +48,11 @@ public class GolemFire : MonsterAI
                 lookVec = new Vector3(h, 0, v) * 1f; //플레이어 입력값으로 예측 벡터값 생성
                 transform.LookAt(player.position + lookVec); //플레이어를 바라봄
             }
-            if(!isLook || !isDead) { agent.SetDestination(tautVec); }
+            if(!isLook || !isDead) { agent.SetDestination(player.position); }
+            if(Vector3.Distance(transform.position,player.position) < 25f)
+            {
+                agent.isStopped = true;
+            }
             yield return null;
         }
     }
@@ -73,7 +77,6 @@ public class GolemFire : MonsterAI
     //플레이어에게 돌진 근접공격 시작
     IEnumerator RushAttack()
     {
-        tautVec = player.position + lookVec;//돌진공격을 할 위치 변수 저장*/
         isLook = false;
         agent.isStopped = false;
         monsterCol.enabled = false;

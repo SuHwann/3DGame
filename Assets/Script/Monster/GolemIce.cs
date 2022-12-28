@@ -50,6 +50,10 @@ public class GolemIce : MonsterAI
                 transform.LookAt(player.position + lookVec); //플레이어를 바라봄
             }
             if(!isDead || !isLook) { agent.SetDestination(tautVec); }
+            if (Vector3.Distance(transform.position, player.position) < 25f)
+            {
+                agent.isStopped = true;
+            }
             yield return null;
         }
     }
