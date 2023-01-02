@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Slash">
+    <Position X="13.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Attack\Slash.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraMovement">
+    <Position X="16" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAACABACAAgAgAAAAAAAAAAQCIAAAEAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Camera\CameraMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CinemaOnOff" Collapsed="true">
+    <Position X="20.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAQAAAgAAAAAAAAQAAAAAAAAAAAAAACAAAAAAAFA=</HashCode>
+      <FileName>Assets\Script\Game\CinemaOnOff.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="22" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>lAQQgRIAQMACCAgQAAAAOAAJEAACCIAhAgEoAQdgAEI=</HashCode>
+      <FileName>Assets\Script\Game\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Potal" Collapsed="true">
+    <Position X="22" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAQAAAAAAAAAAAAAAAAAAABAAACAEQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Game\Potal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sound" Collapsed="true">
+    <Position X="20.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAAQAAAAAQAAAAAAAAEACAAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Script\Game\Sound.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Item" Collapsed="true">
+    <Position X="23.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAABBACAIAAAAAAAAAEE=</HashCode>
+      <FileName>Assets\Script\Itme\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GolemEarth" Collapsed="true">
+    <Position X="11.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAQARCgACCACAAAAYAAAAgEAAAJAQAAAAABIAQgAAA=</HashCode>
+      <FileName>Assets\Script\Monster\GolemEarth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GolemFire" Collapsed="true">
+    <Position X="13.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAQARCAACCACAAABYAAAAgEAAAJAAAAAAABIAQkAAA=</HashCode>
+      <FileName>Assets\Script\Monster\GolemFire.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GolemIce" Collapsed="true">
+    <Position X="16" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAQARCAACCACAAAAYAAAAgEAAAJAQAAAAABIAQgAAA=</HashCode>
+      <FileName>Assets\Script\Monster\GolemIce.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MonsterAI" Collapsed="true">
+    <Position X="12.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAEAAAAJEoAAAQBAAAAACBAAANFAIAAFQQQIiIQgBEA=</HashCode>
+      <FileName>Assets\Script\Monster\MonsterAI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Wraith" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAQBQAAACAACAAAAAAgAIwEAAAJAAAAAAABIAQgAAA=</HashCode>
+      <FileName>Assets\Script\Monster\Wraith.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NPCTalk">
+    <Position X="11.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAIhEAAAIIEAAEAAIAAA=</HashCode>
+      <FileName>Assets\Script\NPC\NPCTalk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player" Collapsed="true">
+    <Position X="8.25" Y="6" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>wSLCgAUKIsAAABCEMnAAHAAEAJRJUYCIwYACGAggAEg=</HashCode>
+      <FileName>Assets\Script\Player\Player.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CameraMovement" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Weapon" Collapsed="true">
+    <Position X="22" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAUCAQBAAgAgAAAgACIAAAAAFAAABAAAAkgCADMA=</HashCode>
+      <FileName>Assets\Script\Weapon\Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shop" Collapsed="true">
+    <Position X="23.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIEAAIAAAAAAAAAAAAACAAAAIAEAACAIEAAAAAkCEg=</HashCode>
+      <FileName>Assets\Script\Zon\Shop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WeaponShop" Collapsed="true">
+    <Position X="23.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEBAAACAAAAIAEAAAAIEAAAAAECEA=</HashCode>
+      <FileName>Assets\Script\Zon\WeaponShop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>
