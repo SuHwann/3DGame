@@ -148,7 +148,7 @@ public class Player : MonoBehaviour
             if (!isBorder) { transform.position += moveDir * speed * (wRun ? 1.5f : 1f) * Time.deltaTime; };
         }
     }
-    protected void Jump()
+    protected void Jump() //player 점프 기능
     {
         if(jDown && !isJump && !isSwap && !isShop && !isDead && !isTalk &&!isClear)
         {

@@ -21,6 +21,7 @@ public class GolemFire : MonsterAI
     [SerializeField]
     GameObject cinema; //시네마씬
     GameManager manager; //게임메니저
+
     private void Start()
     {
         manager = FindObjectOfType<GameManager>();
@@ -35,24 +36,25 @@ public class GolemFire : MonsterAI
     {
         while (true)
         {
-            if (isDead)
+            if(isDead)
             {
                 manager.bossText.text = "x 1";
+                anim.SetTrigger("doDie");
                 StopAllCoroutines();
                 yield break;
             }
-            if (isLook)
+            if(isLook)
             {
                 float h = Input.GetAxisRaw("Horizontal");
                 float v = Input.GetAxisRaw("Vertical");
                 lookVec = new Vector3(h, 0, v) * 1f; //플레이어 입력값으로 예측 벡터값 생성
                 transform.LookAt(player.position + lookVec); //플레이어를 바라봄
             }
-            if(!isLook || !isDead) { agent.SetDestination(player.position); }
             if(Vector3.Distance(transform.position,player.position) < 25f)
             {
                 agent.isStopped = true;
             }
+            else { agent.SetDestination(player.position); }
             yield return null;
         }
     }

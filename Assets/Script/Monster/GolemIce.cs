@@ -39,6 +39,7 @@ public class GolemIce : MonsterAI
             if (isDead)
             {
                 manager.bossText.text = "x 1";
+                anim.SetTrigger("doDie");
                 StopAllCoroutines();
                 yield break;
             }
@@ -49,11 +50,11 @@ public class GolemIce : MonsterAI
                 lookVec = new Vector3(h, 0, v) * 1f; //플레이어 입력값으로 예측 벡터값 생성
                 transform.LookAt(player.position + lookVec); //플레이어를 바라봄
             }
-            if(!isDead || !isLook) { agent.SetDestination(tautVec); }
             if (Vector3.Distance(transform.position, player.position) < 25f)
             {
                 agent.isStopped = true;
             }
+            else { agent.SetDestination(tautVec); }
             yield return null;
         }
     }

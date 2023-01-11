@@ -38,6 +38,7 @@ public class GolemEarth : MonsterAI
             if (isDead)
             {
                 manager.bossText.text = "x 1";
+                anim.SetTrigger("doDie");
                 StopAllCoroutines();
             }
             //Input입력값을 받아와서 방향을 1f 미리 예상한다
@@ -48,7 +49,7 @@ public class GolemEarth : MonsterAI
                 lookVec = new Vector3(h, 0, v) * 1f; //플레이어 입력값으로 예측 벡터값 생성
                 transform.LookAt(player.position + lookVec); //플레이어를 바라봄
             }
-            if(!isLook || !isDead) { agent.SetDestination(tautVec); }
+            else { agent.SetDestination(tautVec); }
             yield return null;
         }
     }
