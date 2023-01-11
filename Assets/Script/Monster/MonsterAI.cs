@@ -81,7 +81,7 @@ public class MonsterAI : MonoBehaviour
             randomInt = Random.Range(0, movePoint.Length);
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //공격 범위안에 들어왔을때 
     {
         //근거리 공격일때 
         if (other.tag == "Melee"&&!isDead)
@@ -143,7 +143,6 @@ public class MonsterAI : MonoBehaviour
             //보스가 아닐땐 3초뒤에 오브젝트 삭제
             if(enemyType != Type.D){ Destroy(gameObject, 1.5f); };
             GameManager.DieCount();
-
         }
     }
     //Player에게 Ray를 쏜다
@@ -169,7 +168,6 @@ public class MonsterAI : MonoBehaviour
                     targetRange = 30f;
                     break;
             }
-
             RaycastHit[] rayHits =
                  Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange,
                  LayerMask.GetMask("Player"));
@@ -219,7 +217,6 @@ public class MonsterAI : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
         Targerting();
         FreezeVelocity();
     }
