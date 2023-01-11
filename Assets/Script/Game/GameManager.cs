@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
     [SerializeField]
     GameObject menuCam, gameCam; //게임 카메라
     [SerializeField]
@@ -41,6 +41,15 @@ public class GameManager : MonoBehaviour
     Sound speaker;          //사운드
     private void Awake()
     {
+        if(Instance == null)
+        {
+            Instance= this;
+        }
+        else if( Instance != this)
+        {
+            Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
+        }
         DieCount = () => { BossCondition(); };
         Clear = () => { GameClear(); };
         audio = GetComponent<AudioSource>();
