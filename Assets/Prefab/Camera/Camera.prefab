@@ -45,13 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d56064d00325bc489bb9212be74de53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectTofollow: {fileID: 0}
-  realCamera: {fileID: 593843958095950343}
-  followSpeed: 100
-  minDistance: 8
-  maxDistance: 10
-  finalDistance: 0
-  smoothness: 10
+  player: {fileID: 0}
+  offset: {x: 0, y: 2, z: 0}
+  smoothTime: 0.3
 --- !u!1 &593843958095950340
 GameObject:
   m_ObjectHideFlags: 0

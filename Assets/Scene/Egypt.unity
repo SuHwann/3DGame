@@ -5279,6 +5279,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1907442435, guid: 9011eab7755f53244b286edf68be1c00, type: 3}
+      propertyPath: smoothTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907442435, guid: 9011eab7755f53244b286edf68be1c00, type: 3}
       propertyPath: objectTofollow
       value: 
       objectReference: {fileID: 263496489}

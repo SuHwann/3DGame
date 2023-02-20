@@ -921,6 +921,7 @@ MonoBehaviour:
   - {fileID: 1807571972017418, guid: 6b5c47cc7c7add94c9dfbe5b9001a714, type: 3}
   - {fileID: 1392136713040706, guid: e22f6d9f81e05354fa2d47fd82b4ab4e, type: 3}
   attackRidius: 3
+  hitOb: {fileID: 1269060166065924, guid: 1810168468ffe7b4db7f3c67e0743de4, type: 3}
 --- !u!1 &7820040420870067548
 GameObject:
   m_ObjectHideFlags: 0

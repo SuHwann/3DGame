@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slash : MonoBehaviour
+public class Attack : MonoBehaviour
 {
     [SerializeField]
     public int damage; //µ¥¹ÌÁö

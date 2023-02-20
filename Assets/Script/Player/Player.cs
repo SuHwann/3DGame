@@ -103,7 +103,6 @@ public class Player : MonoBehaviour
             Attack();
             GetInput();
             Move();
-            LookAround();
             Jump();
             Interation();
             Swap();
@@ -125,7 +124,7 @@ public class Player : MonoBehaviour
     }
     //Player 이동 기능 
     protected void Move()
-    {   
+    {
         //플레이어 vec
         Vector2 moveInput = new Vector2(hAxis, vAxis);
         //카메라 vec
@@ -220,12 +219,12 @@ public class Player : MonoBehaviour
         {
             switch (other.tag)
             {
-                //Slash 스크립트 재활용하여 데미지 적용 
+                //Attack 스크립트 재활용하여 데미지 적용 
                 case "EnemyFar":
                     {
                         if (!isDamage)
                         {
-                            Slash enemySlash = other.GetComponent<Slash>();
+                            Attack enemySlash = other.GetComponent<Attack>();
                             health -= enemySlash.damage;
                             bool isBoosAtk = other.name == "EnemyFar";
                             StartCoroutine(OnDamage(isBoosAtk));
@@ -386,26 +385,6 @@ public class Player : MonoBehaviour
             anim.SetTrigger("doSwing" ) ;
             fireDelay = 0;
             speaker.SoundByNum2(5);
-        }
-    }
-    //Camera회전 기능
-    private void LookAround()
-    {
-        if(Input.GetMouseButton(1)) //우클릭시만
-        {
-            Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")); //마우스 위아래 수치를 vector2로 mouseDelta에 저장한다.
-            Vector3 camAngle = cameraArm.rotation.eulerAngles; //카메라 position을 값을 Euler값으로 변환해 둔다.
-            float x = camAngle.x - mouseDelta.y;
-            //각도 제한
-            if (x < 180f)
-            {
-                x = Mathf.Clamp(x, -1f, 70f);
-            }
-            else
-            {
-                x = Mathf.Clamp(x, 355f, 361f);
-            }
-            cameraArm.rotation = Quaternion.Euler(x, camAngle.y + mouseDelta.x, camAngle.z);//camAngle의 새로운값을 cameraArm.rotation에 넣어준다.
         }
     }
     //벽 통과 방지

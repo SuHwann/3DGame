@@ -97,7 +97,7 @@ public class MonsterAI : MonoBehaviour
         else if (other.tag == "Slash" && !isDead)
         {
             HitObject();
-            Slash slash = other.GetComponent<Slash>();
+            Attack slash = other.GetComponent<Attack>();
             curHealth -= slash.damage;
             //참격이 적과 닿았을때 삭제 되도록 
             Destroy(other.gameObject,1f);

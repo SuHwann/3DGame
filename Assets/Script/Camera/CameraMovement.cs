@@ -4,45 +4,36 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    #region 변수
-    [SerializeField]
-    private Transform objectTofollow;   //카메라가 바라볼 플레이어 중심
-    [SerializeField]
-    Transform realCamera;               //mainCamera
-    public float followSpeed = 10f;     //카메라가 따라다닐 속도 
-    private Vector3 dirNoramlized;
-    private Vector3 finalDir;           //최종 거리 
-    public float minDistance;           //플레이어와의 최소 거리
-    public float maxDistance;           //플레이어와의 최대 거리
-    public float finalDistance;         //최종 거리     
-    public float smoothness = 10f;      //따라다닐 속도를 얼마나 부드럽게 해줄것인가
-    #endregion
-    #region 함수
+    public Transform player; // 카메라가 따라갈 대상
+    public Vector3 offset; // 카메라와 대상 사이의 거리
+
+    public float smoothTime = 0.3f; // 카메라의 부드러운 이동을 제어하는 값
+    private Vector3 velocity = Vector3.zero; // 부드러운 이동 계산에 사용되는 변수
     private void Start()
     {
-        dirNoramlized = realCamera.localPosition.normalized;    //정규화
-        finalDistance = realCamera.localPosition.magnitude;     //거리초기화
-        StartCoroutine(CameraMove());
+        player = FindObjectOfType<Player>().transform;
     }
-    //플레이어를 목표로 카메라가 따라다님
-    IEnumerator CameraMove()
+    private void LateUpdate()
     {
-        while (true)
+        // 카메라의 위치를 플레이어의 위치와 offset을 더한 값으로 설정합니다.
+        Vector3 targetPosition = player.position + offset;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+
+        if (Input.GetMouseButton(1)) //우클릭시만
         {
-            //objectTofollow 오브젝트를 추적
-            transform.position = Vector3.MoveTowards(transform.position, objectTofollow.position, followSpeed * Time.deltaTime);
-            //거리 유지 Ray값
-            finalDir = transform.TransformPoint(dirNoramlized * maxDistance);
-            RaycastHit hit;
-            if (Physics.Linecast(transform.position, finalDir, out hit))
+            Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")); //마우스 위아래 수치를 vector2로 mouseDelta에 저장한다.
+            Vector3 camAngle = transform.rotation.eulerAngles; //카메라 position을 값을 Euler값으로 변환해 둔다.
+            float x = camAngle.x - mouseDelta.y;
+            //각도 제한
+            if (x < 180f)
             {
-                finalDistance = Mathf.Clamp(hit.distance, minDistance, maxDistance);
+                x = Mathf.Clamp(x, -1f, 70f);
             }
-            else { finalDistance = maxDistance; }
-            //최종 카메라 오브젝트 위치계산
-            realCamera.localPosition = Vector3.Lerp(realCamera.localPosition, dirNoramlized * finalDistance, Time.deltaTime * smoothness);
-            yield return null;
+            else
+            {
+                x = Mathf.Clamp(x, 355f, 361f);
+            }
+            transform.rotation = Quaternion.Euler(x, camAngle.y + mouseDelta.x, camAngle.z);//camAngle의 새로운값을 cameraArm.rotation에 넣어준다.
         }
     }
-    #endregion
 }
