@@ -202,7 +202,7 @@ public class MonsterAI : MonoBehaviour
                     meleeArea.enabled = false;
                     yield return new WaitForSeconds(2f);
                     break;
-                case Type.C:
+                case Type.C: //원거리 몬스터 행동
                     yield return new WaitForSeconds(0.5f);
                     GameObject instantSlash = Instantiate(slashOb, farSkillPointA.position, farSkillPointA.rotation);
                     instantSlash.transform.LookAt(player);

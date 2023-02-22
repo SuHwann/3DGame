@@ -51,7 +51,7 @@ public class Wraith : MonsterAI
             yield return null;
         }
     }
-    //랜덤한 공격
+    //공격 선택
     IEnumerator Think()
     {
         yield return new WaitForSeconds(2f);

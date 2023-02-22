@@ -30,14 +30,14 @@ public class NPCTalk : MonoBehaviour
     }
     IEnumerator Talk()
     {
-        text.text = " ";
+        text.text = " "; //text 초기화 
         talkline = false;
-        if (talkIndex == npctext.Length)
+        if (talkIndex == npctext.Length) //npctext 배열의 길이와 현재 출력되고있는 배열 순서가 같으면 대화가 끝났다고 판단
         {
             talkIndex = 0;
             yield break;
         }
-        foreach (char letter in npctext[talkIndex++])
+        foreach (char letter in npctext[talkIndex++]) //글자를 쪼개서 하나씩 출력 
         {
             text.text += letter;
             yield return new WaitForSeconds(0.1f);

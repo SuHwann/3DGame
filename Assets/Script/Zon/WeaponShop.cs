@@ -41,15 +41,15 @@ public class WeaponShop : MonoBehaviour
         switch (value) //몇번째 무기를 교환할것인가?
         {
             case 0: //GreenSword
-                if (enterPlayer.jewel[0] == true)
+                if (enterPlayer.jewel[0] == true) //플레이어가 0번째 보석이 활성화 되어있다면
                 { Player.SwordSwap(0); talkText.text = talkData[2]; }
                 break;
             case 1: //RedSword
-                if (enterPlayer.jewel[1] == true)
+                if (enterPlayer.jewel[1] == true) //플레이어가 1번째 보석이 활성화 되어있다면
                 { Player.SwordSwap(1); talkText.text = talkData[2]; }
                 break;
             case 2: //BlueSword
-                if (enterPlayer.jewel[2] == true)
+                if (enterPlayer.jewel[2] == true) //플레이어가 2번째 보석이 활성화 되어있다면
                 { Player.SwordSwap(2); talkText.text = talkData[2]; }
                 break;
         }
